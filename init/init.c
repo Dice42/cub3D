@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 16:10:12 by ssibai           ###   ########.fr       */
+/*   Created: 2024/07/16 16:00:30 by ssibai            #+#    #+#             */
+/*   Updated: 2024/07/16 16:30:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int main(int ac, char **av)
+bool	init_cube(t_cub3d *cube)
 {
-	t_cub3d	cube;
-
-	if (ac != 2)
-		return (0);
-	if (!init_cube(&cube))
-		return (0); //print error
-	if (!validate_level(av[1], &cube.level))
-		return (0); //print error
-
-	return (0);
+	ft_bzero(&cube->data, sizeof(cube->data));
+	ft_bzero(&cube->level, sizeof(cube->level));
+	return (true);
 }

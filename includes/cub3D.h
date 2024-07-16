@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 13:42:19 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/16 16:30:18 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
+# include <libft/libft.h>
 
 typedef enum keys
 {
@@ -37,13 +39,22 @@ typedef struct s_player
 	char	rot;
 }	t_player;
 
+typedef struct s_textures
+{
+	char	*north_texture;
+	char	*west_texture;
+	char	*east_texture;
+	char	*south_texture;
+	
+}	t_textures;
+
 typedef struct s_level
 {
-	char	**map;
-	int		row_start_point;
-	int		ceiling_color[3];
-	int		floor_color[3];
-	
+	char		**map;
+	int			row_start_point;
+	t_textures	textures;
+	int			ceiling_color[3];
+	int			floor_color[3];
 }	t_level;
 
 typedef struct s_mlx
@@ -51,6 +62,12 @@ typedef struct s_mlx
 	void		*mlx_ptr;
 	void		*win;
 }	t_mlx_data;
+
+typedef struct s_cub3d
+{
+	t_mlx_data	data;
+	t_level		level;
+}	t_cub3d;
 
 
 #endif
