@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/15 19:14:53 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:26:46 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,36 @@
 # include <fcntl.h>
 # include <math.h>
 
+typedef enum keys
+{
+	ESC = 53,
+	LOOK_RIGHT = 124,
+	LOOK_LEFT = 123,
+	W = 13,
+	A = 0,
+	S = 1,
+	D = 2
+}	t_keys;
 
+typedef struct s_player
+{
+	int		start_pos[2];
+	char	rot;
+}	t_player;
+
+typedef struct s_level
+{
+	char	**map;
+	int		ceiling_color[3];
+	int		floor_color[3];
+	
+}	t_level;
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+	void		*win;
+}	t_mlx_data;
 
 
 #endif
