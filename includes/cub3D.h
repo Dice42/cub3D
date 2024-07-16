@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 16:30:18 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/16 21:24:05 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include <libft/libft.h>
+# include <includes/libft/libft.h>
 
 typedef enum keys
 {
@@ -68,6 +68,7 @@ typedef struct s_cub3d
 	t_mlx_data	data;
 	t_level		level;
 }	t_cub3d;
+
 
 
 #endif
