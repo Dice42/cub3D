@@ -7,3 +7,8 @@ GETTING RGB COLORS FOR CEILING AND FLOOR:
  atoi: if value is negative, invalid. if value is greater than 255, invalid.
 -Then these 3 values are stored in the "ceiling_color" and "floor_color" int arrays as {R,G,B}
 -We finally free the split string.
+
+
+PARSING MAP:
+
+-first character OTHER THAN SPACE in each 

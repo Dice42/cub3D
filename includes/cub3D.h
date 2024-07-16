@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 13:26:46 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/16 13:42:19 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_player
 typedef struct s_level
 {
 	char	**map;
+	int		row_start_point;
 	int		ceiling_color[3];
 	int		floor_color[3];
 	
