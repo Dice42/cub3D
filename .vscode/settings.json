@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"*.gitignore": "c"
+		"*.gitignore": "c",
+		"libft.h": "c",
+		"unistd.h": "c",
+		"stdlib.h": "c"
 	}
 }

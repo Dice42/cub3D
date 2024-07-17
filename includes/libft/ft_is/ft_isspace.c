@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:20:31 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/06/30 22:34:48 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:26:06 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,15 @@ int	ft_skipspaces(const char *str)
 		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
 	return (i);
+}
+
+char	*ft_ignorespaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	return (str + i);
 }
