@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 21:24:05 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:39:16 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include <includes/libft/libft.h>
+# include "./libft/libft.h"
 
 typedef enum keys
 {
@@ -69,6 +69,11 @@ typedef struct s_cub3d
 	t_level		level;
 }	t_cub3d;
 
+/* ************************************************************************** */
+/* 									parsing									  */
+/* ************************************************************************** */
 
+bool	validate_level(char *level_path, t_level *level);
+bool	init_cube(t_cub3d *cube);
 
 #endif

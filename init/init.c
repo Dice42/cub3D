@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:00:30 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/16 21:39:18 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:31:06 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3D.h"
+#include "../includes/cub3D.h"
 
 bool	init_cube(t_cub3d *cube)
 {

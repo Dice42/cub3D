@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/16 21:26:09 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:37:37 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "includes/cub3D.h"
 
-int main(int ac, char **av)
+int main(void)
 {
-	t_cub3d	cube;
-
+//	t_cub3d	cube;
+	
+	printf("helo!\n");
 	if (ac != 2)
 		return (0);
 	if (!init_cube(&cube))
