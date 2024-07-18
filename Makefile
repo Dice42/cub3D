@@ -16,10 +16,14 @@ PARSE_DIR = ./parsing
 
 INIT_DIR = ./init
 
+CUB_UTILS_DIR = ./cub_utils
+
 OBJ_DIR = ./obj
 
 SRC =	$(PARSE_DIR)/level_parsing.c \
+		$(PARSE_DIR)/validate_textures.c \
 		$(INIT_DIR)/init.c \
+		$(CUB_UTILS_DIR)/general_utils.c \
 		main.c
 
 CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -I./includes

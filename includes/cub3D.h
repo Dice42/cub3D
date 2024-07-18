@@ -35,6 +35,13 @@ typedef enum keys
 	D = 2
 }	t_keys;
 
+typedef struct s_counters
+{
+	int	i;
+	int	j;
+	int	c;
+}	t_ctr;
+
 typedef struct s_player
 {
 	int		start_pos[2];
@@ -72,10 +79,18 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 /* ************************************************************************** */
-/* 									parsing									  */
+/* 								General Utils								  */
+/* ************************************************************************** */
+
+void    init_ctrs(t_ctr *ctr);
+bool	init_cube(t_cub3d *cube);
+
+
+/* ************************************************************************** */
+/* 									Parsing									  */
 /* ************************************************************************** */
 
 bool	validate_level(char *level_path, t_cub3d *cube);
-bool	init_cube(t_cub3d *cube);
+bool	validate_map_textures(t_level *level);
 
 #endif
