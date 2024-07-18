@@ -2,28 +2,14 @@
 
 #include "../includes/cub3D.h"
 
-char	*get_texture(char *str, int j, int c)
+char	*get_texture(char *str)
 {
-	char	*temp;
-	char	*texture;
+	char	*textures_path;
 
-	temp = malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!temp)
+	textures_path = ft_ignorespaces(str);
+	if (access(textures_path, F_OK) == -1)
 		return (NULL);
-	while (str[j])
-	{
-		j = ft_skipspaces(str);
-		if (j == '\0')
-			return (NULL);
-		temp[c] = str[j];
-		j++;
-		c++;
-	}
-	temp[c] = '\0';
-	texture = ft_strdup(temp);
-	free (temp);
-	printf("%s\n",texture);
-	return (texture);
+	return (textures_path);
 }
 
 /**
@@ -33,47 +19,70 @@ char	*get_texture(char *str, int j, int c)
  */
 bool	validate_map_textures(t_level *level)
 {
-	t_ctr   ctr;
+	t_ctr	ctr;
 	char	*str;
-	char	*full_path;
 
-	str = NULL;
-	full_path = NULL;
 	init_ctrs(&ctr);
-	//printf("%s\n", level->map[0]);
 	while (ctr.i < 6)
 	{
-		str = get_texture(level->map[ctr.i], 0, 0);
-		full_path = ft_strjoin(texture_path, str);
-		if (access(full_path, F_OK) == -1)
-			return (free(str), false);
-		ctr.j = ft_skipspaces(level->map[ctr.i]);
-		if (level->map[ctr.i][ctr.j] == 'N')
-			level->textures.north_texture = str;
-		else if (level->map[ctr.i][ctr.j] == 'W')
-			level->textures.west_texture = str;
-		else if (level->map[ctr.i][ctr.j] == 'S')
-			level->textures.south_texture = str;
-		else if (level->map[ctr.i][ctr.j] == 'E')
-			level->textures.east_texture = str;
-		ctr.i ++;
-		printf("%s\n", str);
-		free (str);
-		free (full_path);
+		// we have to loop through the first 6 strs of the map and they should contain 
+		// the letters N0, WE, SO, EA, F, C in any order and they should not be repeated 
+		// that we already have validated that 
+		// we extract the texture path from the string and check if it exists 
+		//if not we return false then we save the texture path in our texture struct according to the corrosponding letter
+		str = NULL;
+		if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "NO", 2) == 0)
+		{
+			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
+			if (!str)
+				return (false);
+			level->textures.north_texture = ft_strdup(str);  
+			ctr.i ++;
+		}
+		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "SO", 2) == 0)
+		{
+			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
+			if (!str)
+				return (false);
+			level->textures.south_texture = ft_strdup(str);; 
+			ctr.i ++;
+		}
+		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "WE", 2) == 0)
+		{
+			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
+			if (!str)
+				return (false);
+			level->textures.west_texture = ft_strdup(str);; 
+			ctr.i ++;
+		}
+		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "EA", 2) == 0)
+		{
+			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
+			if (!str)
+				return (false);
+			level->textures.east_texture = ft_strdup(str);;
+			ctr.i ++;
+		}
+		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "F", 1) == 0)
+			ctr.i ++;
+		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "C", 1) == 0)
+			ctr.i ++;
+		else
+			return (false);
 	}
 	return (true);
 }
 
-int main()
-{
-	t_level	level;
+// int main()
+// {
+// 	t_level	level;
 
-	level.map = malloc(sizeof(char *) * 4);
+// 	level.map = malloc(sizeof(char *) * 4);
 
-	level.map[0] = ft_strdup("    Npath_to_north_texture");
-    level.map[1] = ft_strdup("    Wpath_to_west_texture");
-    level.map[2] = ft_strdup("    Spath_to_south_texture");
-    level.map[3] = ft_strdup("    Epath_to_east_texture");
-	validate_map_textures(&level);
-	return (0);
-}
+// 	level.map[0] = ft_strdup("    Npath_to_north_texture");
+//     level.map[1] = ft_strdup("    Wpath_to_west_texture");
+//     level.map[2] = ft_strdup("    Spath_to_south_texture");
+//     level.map[3] = ft_strdup("    Epath_to_east_texture");
+// 	validate_map_textures(&level);
+// 	return (0);
+// }

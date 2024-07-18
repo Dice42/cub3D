@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
+#    By: ++4 <mohammoh@student.42abudhabi.ae>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/17 14:38:19 by ssibai           ###   ########.fr        #
+#    Updated: 2024/07/18 23:46:30 by ++4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,14 +36,14 @@ MINILIBX = ./includes/mlx/libmlx.a
 
 HEAD = ./
 
-MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
+# MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(CUB3D)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR)
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) 
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libft

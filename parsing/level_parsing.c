@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: ++4 <mohammoh@student.42abudhabi.ae>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/17 18:41:13 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 02:31:16 by ++4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ bool	validate_rgb_values(char *rgb, t_level *level)
 
 	i = 0;
 	temp = 0;
+	floor = true;
 	if (rgb[0] == 'C')
 		floor = false;
 	rgb_list = ft_split(rgb + 1, ',');
-	while (rgb_list[i++] != NULL)
-	if (i < 3)
+	while (rgb_list[i] != NULL)
+		i++;
+	if (i != 3)
 		return (ft_free2d((void **)rgb_list), false);
 	i = 0;
 	while (i < 3)
@@ -93,7 +95,7 @@ bool	validate_rgb_values(char *rgb, t_level *level)
 		if (temp < 0 || temp > 255)
 			return (false);
 		if (floor)
-			level->floor_color[i] = temp;
+			level->floor_color[i++] = temp;
 		else
 			level->ceiling_color[i++] = temp;
 	}
@@ -112,7 +114,7 @@ bool	find_colors_info(t_level *level)
 			|| level->map[ctr.i][ctr.j] == 'F')
 		{
 			if (!validate_rgb_values(level->map[ctr.i] + ctr.j, level))
-				return (false);
+				return (false); 
 		}
 		ctr.i ++;
 	}
@@ -144,9 +146,10 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 	if (!find_colors_info(&level))
 		return (false);// error handler with msg
 	if (!validate_map_textures(&level))
-		return (false);//error handler with msg
-	
-	
-	
+		return (false);//error handler with msg + free texture struct if any avail 
+	// printf("NORTH textures_path = %s\n", level.textures.north_texture);
+	// printf("EAST  textures_path = %s\n", level.textures.east_texture);
+	// printf("WEST  textures_path = %s\n", level.textures.west_texture);
+	// printf("SOUTH textures_path = %s\n", level.textures.south_texture);
 	return (true);
 }
