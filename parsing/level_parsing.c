@@ -40,68 +40,50 @@ char	*open_read_level(char *level_path, char *file)
 	return (file);
 }
 
+
+
 bool	validate_order(char **map)
 {
-	int		i;
-	int		j;
-	char	last[6];
-	int		c;
+	t_ctr	ctr;
+	char	letter_list[6];
 
-	i = 0;
-	j = 0;
-	c = 0;
-	while (i < 6)
+	init_ctrs(&ctr);
+	while (ctr.i < 6)
 	{
-		j = ft_skipspaces(map[i]);
-		if (map[i][j] == 'N'
-			|| map[i][j] == 'W'
-			|| map[i][j] == 'S'
-			|| map[i][j] == 'E'
-			|| map[i][j] == 'F'
-			|| map[i][j] == 'C')
+		ctr.j = ft_skipspaces(map[ctr.i]);
+		if (map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'W'
+			|| map[ctr.i][ctr.j] == 'S' || map[ctr.i][ctr.j] == 'E'
+			|| map[ctr.i][ctr.j] == 'F' || map[ctr.i][ctr.j] == 'C')
 		{
-			last[i] = map[i][j];
-			c = 0;
-			while (c < i)
+			letter_list[ctr.i] = map[ctr.i][ctr.j];
+			ctr.c = 0;
+			while (ctr.c < ctr.i)
 			{
-				if (!ft_strncmp(&map[i][j] , &last[c], 1))
+				if (!ft_strncmp(&map[ctr.i][ctr.j] , &letter_list[ctr.c++], 1))
 					return (false);
-				c ++;
 			}
-			i ++;
+			ctr.i ++;
 		}
 		else
 			return (false);
-		j = 0;
+		ctr.j = 0;
 	}
 	return (true);
 }
 
-/**
- * @brief check the validity of the textures 
- * 			by checking whether the textures exist within a 
- * 			specified directory
- */
-// bool	validate_map_textures()
-// {
-	
-// }
-
 bool	validate_rgb_values(char *rgb, t_level *level)
 {
-	bool	ceiling;
+	bool	floor;
 	char	**rgb_list;
 	int		i;
 	int		temp;
 
 	i = 0;
 	temp = 0;
-	ceiling = false;
 	if (rgb[0] == 'C')
-		ceiling = true;
+		floor = false;
 	rgb_list = ft_split(rgb + 1, ',');
-	while (rgb_list[i] != NULL)
-		i ++;
+	while (rgb_list[i++] != NULL)
 	if (i < 3)
 		return (ft_free2d((void **)rgb_list), false);
 	i = 0;
@@ -110,49 +92,44 @@ bool	validate_rgb_values(char *rgb, t_level *level)
 		temp = ft_atoi(ft_ignorespaces(rgb_list[i]));
 		if (temp < 0 || temp > 255)
 			return (false);
-		if (ceiling)
-			level->ceiling_color[i] = temp;
-		else
+		if (floor)
 			level->floor_color[i] = temp;
-		i ++;
+		else
+			level->ceiling_color[i++] = temp;
 	}
 	return (ft_free2d((void **)rgb_list), true);
 }
 
 bool	find_colors_info(t_level *level)
 {
-	int	i;
-	int	j;
+	t_ctr	ctr;
 
-	i = 0;
-	j = 0;
-	while (i < 6)
+	init_ctrs(&ctr);
+	while (ctr.i < 6)
 	{
-		j = ft_skipspaces(level->map[i]);
-		if (level->map[i][j] == 'C'
-			|| level->map[i][j] == 'F')
+		ctr.j = ft_skipspaces(level->map[ctr.i]);
+		if (level->map[ctr.i][ctr.j] == 'C'
+			|| level->map[ctr.i][ctr.j] == 'F')
 		{
-			if (!validate_rgb_values(level->map[i] + j, level))
+			if (!validate_rgb_values(level->map[ctr.i] + ctr.j, level))
 				return (false);
 		}
-		i ++;
+		ctr.i ++;
 	}
 	return (true);
 }
 
-// bool	validate_map_content(char **map)
-// {
-// 	int	i;
-
-// 	i = 6;
-// }
+//bool	validate_map_content(char **map)
+//{
+//	int	i;
+//
+//	i = 6;
+//}
 
 bool	validate_level(char *level_path, t_cub3d *cube)
 {
 	t_level	level;
-	int		i;
-	
-	i = 0;
+
 	level = cube->level;
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
 		return (false);//	error_handler(NULL, , "Error: file type is wrong\n", 1);
@@ -161,11 +138,13 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 		return (false);//error_handler(full_file, sl, "Error: couldn't open file\n", 1);
 	level.map = ft_split(level.full_file, '\n');
 	if (!level.map)
-		return (false);
+		return (false);//error handler with msg
 	if (!validate_order(level.map))
-		return (false);
+		return (false);//error handler with msg
 	if (!find_colors_info(&level))
-		return (false);
+		return (false);// error handler with msg
+	if (!validate_map_textures(&level))
+		return (false);//error handler with msg
 	
 	
 	
