@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 14:51:07 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:15:04 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void	copy_map(t_level *level)
 
 	init_ctrs(&ctr);
 	ctr.i = 6;
-	while (level->map_info[ctr.i])
+	
+	while (ctr.i < 10)
 	{
+		printf("im here here\n");
+		printf("%s\n",level->map_info[ctr.i] );
 		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
+		printf("after copying");
 		ctr.j++;
 		ctr.i++;
 	}
@@ -129,6 +133,7 @@ bool	validate_map(t_level *level)
 
 	init_ctrs(&ctr);
 	copy_map(level);
+	printf("im here\n");
 
 	while (level->map[ctr.i])
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 14:49:23 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:15:41 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,15 +136,15 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 		return (false);//error handler with msg
 	if (!find_colors_info(&level))
 		return (false);// error handler with msg
-	if (!validate_map(&level))
-	{
-		printf("wrong map\n");
-		return (false);
-	}
 	if (!validate_textures_info(&level))
 	{
 		printf("failed at textures\n");
 		return (false);//error handler with msg + free texture struct if any avail 
+	}
+	if (!validate_map(&level))
+	{
+		printf("wrong map\n");
+		return (false);
 	}
 	return (true);
 }
