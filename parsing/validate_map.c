@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 19:04:16 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 19:12:21 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,18 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 	if ( x == -1 || y == -1 || y >= (level->num_of_rows)
 		|| x >= (ft_strlen(level->map[x])))
 		return (true);
-	else if (level->visited[y][x])
+	else if (level->visited[x][y])
 		return (true);
 	else
 	{
-		entry = level->map[y][x];
+		entry = level->map[x][y];
 		printf("X is %d and Y is %d for entry %c\n" , x, y ,entry);
 		if (!ft_strchr(expected, entry))
 		{
 			printf("Not within the expected string\n");
 			return (false);
 		}
-		level->visited[y][x] = true;
+		level->visited[x][y] = true;
 		if (entry == ' ')
 			exp = " 1";
 		else if (entry == '1')
@@ -114,8 +114,8 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 			|| entry == 'W' || entry == 'E')
 			exp = "10";
 	}
-	printf("my entry %c is and my expected is : [%s]\n", entry, exp);
-	return (recursive_call(y, x, level, exp));
+	//printf("my entry %c is and my expected is : [%s]\n", entry, exp);
+	return (recursive_call(x, y, level, exp));
 }
 
 bool	recursive_call(int x, int y, t_level *level, char *expected)
