@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 15:15:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:23:44 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,14 @@ void	copy_map(t_level *level)
 
 	init_ctrs(&ctr);
 	ctr.i = 6;
-	
-	while (ctr.i < 10)
+	level->num_of_rows = ft_arrlen(level->map_info + 6);
+	level->map = ft_calloc(sizeof(char *), level->num_of_rows);
+	while (level->map_info[ctr.i])
 	{
-		printf("im here here\n");
-		printf("%s\n",level->map_info[ctr.i] );
 		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
-		printf("after copying");
 		ctr.j++;
 		ctr.i++;
 	}
-	level->num_of_rows = ctr.j;
 }
 
 bool	validate_map_content(char *map_row)
@@ -133,13 +130,7 @@ bool	validate_map(t_level *level)
 
 	init_ctrs(&ctr);
 	copy_map(level);
-	printf("im here\n");
-
-	while (level->map[ctr.i])
-	{
-		printf("%s\n", level->map[ctr.i++]);
-	}
-
+	
 	while (level->map[ctr.i])
 	{
 		if (!validate_map_content(level->map[ctr.i]))

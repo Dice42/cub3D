@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 15:15:41 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:12:55 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,14 +137,8 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 	if (!find_colors_info(&level))
 		return (false);// error handler with msg
 	if (!validate_textures_info(&level))
-	{
-		printf("failed at textures\n");
 		return (false);//error handler with msg + free texture struct if any avail 
-	}
 	if (!validate_map(&level))
-	{
-		printf("wrong map\n");
 		return (false);
-	}
 	return (true);
 }

@@ -15,6 +15,7 @@ bool	set_texture(t_level *level, char direction, int *i)
 {
 	char *str;
 
+	str = NULL;
 	str = get_texture(ft_ignorespaces(level->map_info[*i]) + 2);
 	if (!str)
 		return (false);

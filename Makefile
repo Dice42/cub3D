@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/19 15:02:57 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/19 16:08:25 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
 		main.c
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -Ofast -g3 -I./includes
+CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
 
 RM = rm -rf
 

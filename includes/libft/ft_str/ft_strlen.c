@@ -23,3 +23,15 @@ int	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+
+int	ft_arrlen(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (!arr || !arr[i])
+		return (0);
+	while (arr[i] != NULL)
+		i++;
+	return (i);
+}
