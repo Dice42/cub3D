@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 19:12:21 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 19:59:06 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,42 +88,57 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 	char	entry;
 	char	*exp;
 	
+	printf("CALLED\n");
 	exp = NULL;
 	if ( x == -1 || y == -1 || y >= (level->num_of_rows)
 		|| x >= (ft_strlen(level->map[x])))
+	{
+		printf("true cuz border\n");
 		return (true);
+	}
 	else if (level->visited[x][y])
+	{
+		printf("true cuz visited\n");
 		return (true);
+	}
 	else
 	{
 		entry = level->map[x][y];
 		printf("X is %d and Y is %d for entry %c\n" , x, y ,entry);
 		if (!ft_strchr(expected, entry))
 		{
-			printf("Not within the expected string\n");
+			//printf("Not within the expected string\n");
 			return (false);
 		}
-		level->visited[x][y] = true;
 		if (entry == ' ')
 			exp = " 1";
 		else if (entry == '1')
 			exp = " 10NESW";
 		else if (entry == '0')
+		{
+			printf("x is %d", x);
+			printf(" and strlen of next row is %d\n", ft_strlen(level->map[x + 1]));
+			if (x >= ft_strlen(level->map[x + 1]))
+			{
+				printf("NOT TRUE\n");
+				return (false);
+			}
 			exp = "10NESW";
+		}
 		else if (entry == 'N' || entry == 'S'
 			|| entry == 'W' || entry == 'E')
 			exp = "10";
 	}
-	//printf("my entry %c is and my expected is : [%s]\n", entry, exp);
+	level->visited[x][y] = true;
 	return (recursive_call(x, y, level, exp));
 }
 
 bool	recursive_call(int x, int y, t_level *level, char *expected)
 {
 	return (check_sides((x + 1), (y), level, expected)
-		&& check_sides((x), (y + 1), level, expected)
-		&& check_sides((x - 1), y, level, expected)
-		&& check_sides((x), (y - 1), level, expected));
+		&& check_sides((x - 1), (y), level, expected)
+		&& check_sides((x), (y - 1), level, expected)
+		&& check_sides((x), (y + 1), level, expected));
 }
 /*
 	we must check:
@@ -133,23 +148,27 @@ bool	recursive_call(int x, int y, t_level *level, char *expected)
 	3) 
  */
 
-// bool	vertical_borders(t_level *level)
-// {
-// 	bool	edge;
-// 	t_ctr	ctr;
+bool	vertical_borders(t_level *level, int row)
+{
+	bool	edge;
+	t_ctr	ctr;
 
-// 	init_ctrs(&ctr);
-// 	while (level->map[ctr.i])
-// 	{
-// 		if (level->map[ctr.i][ctr.j] == 1 || ' ')
-// 			edge = true;
-// 		else
-// 			edge = false;
-// 		ctr.j ++;
-// 	}
-// 	if (!edge)
-// 		return (false);
-// }
+	init_ctrs(&ctr);
+	while (level->map[row][ctr.i])
+	{
+		if (level->map[row][ctr.i] == '1' || level->map[row][ctr.i] == ' ')
+			edge = true;
+		else
+		{
+			printf("THE ENTRY IS %c\n", level->map[row][ctr.i]);
+			return (false);
+		}
+		ctr.i ++;
+	}
+	if (!edge)
+		return (false);
+	return (true);
+}
 
 // bool	horizontal_borders(t_level *level)
 // {
@@ -184,6 +203,11 @@ bool	validate_map(t_level *level)
 		printf("NO\n");
 		return (false);
 	}
+	if (!vertical_borders(level, 0) || !vertical_borders(level, level->num_of_rows - 1))
+	{
+		printf("NOT ALL 1 OR SPACE\n");
+		return (false);
+	}	
 	if (!check_sides(0, 0, level, " 1"))
 	{
 		printf("sides NO\n");
