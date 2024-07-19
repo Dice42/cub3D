@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 16:23:44 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:04:16 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,82 @@ void	copy_map(t_level *level)
 	}
 }
 
-bool	validate_map_content(char *map_row)
+bool	validate_map_content(char **map, int n_rows)
 {
-	int	i;
+	t_ctr	ctr;
+	bool	player_found;
 
-	i = 0;
-	while (map_row[i])
+	init_ctrs(&ctr);
+	player_found = false;
+	while (ctr.i < n_rows)
 	{
-		if (map_row[i] == '0' || map_row[i] == '1'
-			|| map_row[i] == 'N' || map_row[i] == 'S'
-			|| map_row[i] == 'E' || map_row[i] == 'W' || map_row[i] == ' ')
-			i ++ ;
-		else
+		ctr.j = 0;
+		while (map[ctr.i][ctr.j])
 		{
-			printf("false\n");
-			return (false);
+			if (map[ctr.i][ctr.j] == '0' || map[ctr.i][ctr.j] == '1'
+				|| map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
+				|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W' || map[ctr.i][ctr.j] == ' ')
+			{
+				if ((map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
+					|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W'))
+				{
+					if (player_found)
+						return (false);
+					player_found = true;
+				}
+				ctr.j ++ ;
+			}
+			else
+				return (false);
 		}
+		ctr.i ++;
 	}
+	if (!player_found)
+		return (false);
 	return (true);
 }
 
+void	fill_visited(bool **visited, char **map, int n_rows)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (i < n_rows)
+	{
+		visited[i] = ft_calloc(sizeof(bool), ft_strlen(map[i]));
+		j = 0;
+		while (visited[i][j])
+		{
+			visited[i][j] = false;
+			j++;
+		}
+		i++;
+	}
+}
 
 /* ************************************************************************** */
 bool	check_sides(int x, int y, t_level *level, char *expected)
 {
-
 	char	entry;
 	char	*exp;
-
-	entry = level->map[x][y];
+	
 	exp = NULL;
-	if ( x == -1 || y == -1 || x >= ft_strlen(level->map[x])
-		|| y >= level->num_of_rows || level->visited[x][y])
+	if ( x == -1 || y == -1 || y >= (level->num_of_rows)
+		|| x >= (ft_strlen(level->map[x])))
+		return (true);
+	else if (level->visited[y][x])
 		return (true);
 	else
 	{
+		entry = level->map[y][x];
+		printf("X is %d and Y is %d for entry %c\n" , x, y ,entry);
 		if (!ft_strchr(expected, entry))
+		{
+			printf("Not within the expected string\n");
 			return (false);
-		level->visited[x][y] = true;
+		}
+		level->visited[y][x] = true;
 		if (entry == ' ')
 			exp = " 1";
 		else if (entry == '1')
@@ -76,13 +114,12 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 			|| entry == 'W' || entry == 'E')
 			exp = "10";
 	}
-	printf("my entry is and my expected is : %s\n", exp);
-	return (recursive_call(x, y, level, exp));
+	printf("my entry %c is and my expected is : [%s]\n", entry, exp);
+	return (recursive_call(y, x, level, exp));
 }
 
 bool	recursive_call(int x, int y, t_level *level, char *expected)
 {
-	
 	return (check_sides((x + 1), (y), level, expected)
 		&& check_sides((x), (y + 1), level, expected)
 		&& check_sides((x - 1), y, level, expected)
@@ -96,7 +133,7 @@ bool	recursive_call(int x, int y, t_level *level, char *expected)
 	3) 
  */
 
-// bool	check_borders(t_level *level, int row)
+// bool	vertical_borders(t_level *level)
 // {
 // 	bool	edge;
 // 	t_ctr	ctr;
@@ -110,10 +147,19 @@ bool	recursive_call(int x, int y, t_level *level, char *expected)
 // 			edge = false;
 // 		ctr.j ++;
 // 	}
-// 	if (ctr.j > level->columns)
-// 		level->columns = ctr.j;
 // 	if (!edge)
 // 		return (false);
+// }
+
+// bool	horizontal_borders(t_level *level)
+// {
+// 	int	i;
+	
+// 	while (level->map[0])
+// 	{
+// 		if (level->map[0][i] != ' ' && level->map[0][i] != 1)
+// 			return (false);
+// 	}
 // }
 
 /**
@@ -126,17 +172,22 @@ bool	recursive_call(int x, int y, t_level *level, char *expected)
  */
 bool	validate_map(t_level *level)
 {
-	t_ctr ctr;
-
+	t_ctr	ctr;
+	//int		row_lengt
+	
 	init_ctrs(&ctr);
 	copy_map(level);
-	
-	while (level->map[ctr.i])
+	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows);
+	fill_visited(level->visited, level->map, level->num_of_rows);
+	if (!validate_map_content(level->map, level->num_of_rows))
 	{
-		if (!validate_map_content(level->map[ctr.i]))
-			return (false);
-		if (!check_sides(0, 0, level, " 1"))
-			return (false);
+		printf("NO\n");
+		return (false);
+	}
+	if (!check_sides(0, 0, level, " 1"))
+	{
+		printf("sides NO\n");
+		return (false);
 	}
 	return (true);
 }

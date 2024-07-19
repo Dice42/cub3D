@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"unistd.h": "c",
 		"stdlib.h": "c",
-		"functional": "c"
+		"functional": "c",
+		"sstream": "c"
 	}
 }
