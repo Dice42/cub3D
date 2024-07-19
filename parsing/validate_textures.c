@@ -15,7 +15,7 @@ bool	set_texture(t_level *level, char direction, int *i)
 {
 	char *str;
 
-	str = get_texture(ft_ignorespaces(level->map[*i]) + 2);
+	str = get_texture(ft_ignorespaces(level->map_info[*i]) + 2);
 	if (!str)
 		return (false);
 	if (direction == 'N')
@@ -27,46 +27,42 @@ bool	set_texture(t_level *level, char direction, int *i)
 	else if (direction == 'E')
 		level->textures.east_texture = ft_strdup(str);
 	return ((*i)++, true);
-
-
-
-	
 }
 /**
  * @brief check the validity of the textures 
  * 			by checking whether the textures exist within a 
  * 			specified directory
  */
-bool	validate_map_textures(t_level *level)
+bool	validate_textures_info(t_level *level)
 {
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
 	while (ctr.i < 6)
 	{
-		if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "NO", 2) == 0)
+		if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "NO", 2) == 0)
 		{
 			if (!set_texture(level, 'N', &ctr.i))
 				return (false);
 		}
-		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "SO", 2) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "SO", 2) == 0)
 		{
 			if (!set_texture(level, 'S', &ctr.i))
 				return (false);
 		}
-		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "WE", 2) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "WE", 2) == 0)
 		{
 			if (!set_texture(level, 'W', &ctr.i))
 				return (false);
 		}
-		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "EA", 2) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "EA", 2) == 0)
 		{
 			if (!set_texture(level, 'E', &ctr.i))
 				return (false);
 		}
-		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "F", 1) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "F", 1) == 0)
 			ctr.i ++;
-		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "C", 1) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "C", 1) == 0)
 			ctr.i ++;
 		else
 			return (false);

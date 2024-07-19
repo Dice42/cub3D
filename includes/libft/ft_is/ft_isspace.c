@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:20:31 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:26:06 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 10:52:59 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,14 @@ char	*ft_ignorespaces(char *str)
 		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
 	return (str + i);
+}
+
+int	ft_skip_char(char *str, char skipped)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == skipped)
+		i ++;
+	return (i);
 }

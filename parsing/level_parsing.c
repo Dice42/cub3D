@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 10:38:19 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:49:23 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ char	*open_read_level(char *level_path, char *file)
 	close(fd);
 	return (file);
 }
-
-
 
 bool	validate_order(char **map)
 {
@@ -109,24 +107,17 @@ bool	find_colors_info(t_level *level)
 	init_ctrs(&ctr);
 	while (ctr.i < 6)
 	{
-		ctr.j = ft_skipspaces(level->map[ctr.i]);
-		if (level->map[ctr.i][ctr.j] == 'C'
-			|| level->map[ctr.i][ctr.j] == 'F')
+		ctr.j = ft_skipspaces(level->map_info[ctr.i]);
+		if (level->map_info[ctr.i][ctr.j] == 'C'
+			|| level->map_info[ctr.i][ctr.j] == 'F')
 		{
-			if (!validate_rgb_values(level->map[ctr.i] + ctr.j, level))
+			if (!validate_rgb_values(level->map_info[ctr.i] + ctr.j, level))
 				return (false); 
 		}
 		ctr.i ++;
 	}
 	return (true);
 }
-
-//bool	validate_map_content(char **map)
-//{
-//	int	i;
-//
-//	i = 6;
-//}
 
 bool	validate_level(char *level_path, t_cub3d *cube)
 {
@@ -138,15 +129,22 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 	level.full_file = open_read_level(level_path, 0);
 	if (!level.full_file)
 		return (false);//error_handler(full_file, sl, "Error: couldn't open file\n", 1);
-	level.map = ft_split(level.full_file, '\n');
-	if (!level.map)
+	level.map_info = ft_split(level.full_file, '\n');
+	if (!level.map_info)
 		return (false);//error handler with msg
-	if (!validate_order(level.map))
+	if (!validate_order(level.map_info))
 		return (false);//error handler with msg
 	if (!find_colors_info(&level))
 		return (false);// error handler with msg
-	if (!validate_map_textures(&level))
+	if (!validate_map(&level))
+	{
+		printf("wrong map\n");
+		return (false);
+	}
+	if (!validate_textures_info(&level))
+	{
+		printf("failed at textures\n");
 		return (false);//error handler with msg + free texture struct if any avail 
-	if 
+	}
 	return (true);
 }

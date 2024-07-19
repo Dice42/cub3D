@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:40:00 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 14:40:16 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,24 @@ typedef struct s_textures
 	char	*south_texture;
 }	t_textures;
 
+/*	
+		column		    column3
+row	______|________|_________|_____
+				 
+	______|________|_________|_____
+*/
 typedef struct s_level
 {
+	char		**map_info;
 	char		**map;
+	bool		**visited;
 	char		*full_file;
 	int			row_start_point;
 	t_textures	textures;
 	int			ceiling_color[3];
 	int			floor_color[3];
+	int			num_of_rows;
+	//int			num_of_columns;
 }	t_level;
 
 typedef struct s_mlx
@@ -91,6 +101,9 @@ bool	init_cube(t_cub3d *cube);
 /* ************************************************************************** */
 
 bool	validate_level(char *level_path, t_cub3d *cube);
-bool	validate_map_textures(t_level *level);
+bool	validate_textures_info(t_level *level);
+bool	validate_map(t_level *level);
+bool	check_sides(int x, int y, t_level *level, char *expected);
+bool	recursive_call(int x, int y, t_level *level, char *expected);
 
 #endif

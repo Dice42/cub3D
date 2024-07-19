@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:21:10 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:26:18 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 10:53:12 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	*ft_strdup(char *src);
 char	*ft_strndup(const char *src, size_t n);
 int		ft_skipspaces(const char *str);
 char	*ft_ignorespaces(char *str);
+int		ft_skip_char(char *str, char skipped);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);

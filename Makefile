@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ++4 <mohammoh@student.42abudhabi.ae>       +#+  +:+       +#+         #
+#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/18 23:46:30 by ++4              ###   ########.fr        #
+#    Updated: 2024/07/19 14:42:31 by ssibai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,12 @@ OBJ_DIR = ./obj
 
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
+		$(PARSE_DIR)/validate_map.c \
 		$(INIT_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
 		main.c
 
-CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -I./includes
+CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
 
 RM = rm -rf
 
