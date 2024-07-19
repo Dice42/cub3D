@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 19:59:06 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/19 23:09:57 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	copy_map(t_level *level);
+bool	validate_map_content(char **map, int n_rows);
+void	fill_visited(bool **visited, char **map, int n_rows);
+bool	check_if_valid(int x, int y, t_level *level);
+bool	check_sides(int x, int y, t_level *level, char *expected);
+bool	vertical_borders(t_level *level, int row);
+bool	validate_map(t_level *level);
+
+
 
 void	copy_map(t_level *level)
 {
@@ -28,6 +38,7 @@ void	copy_map(t_level *level)
 	}
 }
 
+/* ************************************************************************** */
 bool	validate_map_content(char **map, int n_rows)
 {
 	t_ctr	ctr;
@@ -42,7 +53,8 @@ bool	validate_map_content(char **map, int n_rows)
 		{
 			if (map[ctr.i][ctr.j] == '0' || map[ctr.i][ctr.j] == '1'
 				|| map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
-				|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W' || map[ctr.i][ctr.j] == ' ')
+				|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W' 
+				|| map[ctr.i][ctr.j] == ' ')
 			{
 				if ((map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
 					|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W'))
@@ -81,72 +93,62 @@ void	fill_visited(bool **visited, char **map, int n_rows)
 		i++;
 	}
 }
+//check next row if it avaialbe if not return false
+			//and if this charcter index is more than the next row length
+			//if so return false else return true
+bool	check_if_valid(int x, int y, t_level *level)
+{
+	if (level->map[x + 1] == NULL)
+		return (false);
+	if (y > ft_strlen(level->map[x + 1]) - 1)
+		return (false);
+	if (x > 0 && level->map[x - 1] == NULL)
+		return (false);
+	if (x > 0 && y > ft_strlen(level->map[x - 1]) - 1)
+		return (false);
+	return (true);
+}
 
 /* ************************************************************************** */
 bool	check_sides(int x, int y, t_level *level, char *expected)
 {
 	char	entry;
 	char	*exp;
-	
-	printf("CALLED\n");
 	exp = NULL;
-	if ( x == -1 || y == -1 || y >= (level->num_of_rows)
-		|| x >= (ft_strlen(level->map[x])))
-	{
-		printf("true cuz border\n");
+	if ( x < 0 || y < 0 || x > (level->num_of_rows)
+		|| y > (ft_strlen(level->map[x]) - 1))
 		return (true);
-	}
 	else if (level->visited[x][y])
-	{
-		printf("true cuz visited\n");
 		return (true);
-	}
 	else
 	{
 		entry = level->map[x][y];
-		printf("X is %d and Y is %d for entry %c\n" , x, y ,entry);
 		if (!ft_strchr(expected, entry))
-		{
-			//printf("Not within the expected string\n");
 			return (false);
-		}
 		if (entry == ' ')
 			exp = " 1";
 		else if (entry == '1')
 			exp = " 10NESW";
 		else if (entry == '0')
 		{
-			printf("x is %d", x);
-			printf(" and strlen of next row is %d\n", ft_strlen(level->map[x + 1]));
-			if (x >= ft_strlen(level->map[x + 1]))
-			{
-				printf("NOT TRUE\n");
+			if (!check_if_valid(x, y, level))
 				return (false);
-			}
 			exp = "10NESW";
 		}
 		else if (entry == 'N' || entry == 'S'
 			|| entry == 'W' || entry == 'E')
+		{
 			exp = "10";
+			if (!check_if_valid(x, y, level))
+				return (false);
+		}
 	}
 	level->visited[x][y] = true;
-	return (recursive_call(x, y, level, exp));
+	return (check_sides((x - 1), (y), level, exp)
+		&& check_sides((x + 1), (y), level, exp)
+		&& check_sides((x), (y + 1), level, exp)
+		&& check_sides((x), (y - 1), level, exp));
 }
-
-bool	recursive_call(int x, int y, t_level *level, char *expected)
-{
-	return (check_sides((x + 1), (y), level, expected)
-		&& check_sides((x - 1), (y), level, expected)
-		&& check_sides((x), (y - 1), level, expected)
-		&& check_sides((x), (y + 1), level, expected));
-}
-/*
-	we must check:
-
-	1) check the length of the row.
-	2) if we find a space, the character under must be one
-	3) 
- */
 
 bool	vertical_borders(t_level *level, int row)
 {
@@ -163,23 +165,15 @@ bool	vertical_borders(t_level *level, int row)
 			printf("THE ENTRY IS %c\n", level->map[row][ctr.i]);
 			return (false);
 		}
+		if (ft_skip_char(level->map[row], ' '))
+			if (level->map[row][ctr.i] != '1')
+				return (false);
 		ctr.i ++;
 	}
 	if (!edge)
 		return (false);
 	return (true);
 }
-
-// bool	horizontal_borders(t_level *level)
-// {
-// 	int	i;
-	
-// 	while (level->map[0])
-// 	{
-// 		if (level->map[0][i] != ' ' && level->map[0][i] != 1)
-// 			return (false);
-// 	}
-// }
 
 /**
  * @brief validates whether the map is closed or not
@@ -192,8 +186,7 @@ bool	vertical_borders(t_level *level, int row)
 bool	validate_map(t_level *level)
 {
 	t_ctr	ctr;
-	//int		row_lengt
-	
+
 	init_ctrs(&ctr);
 	copy_map(level);
 	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows);
@@ -203,7 +196,8 @@ bool	validate_map(t_level *level)
 		printf("NO\n");
 		return (false);
 	}
-	if (!vertical_borders(level, 0) || !vertical_borders(level, level->num_of_rows - 1))
+	if (!vertical_borders(level, 0) 
+		|| !vertical_borders(level, level->num_of_rows - 1))
 	{
 		printf("NOT ALL 1 OR SPACE\n");
 		return (false);
