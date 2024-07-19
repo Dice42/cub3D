@@ -11,7 +11,27 @@ char	*get_texture(char *str)
 		return (NULL);
 	return (textures_path);
 }
+bool	set_texture(t_level *level, char direction, int *i)
+{
+	char *str;
 
+	str = get_texture(ft_ignorespaces(level->map[*i]) + 2);
+	if (!str)
+		return (false);
+	if (direction == 'N')
+		level->textures.north_texture = ft_strdup(str); 
+	else if (direction == 'S')
+		level->textures.south_texture = ft_strdup(str);
+	else if (direction == 'W')
+		level->textures.west_texture = ft_strdup(str);
+	else if (direction == 'E')
+		level->textures.east_texture = ft_strdup(str);
+	return ((*i)++, true);
+
+
+
+	
+}
 /**
  * @brief check the validity of the textures 
  * 			by checking whether the textures exist within a 
@@ -20,48 +40,29 @@ char	*get_texture(char *str)
 bool	validate_map_textures(t_level *level)
 {
 	t_ctr	ctr;
-	char	*str;
 
 	init_ctrs(&ctr);
 	while (ctr.i < 6)
 	{
-		// we have to loop through the first 6 strs of the map and they should contain 
-		// the letters N0, WE, SO, EA, F, C in any order and they should not be repeated 
-		// that we already have validated that 
-		// we extract the texture path from the string and check if it exists 
-		//if not we return false then we save the texture path in our texture struct according to the corrosponding letter
-		str = NULL;
 		if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "NO", 2) == 0)
 		{
-			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
-			if (!str)
+			if (!set_texture(level, 'N', &ctr.i))
 				return (false);
-			level->textures.north_texture = ft_strdup(str);  
-			ctr.i ++;
 		}
 		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "SO", 2) == 0)
 		{
-			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
-			if (!str)
+			if (!set_texture(level, 'S', &ctr.i))
 				return (false);
-			level->textures.south_texture = ft_strdup(str);; 
-			ctr.i ++;
 		}
 		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "WE", 2) == 0)
 		{
-			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
-			if (!str)
+			if (!set_texture(level, 'W', &ctr.i))
 				return (false);
-			level->textures.west_texture = ft_strdup(str);; 
-			ctr.i ++;
 		}
 		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "EA", 2) == 0)
 		{
-			str = get_texture(ft_ignorespaces(level->map[ctr.i]) + 2);
-			if (!str)
+			if (!set_texture(level, 'E', &ctr.i))
 				return (false);
-			level->textures.east_texture = ft_strdup(str);;
-			ctr.i ++;
 		}
 		else if (ft_strncmp(ft_ignorespaces(level->map[ctr.i]), "F", 1) == 0)
 			ctr.i ++;
