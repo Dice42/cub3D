@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 19:14:13 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:35:00 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 # define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
-
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef enum keys
 {
@@ -87,10 +88,20 @@ typedef struct s_level
 	int			num_of_columns;
 }	t_level;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}		t_data;
+
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win;
+	t_data		img;
 }	t_mlx_data;
 
 typedef struct s_cub3d

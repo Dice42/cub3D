@@ -6,13 +6,13 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/20 20:12:30 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/21 00:13:19 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D = cub3D
 
-CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -D $(OS)
+CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -D $(OS)
 
 RM = rm -rf
 

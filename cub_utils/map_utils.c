@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:25:54 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 14:39:24 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 22:16:40 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void	get_columns_num(t_level *level)
 			level->num_of_columns = ctr.j;
 		ctr.i++;
 	}
-	printf("number of columns is : %d\n", level->num_of_columns);
 }
