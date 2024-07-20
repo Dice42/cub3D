@@ -3,28 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
+#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/19 17:42:35 by ssibai           ###   ########.fr        #
+#    Updated: 2024/07/20 15:27:13 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D = cub3D
 
 PARSE_DIR = ./parsing
-
 INIT_DIR = ./init
-
 CUB_UTILS_DIR = ./cub_utils
-
 OBJ_DIR = ./obj
+CLEAN_DIR = ./cleanup
 
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
 		$(PARSE_DIR)/validate_map.c \
+		$(PARSE_DIR)/validate_map_utils.c \
 		$(INIT_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
+		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
 CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -I./includes
@@ -44,7 +44,7 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 all: $(CUB3D)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) 
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(CLEAN_DIR) 
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libft

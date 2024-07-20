@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/19 16:58:45 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:18:14 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include "./libft/libft.h"
 
 #define texture_path "levels/textures/"
+
+# define INVALID_FILE_TYPE "Error: not a valid file type\n"
+# define INVALID_FILE "Error: No such file\n"
+# define INVALID_FILE_INFO "Error: invalid file info\n"
+# define INVALID_MAP "Error: invalid map\n"
+# define INVALID_MAP_TEXTURE "Error: invalid textures\n"
+# define INVALID_RGB "Error: invalid map colors\n"
+
 
 typedef enum keys
 {
@@ -92,7 +100,7 @@ typedef struct s_cub3d
 /* 								General Utils								  */
 /* ************************************************************************** */
 
-void    init_ctrs(t_ctr *ctr);
+void	init_ctrs(t_ctr *ctr);
 bool	init_cube(t_cub3d *cube);
 
 
@@ -104,6 +112,15 @@ bool	validate_level(char *level_path, t_cub3d *cube);
 bool	validate_textures_info(t_level *level);
 bool	validate_map(t_level *level);
 bool	check_sides(int x, int y, t_level *level, char *expected);
-bool	recursive_call(int x, int y, t_level *level, char *expected);
+void	copy_map(t_level *level);
+void	fill_visited(bool **visited, char **map, int n_rows);
+bool	check_if_valid(int x, int y, t_level *level);
+
+
+/* ************************************************************************** */
+/* 									ERROR HANDLING							  */
+/* ************************************************************************** */
+
+void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
 
 #endif

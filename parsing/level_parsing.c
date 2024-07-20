@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 16:28:57 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:58:27 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,20 +125,20 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 
 	level = cube->level;
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
-		return (false);//	error_handler(NULL, , "Error: file type is wrong\n", 1);
+		return (error_handler(INVALID_FILE_TYPE, NULL, NULL, false),false);
 	level.full_file = open_read_level(level_path, 0);
 	if (!level.full_file)
-		return (false);//error_handler(full_file, sl, "Error: couldn't open file\n", 1);
+		return (error_handler(INVALID_FILE, NULL, &level, true),false);
 	level.map_info = ft_split(level.full_file, '\n');
 	if (!level.map_info)
-		return (false);//error handler with msg
+		return (error_handler(INVALID_FILE_INFO, NULL, NULL, false),false);
 	if (!validate_order(level.map_info))
-		return (false);//error handler with msg
+		return (error_handler(INVALID_MAP, NULL, NULL, false),false);
 	if (!find_colors_info(&level))
-		return (false);// error handler with msg
+		return (error_handler(INVALID_RGB, NULL, NULL, false),false);
 	if (!validate_map(&level))
-		return (false);
+		return (error_handler(INVALID_MAP, NULL, &level, true),false);
 	if (!validate_textures_info(&level))
-		return (false);//error handler with msg + free texture struct if any avail 
+		return (error_handler(INVALID_MAP_TEXTURE, NULL, &level, true),false);
 	return (true);
 }

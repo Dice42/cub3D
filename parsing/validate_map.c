@@ -3,42 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 14:00:59 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:03:50 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	copy_map(t_level *level);
+
 bool	validate_map_content(char **map, int n_rows);
-void	fill_visited(bool **visited, char **map, int n_rows);
-bool	check_if_valid(int x, int y, t_level *level);
 bool	check_sides(int x, int y, t_level *level, char *expected);
 bool	vertical_borders(t_level *level, int row);
 bool	validate_map(t_level *level);
 
-
-
-void	copy_map(t_level *level)
-{
-	t_ctr	ctr;
-
-	init_ctrs(&ctr);
-	ctr.i = 6;
-	level->num_of_rows = ft_arrlen(level->map_info + 6);
-	level->map = ft_calloc(sizeof(char *), level->num_of_rows);
-	while (level->map_info[ctr.i])
-	{
-		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
-		ctr.j++;
-		ctr.i++;
-	}
-}
-
-/* ************************************************************************** */
+/**
+ * @brief this function validates if the map has only one player
+ * spaces 0s and 1s
+ * @param map 
+ * @param n_rows 
+ * @return 
+ */
 bool	validate_map_content(char **map, int n_rows)
 {
 	t_ctr	ctr;
@@ -75,45 +61,16 @@ bool	validate_map_content(char **map, int n_rows)
 	return (true);
 }
 
-void	fill_visited(bool **visited, char **map, int n_rows)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	while (i < n_rows)
-	{
-		visited[i] = ft_calloc(sizeof(bool), ft_strlen(map[i]));
-		j = 0;
-		while (visited[i][j])
-		{
-			visited[i][j] = false;
-			j++;
-		}
-		i++;
-	}
-}
-//check next row if it avaialbe if not return false
-			//and if this charcter index is more than the next row length
-			//if so return false else return true
-bool	check_if_valid(int x, int y, t_level *level)
-{
-	if (level->map[x + 1] == NULL)
-		return (false);
-	if (y > ft_strlen(level->map[x + 1]) - 1)
-		return (false);
-	if (x > 0 && level->map[x - 1] == NULL)
-		return (false);
-	if (x > 0 && y > ft_strlen(level->map[x - 1]) - 1)
-		return (false);
-	return (true);
-}
-
-/* ************************************************************************** */
+/**
+ * @brief check each value of the map and validate it 
+ * this function calls it self recursively checking all the four sides
+ * of each position in the map 
+ */
 bool	check_sides(int x, int y, t_level *level, char *expected)
 {
 	char	entry;
 	char	*exp;
+
 	exp = NULL;
 	if ( x < 0 || y < 0 || x > (level->num_of_rows)
 		|| y > (ft_strlen(level->map[x]) - 1))
@@ -150,6 +107,13 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 		&& check_sides((x), (y - 1), level, exp));
 }
 
+/**
+ * @brief checks if the map has vertical borders are all 1s
+ * @param level level details
+ * @param row row number
+ * @return true 
+ * @return false 
+ */
 bool	vertical_borders(t_level *level, int row)
 {
 	bool	edge;
@@ -161,10 +125,7 @@ bool	vertical_borders(t_level *level, int row)
 		if (level->map[row][ctr.i] == '1' || level->map[row][ctr.i] == ' ')
 			edge = true;
 		else
-		{
-			printf("THE ENTRY IS %c\n", level->map[row][ctr.i]);
 			return (false);
-		}
 		if (level->map[row][ctr.i] == ' ')
 			ctr.i = ft_skip_char(level->map[row], ' ');
 		if (level->map[row][ctr.i] != '1')
@@ -193,20 +154,11 @@ bool	validate_map(t_level *level)
 	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows);
 	fill_visited(level->visited, level->map, level->num_of_rows);
 	if (!validate_map_content(level->map, level->num_of_rows))
-	{
-		printf("NO\n");
 		return (false);
-	}
 	if (!vertical_borders(level, 0) 
 		|| !vertical_borders(level, level->num_of_rows - 1))
-	{
-		printf("NOT ALL 1 OR SPACE\n");
 		return (false);
-	}	
 	if (!check_sides(0, 0, level, " 1"))
-	{
-		printf("sides NO\n");
 		return (false);
-	}
 	return (true);
 }

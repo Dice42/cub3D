@@ -1,7 +1,23 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_textures.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/20 15:02:51 by mohammoh          #+#    #+#             */
+/*   Updated: 2024/07/20 15:02:55 by mohammoh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/**
+ * @brief check the path of the texture
+ * 
+ * @param str 
+ * @return 
+ */
 char	*get_texture(char *str)
 {
 	char	*textures_path;
@@ -11,6 +27,11 @@ char	*get_texture(char *str)
 		return (NULL);
 	return (textures_path);
 }
+
+/**
+ * @brief allocate the texture to the level struct
+ * @return 
+ */
 bool	set_texture(t_level *level, char direction, int *i)
 {
 	char *str;
@@ -29,6 +50,8 @@ bool	set_texture(t_level *level, char direction, int *i)
 		level->textures.east_texture = ft_strdup(str);
 	return ((*i)++, true);
 }
+
+
 /**
  * @brief check the validity of the textures 
  * 			by checking whether the textures exist within a 
@@ -70,17 +93,3 @@ bool	validate_textures_info(t_level *level)
 	}
 	return (true);
 }
-
-// int main()
-// {
-// 	t_level	level;
-
-// 	level.map = malloc(sizeof(char *) * 4);
-
-// 	level.map[0] = ft_strdup("    Npath_to_north_texture");
-//     level.map[1] = ft_strdup("    Wpath_to_west_texture");
-//     level.map[2] = ft_strdup("    Spath_to_south_texture");
-//     level.map[3] = ft_strdup("    Epath_to_east_texture");
-// 	validate_map_textures(&level);
-// 	return (0);
-// }
