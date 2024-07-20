@@ -6,19 +6,19 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 14:00:59 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:34:31 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 void	copy_map(t_level *level);
-bool	validate_map_content(char **map, int n_rows);
+bool	validate_map_content(char **map, int n_rows, t_player *player);
 void	fill_visited(bool **visited, char **map, int n_rows);
 bool	check_if_valid(int x, int y, t_level *level);
 bool	check_sides(int x, int y, t_level *level, char *expected);
 bool	vertical_borders(t_level *level, int row);
-bool	validate_map(t_level *level);
+bool	validate_map(t_level *level, t_player *player);
 
 
 
@@ -39,7 +39,7 @@ void	copy_map(t_level *level)
 }
 
 /* ************************************************************************** */
-bool	validate_map_content(char **map, int n_rows)
+bool	validate_map_content(char **map, int n_rows, t_player *player)
 {
 	t_ctr	ctr;
 	bool	player_found;
@@ -62,6 +62,9 @@ bool	validate_map_content(char **map, int n_rows)
 					if (player_found)
 						return (false);
 					player_found = true;
+					player->start_pos[0] = ctr.i;
+					player->start_pos[1] = ctr.j;
+					player->rot = map[ctr.i][ctr.j];
 				}
 				ctr.j ++ ;
 			}
@@ -173,6 +176,8 @@ bool	vertical_borders(t_level *level, int row)
 	}
 	if (!edge)
 		return (false);
+	if (ctr.i > level->num_of_columns)
+		level->num_of_columns = ctr.i;
 	return (true);
 }
 
@@ -184,15 +189,16 @@ bool	vertical_borders(t_level *level, int row)
  * 2) the first and las characters of every row must be 1.
  * 3) only 0 1 N S E W or space can be in each row
  */
-bool	validate_map(t_level *level)
+bool	validate_map(t_level *level, t_player *player)
 {
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
 	copy_map(level);
+	get_columns_num(level);
 	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows);
 	fill_visited(level->visited, level->map, level->num_of_rows);
-	if (!validate_map_content(level->map, level->num_of_rows))
+	if (!validate_map_content(level->map, level->num_of_rows, player))
 	{
 		printf("NO\n");
 		return (false);
@@ -202,7 +208,7 @@ bool	validate_map(t_level *level)
 	{
 		printf("NOT ALL 1 OR SPACE\n");
 		return (false);
-	}	
+	}
 	if (!check_sides(0, 0, level, " 1"))
 	{
 		printf("sides NO\n");

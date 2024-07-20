@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 16:28:57 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:31:35 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,26 +119,26 @@ bool	find_colors_info(t_level *level)
 	return (true);
 }
 
-bool	validate_level(char *level_path, t_cub3d *cube)
+bool	validate_level(char *level_path, t_level *level, t_player *player)
 {
-	t_level	level;
-
-	level = cube->level;
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
 		return (false);//	error_handler(NULL, , "Error: file type is wrong\n", 1);
-	level.full_file = open_read_level(level_path, 0);
-	if (!level.full_file)
+	level->full_file = open_read_level(level_path, 0);
+	if (!level->full_file)
 		return (false);//error_handler(full_file, sl, "Error: couldn't open file\n", 1);
-	level.map_info = ft_split(level.full_file, '\n');
-	if (!level.map_info)
+	level->map_info = ft_split(level->full_file, '\n');
+	if (!level->map_info)
 		return (false);//error handler with msg
-	if (!validate_order(level.map_info))
+	if (!validate_order(level->map_info))
 		return (false);//error handler with msg
-	if (!find_colors_info(&level))
+	if (!find_colors_info(level))
 		return (false);// error handler with msg
-	if (!validate_map(&level))
+	if (!validate_map(level, player))
 		return (false);
-	if (!validate_textures_info(&level))
+	if (!validate_textures_info(level))
+	{
+		printf("textures failed\n");
 		return (false);//error handler with msg + free texture struct if any avail 
+	}
 	return (true);
 }

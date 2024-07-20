@@ -6,7 +6,7 @@
 #    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/19 17:42:35 by ssibai           ###   ########.fr        #
+#    Updated: 2024/07/20 14:56:46 by ssibai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,16 @@ CUB_UTILS_DIR = ./cub_utils
 
 OBJ_DIR = ./obj
 
+GAMEPLAY_DIR = ./gameplay
+
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
 		$(PARSE_DIR)/validate_map.c \
 		$(INIT_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
+		$(CUB_UTILS_DIR)/map_utils.c \
+		$(GAMEPLAY_DIR)/cub3D.c \
+		$(GAMEPLAY_DIR)/window_handler.c \
 		main.c
 
 CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -I./includes
@@ -37,14 +42,14 @@ MINILIBX = ./includes/mlx/libmlx.a
 
 HEAD = ./
 
-# MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(CUB3D)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) 
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR)
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libft
