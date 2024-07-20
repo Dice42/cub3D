@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 17:45:37 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:52:16 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include "./libft/libft.h"
+# include "mlx/mlx.h"
 
 #define texture_path "levels/textures/"
 
@@ -82,7 +83,7 @@ typedef struct s_level
 	int			ceiling_color[3];
 	int			floor_color[3];
 	int			num_of_rows;
-	//int			num_of_columns;
+	int			num_of_columns;
 }	t_level;
 
 typedef struct s_mlx
@@ -95,6 +96,7 @@ typedef struct s_cub3d
 {
 	t_mlx_data	data;
 	t_level		level;
+	t_player	player;
 }	t_cub3d;
 
 /* ************************************************************************** */
@@ -104,14 +106,13 @@ typedef struct s_cub3d
 void	init_ctrs(t_ctr *ctr);
 bool	init_cube(t_cub3d *cube);
 
-
 /* ************************************************************************** */
 /* 									Parsing									  */
 /* ************************************************************************** */
 
-bool	validate_level(char *level_path, t_cub3d *cube);
+bool	validate_level(char *level_path, t_level *level, t_player *player);
 bool	validate_textures_info(t_level *level);
-bool	validate_map(t_level *level);
+bool	validate_map(t_level *level, t_player *player);
 bool	check_sides(int x, int y, t_level *level, char *expected);
 void	copy_map(t_level *level);
 void	fill_visited(bool **visited, char **map, int n_rows);
@@ -123,5 +124,20 @@ bool	check_if_valid(int x, int y, t_level *level);
 /* ************************************************************************** */
 
 void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
+void	get_columns_num(t_level *level);
+
+/* ************************************************************************** */
+/* 									Gameplay								  */
+/* ************************************************************************** */
+
+void	ft_start(t_cub3d *cube);
+
+
+
+/* ************************************************************************** */
+/* 								Window Handling								  */
+/* ************************************************************************** */
+
+int	close_window(t_cub3d	*cube);
 
 #endif

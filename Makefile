@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/20 15:27:13 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/20 17:50:55 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ PARSE_DIR = ./parsing
 INIT_DIR = ./init
 CUB_UTILS_DIR = ./cub_utils
 OBJ_DIR = ./obj
-CLEAN_DIR = ./cleanup
 
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
@@ -24,6 +23,9 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_map_utils.c \
 		$(INIT_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
+		$(CUB_UTILS_DIR)/map_utils.c \
+		$(GAMEPLAY_DIR)/cub3D.c \
+		$(GAMEPLAY_DIR)/window_handler.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
@@ -37,14 +39,14 @@ MINILIBX = ./includes/mlx/libmlx.a
 
 HEAD = ./
 
-# MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L./includes/mlx -lmlx -framework OpenGL -framework AppKit
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(CUB3D)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(CLEAN_DIR) 
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) 
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libft
