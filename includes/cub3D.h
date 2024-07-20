@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 17:52:16 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 19:14:13 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include "./libft/libft.h"
-# include "mlx/mlx.h"
+# include "./libs/libft/libft.h"
+# include "./libs/mlx_mac/mlx.h"
+# include "./libs/mlx_linux/mlx.h"
 
 #define texture_path "levels/textures/"
 
