@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/19 23:09:57 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 14:00:59 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,10 @@ bool	vertical_borders(t_level *level, int row)
 			printf("THE ENTRY IS %c\n", level->map[row][ctr.i]);
 			return (false);
 		}
-		if (ft_skip_char(level->map[row], ' '))
-			if (level->map[row][ctr.i] != '1')
-				return (false);
+		if (level->map[row][ctr.i] == ' ')
+			ctr.i = ft_skip_char(level->map[row], ' ');
+		if (level->map[row][ctr.i] != '1')
+			return (false);
 		ctr.i ++;
 	}
 	if (!edge)
