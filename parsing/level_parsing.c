@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 15:58:27 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:45:23 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ bool	validate_rgb_values(char *rgb, t_level *level)
 	{
 		temp = ft_atoi(ft_ignorespaces(rgb_list[i]));
 		if (temp < 0 || temp > 255)
-			return (false);
+			return (ft_free2d((void **)rgb_list), false);
 		if (floor)
 			level->floor_color[i++] = temp;
 		else
@@ -131,11 +131,11 @@ bool	validate_level(char *level_path, t_cub3d *cube)
 		return (error_handler(INVALID_FILE, NULL, &level, true),false);
 	level.map_info = ft_split(level.full_file, '\n');
 	if (!level.map_info)
-		return (error_handler(INVALID_FILE_INFO, NULL, NULL, false),false);
+		return (error_handler(INVALID_FILE_INFO, NULL, &level, true),false);
 	if (!validate_order(level.map_info))
-		return (error_handler(INVALID_MAP, NULL, NULL, false),false);
+		return (error_handler(INVALID_MAP_INFO, NULL, &level, true),false);
 	if (!find_colors_info(&level))
-		return (error_handler(INVALID_RGB, NULL, NULL, false),false);
+		return (error_handler(INVALID_RGB, NULL, &level, true),false);
 	if (!validate_map(&level))
 		return (error_handler(INVALID_MAP, NULL, &level, true),false);
 	if (!validate_textures_info(&level))

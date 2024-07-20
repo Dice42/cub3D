@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:51 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 15:02:55 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:48:07 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ bool	validate_textures_info(t_level *level)
 			if (!set_texture(level, 'E', &ctr.i))
 				return (false);
 		}
-		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "F", 1) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "F ", 2) == 0)
 			ctr.i ++;
-		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "C", 1) == 0)
+		else if (ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "C ", 2) == 0)
 			ctr.i ++;
 		else
 			return (false);

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 15:03:50 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:34:27 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ bool	validate_map(t_level *level)
 
 	init_ctrs(&ctr);
 	copy_map(level);
-	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows);
+	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows + 1);
 	fill_visited(level->visited, level->map, level->num_of_rows);
 	if (!validate_map_content(level->map, level->num_of_rows))
 		return (false);

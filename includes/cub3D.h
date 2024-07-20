@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 15:18:14 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:45:37 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define INVALID_FILE "Error: No such file\n"
 # define INVALID_FILE_INFO "Error: invalid file info\n"
 # define INVALID_MAP "Error: invalid map\n"
+# define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 
