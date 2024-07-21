@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 22:35:00 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:10:04 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,13 +143,14 @@ void	get_columns_num(t_level *level);
 /* ************************************************************************** */
 
 void	ft_start(t_cub3d *cube);
-
+void	draw_cube(t_cub3d *cube, int x, int y);
 
 
 /* ************************************************************************** */
 /* 								Window Handling								  */
 /* ************************************************************************** */
 
-int	close_window(t_cub3d	*cube);
+int		close_window(t_cub3d	*cube);
+void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
 
 #endif
