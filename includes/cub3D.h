@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/21 17:10:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:30:02 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include "./libs/mlx_mac/mlx.h"
 # include "./libs/mlx_linux/mlx.h"
 
-#define texture_path "levels/textures/"
-
 # define INVALID_FILE_TYPE "Error: not a valid file type\n"
 # define INVALID_FILE "Error: No such file\n"
 # define INVALID_FILE_INFO "Error: invalid file info\n"
@@ -33,8 +31,6 @@
 # define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
-# define WIDTH 1920
-# define HEIGHT 1080
 
 typedef enum keys
 {
@@ -144,6 +140,7 @@ void	get_columns_num(t_level *level);
 
 void	ft_start(t_cub3d *cube);
 void	draw_cube(t_cub3d *cube, int x, int y);
+void	draw_player(t_cub3d *cube, int x, int y);
 
 
 /* ************************************************************************** */

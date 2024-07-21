@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/21 16:59:46 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:54:23 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,8 @@ int	draw_map(t_cub3d *cube)
 		{
 			if (cube->level.map[y][x] == '1')
 				draw_cube(cube, x, y);
-			// else if (cube->level.map[y][x] == cube->player.rot)
-			// {
-			// 	int f = 0;
-			// 	while (f < (63 / 4))
-			// 	{
-			// 		int g = 0;
-			// 		while (g < 63 / 4)
-			// 		{
-			// 			my_mlx_pixel_put(&cube->data.img, ((x * 64) + f) * 2, ((y * 64) + g) * 2, 0xFF0000);
-			// 			g++;
-			// 		}
-			// 		f++;
-			// 	}	
-			// }
+			else if (cube->level.map[y][x] == cube->player.rot)
+				draw_player(cube, x, y);
 			x++;
 		}
 		y++;

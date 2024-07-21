@@ -12,3 +12,8 @@ GETTING RGB COLORS FOR CEILING AND FLOOR:
 PARSING MAP:
 
 -first character OTHER THAN SPACE in each 
+
+
+to convert the rgb to hex 
+draw a vector line based on the direction of the player 
+ 
