@@ -1,11 +1,18 @@
-              NO            /Users/mohammoh/Desktop/cub3D/includes/levels/textures
-             SO        /Users/mohammoh/Desktop/cub3D/includes/levels/textures
+              NO            /Users/ssibai/Desktop/cub3D/includes/levels/textures
+             SO        /Users/ssibai/Desktop/cub3D/includes/levels/textures
 
 
+<<<<<<< HEAD
          C                           42,42,0
         F                42   ,       42,          0
        EA              /Users/mohammoh/Desktop/cub3D/includes/levels/textures
        WE           /Users/mohammoh/Desktop/cub3D/includes/levels/textures
+=======
+         C                           225,30,0
+        F                220   ,       100,          0
+       EA              /Users/ssibai/Desktop/cub3D/includes/levels/textures
+       WE           /Users/ssibai/Desktop/cub3D/includes/levels/textures
+>>>>>>> 1de689764939fdf7825a1946935308a6f24312ff
 
 
 

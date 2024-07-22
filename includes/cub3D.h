@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/21 21:09:02 by mohammoh         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/22 13:00:58 by ssibai           ###   ########.fr       */
+>>>>>>> 1de689764939fdf7825a1946935308a6f24312ff
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@
 # include <stdbool.h>
 # include "./libs/libft/libft.h"
 # include "./libs/mlx_mac/mlx.h"
-# include "./libs/mlx_linux/mlx.h"
+//# include "./libs/mlx_linux/mlx.h"
 
 # define INVALID_FILE_TYPE "Error: not a valid file type\n"
 # define INVALID_FILE "Error: No such file\n"
