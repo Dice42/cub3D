@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 17:58:08 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:32:51 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ bool	validate_map_content(char **map, int n_rows, t_player *player)
 					if (player_found)
 						return (false);
 					player_found = true;
-					player->start_pos[0] = ctr.i;
-					player->start_pos[1] = ctr.j;
-					player->rot = map[ctr.i][ctr.j];
+					player->pos[0] = ctr.i * 64 + 32;
+					player->pos[1] = ctr.j * 64 + 32;
+					player->orientation = map[ctr.i][ctr.j];
 				}
 				ctr.j ++ ;
 			}
