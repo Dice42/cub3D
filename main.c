@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 22:23:37 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:22:44 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int ac, char **av)
 		return (0); //print error
 	if (!validate_level(av[1], &cube.level, &cube.player))
 		return (0); //print error
+	// convert_rgb_hex(&cube.level);
 	ft_start(&cube);
 	return (0);
 }

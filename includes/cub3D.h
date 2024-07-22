@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/21 18:30:02 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:09:02 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ typedef struct s_level
 	int			row_start_point;
 	t_textures	textures;
 	int			ceiling_color[3];
+	char		*ceiling_color_hex;
 	int			floor_color[3];
+	char		*floor_color_hex;
 	int			num_of_rows;
 	int			num_of_columns;
 }	t_level;
@@ -105,6 +107,7 @@ typedef struct s_cub3d
 	t_mlx_data	data;
 	t_level		level;
 	t_player	player;
+
 }	t_cub3d;
 
 /* ************************************************************************** */
@@ -149,5 +152,7 @@ void	draw_player(t_cub3d *cube, int x, int y);
 
 int		close_window(t_cub3d	*cube);
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
+
+void 	convert_rgb_hex(t_level *level);
 
 #endif

@@ -1,22 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/21 18:27:44 by mohammoh         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 
 CUB3D = cub3D
-
-CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -D $(OS)
-
-RM = rm -rf
-
-HEAD = ./
 
 PARSE_DIR = ./parsing
 
@@ -43,28 +27,19 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
+CFLAGS = -Wall -Werror -Wextra -Ofast -g3 -I./includes
+
+RM = rm -rf
+
+LIBFT = ./includes/libs/libft/libft.a
+
+MINILIBX = ./includes/libs/mlx_mac/libmlx.a
+
+HEAD = ./
+
+MLX_FLAGS = -L./includes/libs/mlx_mac -lmlx -framework OpenGL -framework AppKit
+
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
-
-LIBFT 		= ./includes/libs/libft/libft.a
-
-INCLUDE		:=
-MLX_FOLDER	:=	
-MLXLIB		:=	
-LINKS		:= 
-
-OS := $(shell uname)
-
-ifeq ($(OS), Linux)
-	MLX_FOLDER += ./includes/libs/mlx_linux
-	# MLXLIB += ./includes/libs/mlx_linux/libmlx_Linux.a
-	LINKS += -L/usr/lib -L$(MLX_FOLDER) -lXext -lX11
-	INCLUDE +=	-I./ -I./includes/libs/mlx_linux -I./includes/libs/libft 
-else
-	MLX_FOLDER += ./includes/libs/mlx_mac
-	MLXLIB += ./includes/libs/mlx_mac/libmlx.a
-	LINKS += -L$(MLX_FOLDER) -framework OpenGL -framework AppKit
-	INCLUDE +=	-I./ -I./includes/libs/mlx_mac -I./includes/libs/libft 
-endif
 
 all: $(CUB3D)
 
@@ -74,24 +49,18 @@ $(OBJ_DIR):
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libs/libft
-	
-$(MLXLIB):
-	@echo $(YELLOW)"Creating $(MLXLIB)"$(RESET)
-	make -C $(MLX_FOLDER)
+
+$(MINILIBX):
+	@$(MAKE) -C ./includes/libs/mlx_mac
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c -I$(HEAD) $< -o $@
+	@$(CC) $(CFLAGS) -c -I$(HEAD) $< -o $@
 
-$(CUB3D): $(OBJ) $(MLXLIB) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXLIB) -I./includes/cub3D.h -o $(CUB3D) $(LINKS)
-	@echo "Compilation completed."
-	
-valgrind: $(OBJS) $(NAME)
-	@valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(CUB3D) includes/levels/map1.cub
-	
+$(CUB3D): $(OBJ) $(MINILIBX) $(LIBFT) 
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -I -framework -g3 -o $(CUB3D)
 clean:
 	@$(MAKE) clean -C ./includes/libs/libft
-	@make clean -C $(MLX_FOLDER)
+	@$(MAKE) clean -C ./includes/libs/mlx_mac
 	@$(RM) $(OBJ)
 	@echo "All object files removed."
 
@@ -102,4 +71,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re valgrind
+
+.PHONY: all clean fclean re 

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:53:56 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/21 18:54:41 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:17:11 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_player(t_cub3d *cube, int x, int y)
 		j = 24;
 		while (j < 40)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0xFF0000);
+			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0x21214B);
 			j++;
 		}
 		i++;

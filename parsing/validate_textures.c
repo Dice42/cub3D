@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:51 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 22:15:49 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:35:34 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,17 @@ bool	set_texture(t_level *level, char direction, int *i)
 		level->textures.east_texture = ft_strdup(str);
 	return ((*i)++, true);
 }
-
+// int		validate_textures_info_utils(t_level *level, int *i, char dir, char *direction)
+// {
+	
+// 	if (!ft_strncmp(ft_ignorespaces(level->map_info[*i]), direction, 2))
+// 	{
+// 		if (!set_texture(level, dir, &(*i)))
+// 			return (0);
+// 		return (1);
+// 	}
+// 	return (-1);
+// }
 /**
  * @brief check the validity of the textures 
  * 			by checking whether the textures exist within a 
