@@ -1,4 +1,14 @@
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
+#    Updated: 2024/07/22 16:45:48 by mohammoh         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 CUB3D = cub3D
 
@@ -23,7 +33,8 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(CUB_UTILS_DIR)/map_utils.c \
 		$(GAMEPLAY_DIR)/cub3D.c \
 		$(GAMEPLAY_DIR)/window_handler.c \
-		$(GAMEPLAY_DIR)/draw_utils.c \
+		$(GAMEPLAY_DIR)/minimap_visuals.c \
+		$(GAMEPLAY_DIR)/player_controller.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 

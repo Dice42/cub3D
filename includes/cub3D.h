@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/21 21:09:02 by mohammoh         ###   ########.fr       */
-=======
-/*   Updated: 2024/07/22 13:00:58 by ssibai           ###   ########.fr       */
->>>>>>> 1de689764939fdf7825a1946935308a6f24312ff
+/*   Updated: 2024/07/22 16:45:55 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +52,12 @@ typedef struct s_counters
 
 typedef struct s_player
 {
-	int		start_pos[2];
-	char	rot;
+	int		pos[2];
+	char	orientation;
+	bool	move;
+	bool	rotate;
+	int		move_dir;
+	float	forward_vector;
 }	t_player;
 
 typedef struct s_textures
@@ -88,6 +88,7 @@ typedef struct s_level
 	char		*floor_color_hex;
 	int			num_of_rows;
 	int			num_of_columns;
+	bool		start;
 }	t_level;
 
 typedef struct s_data
@@ -133,7 +134,6 @@ void	copy_map(t_level *level);
 void	fill_visited(bool **visited, char **map, int n_rows);
 bool	check_if_valid(int x, int y, t_level *level);
 
-
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */
 /* ************************************************************************** */
@@ -146,9 +146,22 @@ void	get_columns_num(t_level *level);
 /* ************************************************************************** */
 
 void	ft_start(t_cub3d *cube);
-void	draw_cube(t_cub3d *cube, int x, int y);
-void	draw_player(t_cub3d *cube, int x, int y);
 
+/* ************************************************************************** */
+/* 								Player Controller							  */
+/* ************************************************************************** */
+
+void	player_movement(t_cub3d *cube);
+void	draw_player(t_cub3d *cube);
+
+
+/* ************************************************************************** */
+/* 									Visuals									  */
+/* ************************************************************************** */
+
+void	draw_borders(t_cub3d *cube, int x, int y);
+void	init_draw_player(t_cub3d *cube, int x, int y);
+int		draw_mini_map(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 								Window Handling								  */
