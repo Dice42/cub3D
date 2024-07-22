@@ -6,17 +6,11 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:31:20 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/22 20:16:31 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void	draw_player(t_cub3d *cube)
-{
-	my_mlx_pixel_put(&cube->data.img, cube->player.pos[0],
-		cube->player.pos[1], 0xFF0000);
-}
 
 int	get_direction(int dr)
 {
@@ -30,6 +24,12 @@ int	get_direction(int dr)
 		return (4);
 	return (0);
 }
+void	add_move_dir(t_cub3d *cube, int dir)
+{
+	cube->player.move_dir[dir] = true;
+}
+
+void	remove_move_dir)
 
 void	move_x(t_cub3d *cube, int dir)
 {
@@ -60,15 +60,12 @@ void	move_y(t_cub3d *cube, int dir)
 
 void	player_movement(t_cub3d *cube)
 {
-	int	dir;
-	
-	dir = get_direction(cube->player.move_dir);
-	if (dir == 1)
+	if (cube->player.move_dir[0] == true)
 		move_x(cube, 1);
-	else if (dir == 3)
+	if (cube->player.move_dir[1] == true)
 		move_x(cube, -1);
-	else if (dir == 2)
+	if (cube->player.move_dir[2] == true)
 		move_y(cube, 1);
-	else if (dir == 4)
+	if (cube->player.move_dir[3] == true)
 		move_y(cube, -1);
 }

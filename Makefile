@@ -6,7 +6,7 @@
 #    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/22 13:51:47 by ssibai           ###   ########.fr        #
+#    Updated: 2024/07/22 20:12:49 by ssibai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/window_handler.c \
 		$(GAMEPLAY_DIR)/minimap_visuals.c \
 		$(GAMEPLAY_DIR)/player_controller.c \
+		$(GAMEPLAY_DIR)/player_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 

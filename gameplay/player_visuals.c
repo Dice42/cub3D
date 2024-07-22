@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general_utils.c                                    :+:      :+:    :+:   */
+/*   player_visuals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 14:32:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/22 19:10:34 by ssibai           ###   ########.fr       */
+/*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
+/*   Updated: 2024/07/22 18:39:31 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	init_ctrs(t_ctr *ctr)
+void	draw_player(t_cub3d *cube)
 {
-	ctr->i = 0;
-	ctr->j = 0;
-	ctr->c = 0;
+	my_mlx_pixel_put(&cube->data.img, cube->player.pos[0],
+		cube->player.pos[1], 0xFF0000);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:13:32 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/22 20:15:05 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int	draw_mini_map(t_cub3d *cube)
 				draw_borders(cube, x, y);
 			else if (cube->level.map[y][x] == cube->player.orientation)
 			{
-				// if (!cube->level.start)
-				// {
+				if (!cube->level.start)
+				{
 					// if (cube->level.map[y][x] == cube->player.orientation)
 					// {
+						printf("first draw\n");
 						init_draw_player(cube, x, y);
 						cube->level.start = true;
-				//	}
-				//}
+				}
 			}
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:32:17 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/22 20:12:23 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	handle_movement_keypress(int key, t_cub3d *cube)
 		|| key == D || key == A)
 	{
 		cube->player.move = true;
+		move_dir_flipflop(cube, get_direction(key));
 		//fill the array with whatever movement direction is added.
 		//cube->player.move_dir = key;
 		//player_movement(cube);
@@ -34,11 +35,21 @@ int	handle_movement_keypress(int key, t_cub3d *cube)
 
 int	handle_keyrelease(int key, t_cub3d *cube)
 {
+	int	i;
+
+	i = 0;
 	if (key == W || key == S
 		|| key == D || key == A)
 		{
-			//empty out the move_dir array
+			move_dir_flipflop(cube, get_direction(key));
 		}
+	while (i < 4)
+	{
+		if (cube->player.move_dir[i])
+			break;
+		i ++;
+	}
+	if (i == 4)
 		cube->player.move = false;
 	if (key == LOOK_LEFT || key == LOOK_RIGHT)
 		cube->player.rotate = false;
@@ -76,7 +87,6 @@ void	ft_start(t_cub3d *cube)
 			&cube->data.img.bits_per_pixel, 
 			&cube->data.img.line_length, &cube->data.img.endian);
 			
-//	cube->player.move = false;
 	draw_mini_map(cube);
 	//mlx_loop_hook(cube->data.mlx_ptr, &draw_mini_map, cube);
 	mlx_hook(cube->data.win, 17, 0, &close_window, cube);
