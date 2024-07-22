@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:32:17 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/22 16:57:10 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	handle_close_window(int key, t_cub3d *cube)
 
 int	handle_movement_keypress(int key, t_cub3d *cube)
 {
+	if (key == ESC)
+		close_window(cube);
 	if (key == W || key == S
 		|| key == D || key == A)
 	{
@@ -38,6 +40,7 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 		|| key == D || key == A)
 		{
 			//empty out the move_dir array
+			printf("------------------\n");
 		}
 		cube->player.move = false;
 	if (key == LOOK_LEFT || key == LOOK_RIGHT)

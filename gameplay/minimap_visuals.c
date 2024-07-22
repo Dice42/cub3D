@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_visuals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:13:32 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/22 16:59:25 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_draw_player(t_cub3d *cube, int x, int y)
 		}
 		i++;
 	}
-	printf("the x is : %d and y is: %d\n", x, y);
-	printf("the x position on the screen is : %d and the y position is: %d\n", cube->player.pos[0], cube->player.pos[1]);
+	// printf("the x is : %d and y is: %d\n", x, y);
+	// printf("the x position on the screen is : %d and the y position is: %d\n", cube->player.pos[0], cube->player.pos[1]);
 }
 
 void	draw_borders(t_cub3d *cube, int x, int y)
@@ -65,13 +65,13 @@ int	draw_mini_map(t_cub3d *cube)
 				draw_borders(cube, x, y);
 			else if (cube->level.map[y][x] == cube->player.orientation)
 			{
-				// if (!cube->level.start)
-				// {
+				if (!cube->level.start)
+				{
 					// if (cube->level.map[y][x] == cube->player.orientation)
 					// {
 						init_draw_player(cube, x, y);
 						cube->level.start = true;
-				//	}
+				}
 				//}
 			}
 			x++;
