@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 12:02:54 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:32:34 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,20 @@ void	move_y(t_cub3d *cube, int dir)
  * 		move to the back
  * @param cube 
  */
-void	player_movement(t_cub3d *cube, int key)
+void	player_movement(t_cub3d *cube, bool dir[4])
 {
-	int dir;
+	//int dir;
 	
 	//printf("WE NEED TO GO TO SALALAH!");
-	dir = get_direction(key);
-	printf("dir is : %d\n", dir);
-	if (dir == 0)
+	//dir = get_direction(key);
+	//printf("dir is : %d\n", dir);
+	if (dir[0])
 		move_x(cube, 1);
-	if (dir == 1)
+	if (dir[1])
 		move_y(cube, 1);
-	if (dir == 2)
+	if (dir[2])
 		move_x(cube, -1);
-	if (dir == 3)
+	if (dir[3])
 		move_y(cube, -1);
 }
 

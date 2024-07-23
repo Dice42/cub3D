@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 12:06:01 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:51:57 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int	handle_keypress(int key, t_cub3d *cube)
 	if (key == W || key == S
 		|| key == D || key == A)
 	{
+		if (key == D)
+			cube->player.move_dir[0] = true;
+		if (key == W)
+			cube->player.move_dir[1] = true;
+		if (key == A)
+			cube->player.move_dir[2] = true;
+		if (key == S)
+			cube->player.move_dir[3] = true;
 		cube->player.move = true;
-		cube->player.move_dir = key;
-		//cube->player.move_dir = get_direction(key);
-		//mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
-		//fill the array with whatever movement direction is added.
-		//player_movement(cube);
 	}
 	return (0);
 }
@@ -36,7 +39,24 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 	i = 0;
 	if (key == W || key == S
 		|| key == D || key == A)
-		cube->player.move = false;
+		{
+			if (key == D)
+				cube->player.move_dir[0] = false;
+			if (key == W)
+				cube->player.move_dir[1] = false;
+			if (key == A)
+				cube->player.move_dir[2] = false;
+			if (key == S)
+				cube->player.move_dir[3] = false;
+			while (i < 4)
+			{
+				if (!cube->player.move_dir[i])
+					i++;
+				break;
+			}
+			if (i == 4)
+				cube->player.move = false;
+		}
 	if (key == LOOK_LEFT || key == LOOK_RIGHT)
 		cube->player.rotate = false;
 	return (0);
@@ -44,15 +64,12 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 
 int	update(t_cub3d *cube)
 {
-	printf("the x pos of the player is {%d} and the y is {%d} \n", cube->player.pos[0], cube->player.pos[1]);
 	if (cube->player.move)
 	{
-		printf("SHOULD MOVE\n");
 		player_movement(cube, cube->player.move_dir);
-		printf("AFTER UPDATE: the x pos of the player is {%d} and the y is {%d} \n", cube->player.pos[0], cube->player.pos[1]);
+		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
+		draw_mini_map(cube);
 	}
-	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
-	draw_mini_map(cube);
 	draw_player(cube);
 	return (0);
 }
@@ -72,7 +89,7 @@ void	ft_start(t_cub3d *cube)
 	cube->data.img.addr = mlx_get_data_addr(cube->data.img.img,
 			&cube->data.img.bits_per_pixel, 
 			&cube->data.img.line_length, &cube->data.img.endian);
-			
+
 	draw_mini_map(cube);
 	cube->level.start = true;
 	init_draw_player(cube, cube->player.pos[0] - 32, cube->player.pos[1] - 32);
@@ -80,7 +97,7 @@ void	ft_start(t_cub3d *cube)
 	//mlx_loop_hook(cube->data.mlx_ptr, &draw_mini_map, cube);
 	// printf("the x pos of the player is {%d} and the y is {%d} \n", cube->player.pos[0], cube->player.pos[1]);
 	mlx_hook(cube->data.win, 2, 0, &handle_keypress, cube);
-	mlx_key_hook(cube->data.win, &handle_keyrelease, cube);
+	mlx_hook(cube->data.win, 3, 1L<<1, &handle_keyrelease, cube);
 	mlx_loop_hook(cube->data.mlx_ptr, &update, cube);
 	
 	mlx_loop(cube->data.mlx_ptr);
