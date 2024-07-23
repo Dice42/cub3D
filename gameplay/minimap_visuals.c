@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 20:15:05 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/23 10:34:59 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	init_draw_player(t_cub3d *cube, int x, int y)
 		j = 24;
 		while (j < 40)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0xFF0000);
+			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, x * 64 + i, y * 64 + j, 0xFF0000);
+		//	my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0xFF0000);
 			j++;
 		}
 		i++;
@@ -69,9 +70,12 @@ int	draw_mini_map(t_cub3d *cube)
 				{
 					// if (cube->level.map[y][x] == cube->player.orientation)
 					// {
-						printf("first draw\n");
-						init_draw_player(cube, x, y);
-						cube->level.start = true;
+						// printf("first draw\n");
+						//init_draw_player(cube, x, y);
+						// cube->level.start = true;
+						cube->player.pos[0] = x * 64 + 32;
+						cube->player.pos[1] = y * 64 + 32;
+						//printf("x is {%d} y is {%d} and player x is [%d] player y [%d]\n", x*64, y*64, cube->player.pos[0],cube->player.pos[1]);
 				}
 			}
 			x++;

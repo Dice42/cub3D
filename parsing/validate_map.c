@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 15:32:51 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/23 10:16:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ bool	validate_map_content(char **map, int n_rows, t_player *player)
 					if (player_found)
 						return (false);
 					player_found = true;
-					player->pos[0] = ctr.i * 64 + 32;
-					player->pos[1] = ctr.j * 64 + 32;
 					player->orientation = map[ctr.i][ctr.j];
 				}
 				ctr.j ++ ;
