@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/22 16:45:55 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:15:43 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,22 @@ typedef struct s_counters
 	int	c;
 }	t_ctr;
 
+
+typedef struct node
+{
+	int			value;
+	struct node	*next;
+}	t_node;
+
 typedef struct s_player
 {
 	int		pos[2];
 	char	orientation;
 	bool	move;
 	bool	rotate;
-	int		move_dir;
+	//int		move_dir;
+	bool	move_dir[4];
+//	t_node	*move_dir;
 	float	forward_vector;
 }	t_player;
 
@@ -151,9 +160,10 @@ void	ft_start(t_cub3d *cube);
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
-void	player_movement(t_cub3d *cube);
+void	player_movement(t_cub3d *cube, bool dir[4]);
 void	draw_player(t_cub3d *cube);
-
+int		get_direction(int dr);
+void	move_dir_flipflop(t_cub3d *cube, int dir);
 
 /* ************************************************************************** */
 /* 									Visuals									  */

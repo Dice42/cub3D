@@ -6,69 +6,89 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/22 16:31:20 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/23 13:32:34 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	draw_player(t_cub3d *cube)
-{
-	my_mlx_pixel_put(&cube->data.img, cube->player.pos[0],
-		cube->player.pos[1], 0xFF0000);
-}
-
 int	get_direction(int dr)
 {
 	if (dr == D)
-		return (1);
+		return (0);
 	else if (dr == W)
-		return (2);
+		return (1);
 	else if (dr == A)
-		return (3);
+		return (2);
 	else if (dr == S)
-		return (4);
-	return (0);
+		return (3);
+	return (-1);
 }
+// void	move_dir_flipflop(t_cub3d *cube, int dir)
+// {
+// 	if (!cube->player.move_dir[dir])
+// 		cube->player.move_dir[dir] = true;
+// 	else
+// 		cube->player.move_dir[dir] = false;
+// }
 
 void	move_x(t_cub3d *cube, int dir)
 {
 	if (dir > 0)
 	{
+		printf("MOVE X TO POS\n");
 		//increment by 1 pixel at a time
-		cube->player.pos[0] ++;
+		(cube->player.pos[0]) ++;
 	}
 	else
 	{
+		printf("MOVE X TO NEGATIVE\n");
 		//decrement by 1 pixel at a time
-		cube->player.pos[0] --;
+		(cube->player.pos[0]) --;
 	}
 }
 void	move_y(t_cub3d *cube, int dir)
 {
 	if (dir > 0)
 	{
+		printf("MOVE Y TO POSITIVE\n");
 		//increment by 1 pixel at a time
-		cube->player.pos[1] ++;
+		(cube->player.pos[1]) --;
 	}
 	else
 	{
+		printf("MOVE Y TO NEGATIVE\n");
 		//decrement by 1 pixel at a time
-		cube->player.pos[1] --;
+		(cube->player.pos[1]) ++;
 	}
 }
 
-void	player_movement(t_cub3d *cube)
+/**
+ * @brief moves player depending on the movement direction set
+ * 	if (dir[0] && !dir[2]) //TO THE RIGHT AND NOT TO THE LEFT
+ * 		move to right
+ * 	if (dir[1] && !dir[3]) //TO THE FRONT AND NOT TO THE BACK
+ * 		move to the front
+ * 	if (dir[2] && !dir[0]) //TO THE LEFT AND NOT TO THE RIGHT
+ * 		move to the left
+ * 	if (dir[3] && !dir[1]) //TO THE BACK AND NOT TO THE FRONT
+ * 		move to the back
+ * @param cube 
+ */
+void	player_movement(t_cub3d *cube, bool dir[4])
 {
-	int	dir;
+	//int dir;
 	
-	dir = get_direction(cube->player.move_dir);
-	if (dir == 1)
+	//printf("WE NEED TO GO TO SALALAH!");
+	//dir = get_direction(key);
+	//printf("dir is : %d\n", dir);
+	if (dir[0])
 		move_x(cube, 1);
-	else if (dir == 3)
-		move_x(cube, -1);
-	else if (dir == 2)
+	if (dir[1])
 		move_y(cube, 1);
-	else if (dir == 4)
+	if (dir[2])
+		move_x(cube, -1);
+	if (dir[3])
 		move_y(cube, -1);
 }
+
