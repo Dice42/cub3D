@@ -6,32 +6,11 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 14:14:03 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:17:30 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void	init_draw_player(t_cub3d *cube, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = 24;
-	while (i < 40)
-	{
-		j = 24;
-		while (j < 40)
-		{
-			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, x * 64 + i, y * 64 + j, 0xFF0000);
-		//	my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0xFF0000);
-			j++;
-		}
-		i++;
-	}
-	// printf("the x is : %d and y is: %d\n", x, y);
-	// printf("the x position on the screen is : %d and the y position is: %d\n", cube->player.pos[0], cube->player.pos[1]);
-}
 
 void	draw_borders(t_cub3d *cube, int x, int y)
 {
@@ -73,9 +52,9 @@ int	draw_mini_map(t_cub3d *cube)
 						// printf("first draw\n");
 						//init_draw_player(cube, x, y);
 						// cube->level.start = true;
-						cube->player.pos[0] = x * 64 + 32;
-						cube->player.pos[1] = y * 64 + 32;
-						//printf("x is {%d} y is {%d} and player x is [%d] player y [%d]\n", x*64, y*64, cube->player.pos[0],cube->player.pos[1]);
+						cube->player.pos.x = x * 64 + 24;
+						cube->player.pos.y = y * 64 + 24;
+						//printf("x is {%d} y is {%d} and player x is [%d] player y [%d]\n", x*64, y*64, cube->player.pos.x,cube->player.pos.y);
 				}
 			}
 			x++;

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/23 14:15:43 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:11:43 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
+# define PI 3.14159265
 
 typedef enum keys
 {
@@ -57,15 +58,24 @@ typedef struct node
 	struct node	*next;
 }	t_node;
 
+typedef struct s_pos
+{
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	angle;
+}	t_pos;
+
 typedef struct s_player
 {
-	int		pos[2];
+	// int		pos[2];
+	t_pos	pos;
 	char	orientation;
 	bool	move;
+	int		rot_axis;
 	bool	rotate;
-	//int		move_dir;
 	bool	move_dir[4];
-//	t_node	*move_dir;
 	float	forward_vector;
 }	t_player;
 
@@ -100,20 +110,20 @@ typedef struct s_level
 	bool		start;
 }	t_level;
 
-typedef struct s_data
+typedef struct s_img_data
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}		t_data;
+}		t_img_data;
 
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win;
-	t_data		img;
+	t_img_data		img;
 }	t_mlx_data;
 
 typedef struct s_cub3d
@@ -165,6 +175,9 @@ void	draw_player(t_cub3d *cube);
 int		get_direction(int dr);
 void	move_dir_flipflop(t_cub3d *cube, int dir);
 
+void	draw_forwad_vector(t_cub3d *cube);
+void	draw_eyes(t_cub3d *cube);
+void	rotate_player(t_cub3d *cube, float angle);
 /* ************************************************************************** */
 /* 									Visuals									  */
 /* ************************************************************************** */
@@ -178,7 +191,7 @@ int		draw_mini_map(t_cub3d *cube);
 /* ************************************************************************** */
 
 int		close_window(t_cub3d	*cube);
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
+void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
 void 	convert_rgb_hex(t_level *level);
 

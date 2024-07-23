@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/23 14:11:00 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/23 22:17:46 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/minimap_visuals.c \
 		$(GAMEPLAY_DIR)/player_controller.c \
 		$(GAMEPLAY_DIR)/player_visuals.c \
+		$(GAMEPLAY_DIR)/draw_utils.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
