@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 09:22:09 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/24 13:18:52 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,11 @@ int	update(t_cub3d *cube)
 		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 		draw_mini_map(cube);
 	}
-	// if (cube->player.rotate)
-	// {
-	// 	player_rotation(cube, cube->player.rot_axis);
-	// 	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
-	// 	draw_mini_map(cube);
-	// }
 	draw_player(cube);
 	draw_forwad_vector(cube);
 	draw_eyes(cube);
 	return (0);
 }
-
-
 
 void	ft_start(t_cub3d *cube)
 {

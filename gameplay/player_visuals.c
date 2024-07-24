@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 08:10:03 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/24 13:22:21 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_player(t_cub3d *cube)
 		ctr.j = 0;
 		while (ctr.j < 15)
 		{
-			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.pos.x + ctr.i, cube->player.pos.y + ctr.j, 0xFF0000);
+			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.transform.x_pos + ctr.i, cube->player.transform.y_pos + ctr.j, 0xFF0000);
 			ctr.j ++;
 		}
 		ctr.i ++;
@@ -45,7 +45,7 @@ void	draw_horizental_vector(t_cub3d *cube)
 		ctr.j = 0;
 		while (ctr.j < 3)
 		{
-			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.pos.x + ctr.i + x, cube->player.pos.y + y + ctr.j, 0xFFC251);
+			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.transform.x_pos + ctr.i + x, cube->player.transform.y_pos + y + ctr.j, 0xFFC251);
 			ctr.j ++;
 		}
 		ctr.i ++;
@@ -68,7 +68,7 @@ void	draw_vertical_vector(t_cub3d *cube)
 		ctr.j = 0;
 		while (ctr.j < 10)
 		{
-			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.pos.x + ctr.i + x, cube->player.pos.y + y + ctr.j, 0xFFC251);
+			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.transform.x_pos + ctr.i + x, cube->player.transform.y_pos + y + ctr.j, 0xFFC251);
 			ctr.j ++;
 		}
 		ctr.i ++;
@@ -93,7 +93,7 @@ void	draw_eyes(t_cub3d *cube)
 		ctr.j = 0;
 		while (ctr.j < 3)
 		{
-			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.pos.x + 5 + ctr.i, cube->player.pos.y+ 4 + ctr.j, 0xFFC251);
+			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win, cube->player.transform.x_pos + 5 + ctr.i, cube->player.transform.y_pos+ 4 + ctr.j, 0xFFC251);
 			ctr.j ++;
 		}
 		ctr.i ++;

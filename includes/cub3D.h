@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/24 10:22:24 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/24 13:18:08 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_transform
 {
 	float	x_pos;
 	float	y_pos;
+	//float	local_x;
+	//float	local_y;
 	float	dx;
 	float	dy;
 	float	angle;
