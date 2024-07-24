@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 07:56:11 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 09:22:09 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,10 @@ int	handle_keypress(int key, t_cub3d *cube)
 			cube->player.move_dir[3] = true;
 		cube->player.move = true;
 	}
-	if (key == LOOK_RIGHT || key == LOOK_LEFT)
-	{
-		if (key == LOOK_RIGHT)
-			cube->player.rot_axis = 1;
-		else if  (key == LOOK_LEFT)
-			cube->player.rot_axis = -1;
-		cube->player.rotate = true;
-	}
+	if (key == LOOK_RIGHT)
+		player_rotation(cube, 1);
+	else if (key == LOOK_LEFT)
+		player_rotation(cube, -1);
 	return (0);
 }
 
@@ -65,11 +61,6 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 			if (i == 4)
 				cube->player.move = false;
 		}
-	if (key == LOOK_LEFT || key == LOOK_RIGHT)
-	{
-		cube->player.rotate = false;
-		cube->player.rot_axis = 0;
-	}
 	return (0);
 }
 
@@ -81,12 +72,12 @@ int	update(t_cub3d *cube)
 		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 		draw_mini_map(cube);
 	}
-	if (cube->player.rotate)
-	{
-		rotate_player(cube, 90);
-		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
-		draw_mini_map(cube);
-	}
+	// if (cube->player.rotate)
+	// {
+	// 	player_rotation(cube, cube->player.rot_axis);
+	// 	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
+	// 	draw_mini_map(cube);
+	// }
 	draw_player(cube);
 	draw_forwad_vector(cube);
 	draw_eyes(cube);

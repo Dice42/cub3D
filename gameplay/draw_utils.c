@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:53:56 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/24 07:58:32 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 08:23:15 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	rotate_player(t_cub3d *cube, float angle)
 	float	old_dir_x;
 	float	old_dir_y;
 
-	old_dir_x = cube->player.pos.x;
-	old_dir_y = cube->player.pos.y;
-	printf("before (%f, %f)\n", cube->player.pos.x, cube->player.pos.y);
-	cube->player.pos.x = old_dir_x * cos(angle);
-	cube->player.pos.y = old_dir_y * cos(angle);
-	printf("after (%f, %f)\n", cube->player.pos.x, cube->player.pos.y);
+	old_dir_x = cube->player.transform.x_pos;
+	old_dir_y = cube->player.transform.y_pos;
+	printf("before (%f, %f)\n", cube->player.transform.x_pos, cube->player.transform.y_pos);
+	cube->player.transform.x_pos = old_dir_x * cos(angle);
+	cube->player.transform.y_pos = old_dir_y * cos(angle);
+	printf("after (%f, %f)\n", cube->player.transform.x_pos, cube->player.transform.y_pos);
 }

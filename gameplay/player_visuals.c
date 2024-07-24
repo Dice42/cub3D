@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_visuals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 21:17:30 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 08:10:03 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	draw_player(t_cub3d *cube)
 		ctr.i ++;
 	}
 }
-
 
 void	draw_horizental_vector(t_cub3d *cube)
 {

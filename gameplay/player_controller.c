@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 22:16:50 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 10:29:58 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,30 @@ int	get_direction(int dr)
 		return (3);
 	return (-1);
 }
-// void	move_dir_flipflop(t_cub3d *cube, int dir)
+
+// void	move_x(t_cub3d *cube, int dir)
 // {
-// 	if (!cube->player.move_dir[dir])
-// 		cube->player.move_dir[dir] = true;
+// 	if (dir > 0)
+// 		(cube->player.pos.x) ++;
 // 	else
-// 		cube->player.move_dir[dir] = false;
+// 		(cube->player.pos.x) --;
+// }
+// void	move_y(t_cub3d *cube, int dir)
+// {
+// 	if (dir > 0)
+// 		(cube->player.pos.y) --;
+// 	else
+// 		(cube->player.pos.y) ++;
 // }
 
-void	move_x(t_cub3d *cube, int dir)
-{
-	if (dir > 0)
-	{
-		// printf("MOVE X TO POS\n");
-		//increment by 1 pixel at a time
-		(cube->player.pos.x) ++;
-	}
-	else
-	{
-		// printf("MOVE X TO NEGATIVE\n");
-		//decrement by 1 pixel at a time
-		(cube->player.pos.x) --;
-	}
-}
-void	move_y(t_cub3d *cube, int dir)
-{
-	if (dir > 0)
-	{
-		// printf("MOVE Y TO POSITIVE\n");
-		//increment by 1 pixel at a time
-		(cube->player.pos.y) --;
-	}
-	else
-	{
-		// printf("MOVE Y TO NEGATIVE\n");
-		//decrement by 1 pixel at a time
-		(cube->player.pos.y) ++;
-	}
-}
-
-// void	rotate_player(t_cub3d *cube)
+// void	rotate_right(t_cub3d *cube)
 // {
-// 	if (cube->player.rot_axis == 1)
-// 	{
-		
-// 	}
-// 	else if (cube->player.rot_axis == -1)
-// 	{
-		
-// 	}
+
+// }
+
+// void	rotate_left(t_cub3d *cube)
+// {
+	
 // }
 
 /**
@@ -85,38 +60,67 @@ void	move_y(t_cub3d *cube, int dir)
  * 		move to the left
  * 	if (dir[3] && !dir[1]) //TO THE BACK AND NOT TO THE FRONT
  * 		move to the back
+ * 
+ * 	
  * @param cube 
  */
 void	player_movement(t_cub3d *cube, bool dir[4])
 {
-	int	side;
+	//int	side;
 
-	side = 1;
-	if (cube->player.orientation == 'N' || cube->player.orientation == 'S')
-	{
-		if (cube->player.orientation == 'S')
-			side *= -1;
+	//side = get_direction();
+	// if (cube->player.orientation == 'N' || cube->player.orientation == 'S')
+	// {
+	// 	if (cube->player.orientation == 'S')
+	// 		side *= -1;
+	// int	y_dir;
+	// int	x_dir;
+
+	// if (dir[0])
+	// 	x_dir = 1;
+	// else if (dir[])
+	// 	x_dir = -1;
 		if (dir[0])
-			move_x(cube, side);
+			move_player(cube, 1, false);
 		if (dir[1])
-			move_y(cube, side);
+			move_player(cube, 1, true);
 		if (dir[2])
-			move_x(cube, -side);
+			move_player(cube, -1, false);
 		if (dir[3])
-			move_y(cube, -side);
+			move_player(cube, -1, true);
+	// }
+	// else if (cube->player.orientation == 'E' || cube->player.orientation == 'W')
+	// {
+	// 	if (cube->player.orientation == 'W')
+	// 		side *= -1;
+	// 	if (dir[0])
+	// 		move_y(cube, -side);
+	// 	if (dir[1])
+	// 		move_x(cube, side);
+	// 	if (dir[2])
+	// 		move_y(cube, side);
+	// 	if (dir[3])
+	// 		move_x(cube, -side);
+	// }
+}
+
+void	player_rotation(t_cub3d *cube, int rot_dir)
+{
+	if (rot_dir == 1)
+	{
+		printf("clockwise\n");
+		//rotate clockwise
+		cube->player.transform.angle -= 0.1;
+		if (cube->player.transform.angle < 0)
+			cube->player.transform.angle = 2 * PI;
 	}
-	else if (cube->player.orientation == 'E' || cube->player.orientation == 'W')
+	else if (rot_dir == -1)
 	{
-		if (cube->player.orientation == 'W')
-			side *= -1;
-		if (dir[0])
-			move_y(cube, -side);
-		if (dir[1])
-			move_x(cube, side);
-		if (dir[2])
-			move_y(cube, side);
-		if (dir[3])
-			move_x(cube, -side);
+		//rotate counter clockwise
+		printf("counter clockwise\n");
+		cube->player.transform.angle += 0.1;
+		if (cube->player.transform.angle > 2 * PI)
+			cube->player.transform.angle = 0;
 	}
 }
 

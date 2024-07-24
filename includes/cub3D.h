@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/24 07:58:52 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 10:22:24 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,24 @@ typedef struct node
 	struct node	*next;
 }	t_node;
 
-typedef struct s_pos
+typedef struct s_transform
 {
-	float	x;
-	float	y;
+	float	x_pos;
+	float	y_pos;
 	float	dx;
 	float	dy;
 	float	angle;
-}	t_pos;
+}	t_transform;
 
 typedef struct s_player
 {
-	t_pos	pos;
-	char	orientation;
-	bool	move;
-	int		rot_axis;
-	bool	rotate;
-	bool	move_dir[4];
-	float	forward_vector;
+	t_transform	transform;
+	char		orientation;
+	bool		move;
+	int			rot_axis;
+	bool		rotate;
+	bool		move_dir[4];
+	float		forward_vector;
 }	t_player;
 
 typedef struct s_textures
@@ -169,14 +169,21 @@ void	ft_start(t_cub3d *cube);
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
+void	init_player(t_cub3d *cube, int x, int y);
 void	player_movement(t_cub3d *cube, bool dir[4]);
+void	move_x(t_cub3d *cube, int dir);
+void	move_y(t_cub3d *cube, int dir);
+// void	rotate_right(t_cub3d *cube);
+// void	rotate_left(t_cub3d *cube);
+void	move_player(t_cub3d *cube, int dir, bool is_vertical);
 void	draw_player(t_cub3d *cube);
+void	player_rotation(t_cub3d *cube, int rot_dir);
 int		get_direction(int dr);
 void	move_dir_flipflop(t_cub3d *cube, int dir);
-
 void	draw_forwad_vector(t_cub3d *cube);
 void	draw_eyes(t_cub3d *cube);
 void	rotate_player(t_cub3d *cube, float angle);
+
 /* ************************************************************************** */
 /* 									Visuals									  */
 /* ************************************************************************** */

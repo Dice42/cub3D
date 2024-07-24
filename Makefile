@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/23 22:17:46 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/24 08:15:02 by ssibai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,9 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/cub3D.c \
 		$(GAMEPLAY_DIR)/window_handler.c \
 		$(GAMEPLAY_DIR)/minimap_visuals.c \
+		$(GAMEPLAY_DIR)/player_init.c \
 		$(GAMEPLAY_DIR)/player_controller.c \
+		$(GAMEPLAY_DIR)/player_transform.c \
 		$(GAMEPLAY_DIR)/player_visuals.c \
 		$(GAMEPLAY_DIR)/draw_utils.c \
 		$(CLEAN_DIR)/error_handler.c \
