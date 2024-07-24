@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 13:39:44 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:37:29 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	init_player(t_cub3d *cube, int x, int y)
 	cube->player.transform.dy = sin(cube->player.transform.angle);
 	printf("dx after init is: %f\n", cube->player.transform.dx);
 	printf("dy after init is: %f\n", cube->player.transform.dy);
+	printf("( %f, %f )\n", cube->player.transform.x_pos, cube->player.transform.y_pos);
 }

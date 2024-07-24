@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 13:51:52 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:53:05 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ void	player_movement(t_cub3d *cube, bool dir[4])
 	// 		side *= -1;
 	// 	else
 			
-		if (dir[0])
+		if (dir[0]) // D
 			move_player(cube, 1, false);
-		if (dir[1])
+		if (dir[1]) // W
 			move_player(cube, -1, true);
-		if (dir[2])
+		if (dir[2]) // A
 			move_player(cube, -1, false);
-		if (dir[3])
+		if (dir[3]) // S
 			move_player(cube, 1, true);
 		
 		// if (dir[0])
