@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/23 22:11:43 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 07:58:52 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_pos
 
 typedef struct s_player
 {
-	// int		pos[2];
 	t_pos	pos;
 	char	orientation;
 	bool	move;

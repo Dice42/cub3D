@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 22:21:14 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/24 07:56:11 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ int	update(t_cub3d *cube)
 	}
 	if (cube->player.rotate)
 	{
-		
+		rotate_player(cube, 90);
+		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
+		draw_mini_map(cube);
 	}
 	draw_player(cube);
 	draw_forwad_vector(cube);
