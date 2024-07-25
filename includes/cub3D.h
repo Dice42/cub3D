@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/25 19:14:03 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:21:48 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void	init_player(t_cub3d *cube, int x, int y);
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);
 void	draw_player(t_cub3d *cube);
-void	player_rotation(t_cub3d *cube, int rot_dir);
+void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
 int		get_direction(int dr);
 void	move_dir_flipflop(t_cub3d *cube, int dir);
 void	draw_direction_vector(t_cub3d *cube, int length);

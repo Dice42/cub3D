@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/25 17:57:18 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:22:10 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ void	player_movement(t_cub3d *cube, bool dir[4])
 	if (dir[3])
 		move_player(cube, 1, true);
 }
-
-void	player_rotation(t_cub3d *cube, int rot_dir)
+void	player_rotation(t_cub3d *cube, bool rot_dir[2])
 {
-	if (rot_dir == 1)
+	if (rot_dir[0])
 	{
 		cube->player.transform.angle += 0.1;
 		if (cube->player.transform.angle > 2 * PI)
 			cube->player.transform.angle = 0;
 	}
-	else if (rot_dir == -1)
+	if (rot_dir[1])
 	{
 		cube->player.transform.angle -= 0.1;
 		if (cube->player.transform.angle < 0)
@@ -53,5 +52,11 @@ void	player_rotation(t_cub3d *cube, int rot_dir)
 	}
 	cube->player.transform.dx = cos(cube->player.transform.angle);
 	cube->player.transform.dy = sin(cube->player.transform.angle);
-	cube->player.rotate = true;
 }
+// void	player_rotation(t_cub3d *cube, int rot_dir)
+// {
+	
+	
+// 	cube->player.transform.dx = cos(cube->player.transform.angle);
+// 	cube->player.transform.dy = sin(cube->player.transform.angle);
+// }

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/25 20:08:07 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:20:49 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	handle_keypress(int key, t_cub3d *cube)
 		cube->player.move = true;
 	}
 	if (key == LOOK_RIGHT)
-		cube->player.rot_dir[0] = true, player_rotation(cube, 1);
-	else if (key == LOOK_LEFT)
-		cube->player.rot_dir[1] = true, player_rotation(cube, -1);
+		cube->player.rot_dir[0] = true, cube->player.rotate = true;
+	if (key == LOOK_LEFT)
+		cube->player.rot_dir[1] = true, cube->player.rotate = true;
 	return (0);
 }
 
@@ -40,42 +40,40 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 	int	i;
 
 	i = 0;
-	if (key == W || key == S || key == D || key == A)
+	if (key == D)
+		cube->player.move_dir[0] = false;
+	if (key == W)
+		cube->player.move_dir[1] = false;
+	if (key == A)
+		cube->player.move_dir[2] = false;
+	if (key == S)
+		cube->player.move_dir[3] = false;
+	while (i < 4)
 	{
-		if (key == D)
-			cube->player.move_dir[0] = false;
-		if (key == W)
-			cube->player.move_dir[1] = false;
-		if (key == A)
-			cube->player.move_dir[2] = false;
-		if (key == S)
-			cube->player.move_dir[3] = false;
-		while (i < 4)
-		{
-			if (!cube->player.move_dir[i])
-				i++;
-			break;
-		}
-		if (i == 4)
-			cube->player.move = false;
-		if (key == LOOK_RIGHT || key == LOOK_RIGHT)
-		{
-			if (key == LOOK_RIGHT)
-				cube->player.rot_dir[0] = false;
-			if (key == LOOK_LEFT)
-				cube->player.rot_dir[1] = false;
-			if (!cube->player.rot_dir[0] && !cube->player.rot_dir[0])
-				cube->player.rotate = false;
-		}
+		if (!cube->player.move_dir[i])
+			i++;
+		break;
+	}
+	if (i == 4)
+		cube->player.move = false;
+	if (key == LOOK_RIGHT || key == LOOK_RIGHT)
+	{
+		if (key == LOOK_RIGHT)
+			cube->player.rot_dir[0] = false;
+		if (key == LOOK_LEFT)
+			cube->player.rot_dir[1] = false;
+		if (!cube->player.rot_dir[0] && !cube->player.rot_dir[0])
+			cube->player.rotate = false;
 	}
 	return (0);
 }
 
 int	update(t_cub3d *cube)
 {
-	if (cube->player.move)
+	if (cube->player.move || cube->player.rotate)
 	{
 		player_movement(cube, cube->player.move_dir);
+		player_rotation(cube, cube->player.rot_dir);
 		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 		draw_mini_map(cube);
 		draw_line(cube);
