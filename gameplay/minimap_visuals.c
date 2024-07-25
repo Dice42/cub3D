@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/25 20:02:26 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:08:25 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ int	draw_mini_map(t_cub3d *cube)
 			else if (cube->level.map[y][x] == cube->player.orientation)
 			{
 				if (!cube->level.start)
-				{
 					init_player(cube, x, y);
-					draw_line(cube);
-					
-				}
 			}
 			x++;
 		}

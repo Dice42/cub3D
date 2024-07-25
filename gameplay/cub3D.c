@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/25 20:06:53 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:08:07 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_start(t_cub3d *cube)
 			&cube->data.img.line_length, &cube->data.img.endian);
 
 	draw_mini_map(cube);
-	// draw_line(cube);
+	draw_line(cube);
 	cube->level.start = true;
 	mlx_hook(cube->data.win, 2, 0, &handle_keypress, cube);
 	mlx_hook(cube->data.win, 3, 1L<<1, &handle_keyrelease, cube);
