@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/24 13:18:08 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:14:03 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265
+# define WIDTH 800
+# define HEIGHT 600
 
 typedef enum keys
 {
@@ -51,19 +53,15 @@ typedef struct s_counters
 	int	c;
 }	t_ctr;
 
-
-typedef struct node
-{
-	int			value;
-	struct node	*next;
-}	t_node;
-
 typedef struct s_transform
 {
-	float	x_pos;
-	float	y_pos;
-	//float	local_x;
-	//float	local_y;
+	float	x0;
+	float	y0;
+	float	x1;
+	float	y1;
+	float	sx;
+	float	sy;
+	float	err;
 	float	dx;
 	float	dy;
 	float	angle;
@@ -77,6 +75,7 @@ typedef struct s_player
 	int			rot_axis;
 	bool		rotate;
 	bool		move_dir[4];
+	bool		rot_dir[2];
 	float		forward_vector;
 }	t_player;
 
@@ -120,7 +119,7 @@ typedef struct s_img_data
 	int		endian;
 }		t_img_data;
 
-typedef struct s_mlx
+typedef struct s_mlx_data
 {
 	void		*mlx_ptr;
 	void		*win;
@@ -141,6 +140,7 @@ typedef struct s_cub3d
 
 void	init_ctrs(t_ctr *ctr);
 bool	init_cube(t_cub3d *cube);
+void 	convert_rgb_hex(t_level *level);
 
 /* ************************************************************************** */
 /* 									Parsing									  */
@@ -173,18 +173,14 @@ void	ft_start(t_cub3d *cube);
 
 void	init_player(t_cub3d *cube, int x, int y);
 void	player_movement(t_cub3d *cube, bool dir[4]);
-void	move_x(t_cub3d *cube, int dir);
-void	move_y(t_cub3d *cube, int dir);
-// void	rotate_right(t_cub3d *cube);
-// void	rotate_left(t_cub3d *cube);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);
 void	draw_player(t_cub3d *cube);
 void	player_rotation(t_cub3d *cube, int rot_dir);
 int		get_direction(int dr);
 void	move_dir_flipflop(t_cub3d *cube, int dir);
-void	draw_forwad_vector(t_cub3d *cube);
-void	draw_eyes(t_cub3d *cube);
-void	rotate_player(t_cub3d *cube, float angle);
+void	draw_direction_vector(t_cub3d *cube, int length);
+void	update_player_direction(t_cub3d *cube);
+void	draw_line(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 									Visuals									  */
@@ -198,9 +194,9 @@ int		draw_mini_map(t_cub3d *cube);
 /* 								Window Handling								  */
 /* ************************************************************************** */
 
-int		close_window(t_cub3d	*cube);
+int		close_window(t_cub3d *cube);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
-void 	convert_rgb_hex(t_level *level);
+
 
 #endif

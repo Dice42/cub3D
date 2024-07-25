@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 13:18:52 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/25 20:06:53 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	handle_keypress(int key, t_cub3d *cube)
 {
 	if (key == ESC)
 		close_window(cube);
-	if (key == W || key == S
-		|| key == D || key == A)
+	if (key == W || key == S || key == D || key == A)
 	{
 		if (key == D)
 			cube->player.move_dir[0] = true;
@@ -30,9 +29,9 @@ int	handle_keypress(int key, t_cub3d *cube)
 		cube->player.move = true;
 	}
 	if (key == LOOK_RIGHT)
-		player_rotation(cube, 1);
+		cube->player.rot_dir[0] = true, player_rotation(cube, 1);
 	else if (key == LOOK_LEFT)
-		player_rotation(cube, -1);
+		cube->player.rot_dir[1] = true, player_rotation(cube, -1);
 	return (0);
 }
 
@@ -41,26 +40,34 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 	int	i;
 
 	i = 0;
-	if (key == W || key == S
-		|| key == D || key == A)
+	if (key == W || key == S || key == D || key == A)
+	{
+		if (key == D)
+			cube->player.move_dir[0] = false;
+		if (key == W)
+			cube->player.move_dir[1] = false;
+		if (key == A)
+			cube->player.move_dir[2] = false;
+		if (key == S)
+			cube->player.move_dir[3] = false;
+		while (i < 4)
 		{
-			if (key == D)
-				cube->player.move_dir[0] = false;
-			if (key == W)
-				cube->player.move_dir[1] = false;
-			if (key == A)
-				cube->player.move_dir[2] = false;
-			if (key == S)
-				cube->player.move_dir[3] = false;
-			while (i < 4)
-			{
-				if (!cube->player.move_dir[i])
-					i++;
-				break;
-			}
-			if (i == 4)
-				cube->player.move = false;
+			if (!cube->player.move_dir[i])
+				i++;
+			break;
 		}
+		if (i == 4)
+			cube->player.move = false;
+		if (key == LOOK_RIGHT || key == LOOK_RIGHT)
+		{
+			if (key == LOOK_RIGHT)
+				cube->player.rot_dir[0] = false;
+			if (key == LOOK_LEFT)
+				cube->player.rot_dir[1] = false;
+			if (!cube->player.rot_dir[0] && !cube->player.rot_dir[0])
+				cube->player.rotate = false;
+		}
+	}
 	return (0);
 }
 
@@ -71,10 +78,9 @@ int	update(t_cub3d *cube)
 		player_movement(cube, cube->player.move_dir);
 		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 		draw_mini_map(cube);
+		draw_line(cube);
 	}
 	draw_player(cube);
-	draw_forwad_vector(cube);
-	draw_eyes(cube);
 	return (0);
 }
 
@@ -93,6 +99,7 @@ void	ft_start(t_cub3d *cube)
 			&cube->data.img.line_length, &cube->data.img.endian);
 
 	draw_mini_map(cube);
+	// draw_line(cube);
 	cube->level.start = true;
 	mlx_hook(cube->data.win, 2, 0, &handle_keypress, cube);
 	mlx_hook(cube->data.win, 3, 1L<<1, &handle_keyrelease, cube);
