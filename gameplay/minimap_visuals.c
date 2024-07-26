@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_visuals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/24 08:09:41 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/26 11:16:03 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	draw_mini_map(t_cub3d *cube)
 			else if (cube->level.map[y][x] == cube->player.orientation)
 			{
 				if (!cube->level.start)
-					init_player(cube, x, y);
+					init_player_pos(cube, x, y);
 			}
 			x++;
 		}
