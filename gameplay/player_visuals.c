@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 16:51:23 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 19:09:43 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,16 @@ void	draw_player(t_cub3d *cube)
 		ctr.i ++;
 	}
 }
+
+// void	draw_rays(t_cub3d *cube)
+// {
+// 	t_ctr	ctr;
+
+// 	init_ctrs(&ctr);
+// 	while (ctr.i < 30)
+// 	{
+// 		mlx_pixel_put(cube->data.mlx_ptr, cube->data.win,
+// 			cube->transform.rays.x, cube->transform.rays.y, 0x00FF00);
+// 		ctr.i ++;
+// 	}
+// }

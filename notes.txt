@@ -12,3 +12,10 @@ GETTING RGB COLORS FOR CEILING AND FLOOR:
 PARSING MAP:
 
 -first character OTHER THAN SPACE in each 
+
+
+
+check this map:
+
+
+it shouldnt work but somehow its working 
