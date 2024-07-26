@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/20 15:51:43 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 13:45:48 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	copy_map(t_level *level)
 	while (level->map_info[ctr.i])
 	{
 		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
+		printf("y = %d %s\n", ctr.j,level->map[ctr.j]);
 		ctr.j++;
 		ctr.i++;
 	}
+	printf("%c\n", level->map[3][7]);
 }
 
 /**

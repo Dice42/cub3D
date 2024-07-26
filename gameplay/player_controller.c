@@ -6,11 +6,37 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 12:53:49 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:09:44 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+bool	player_collisions(t_cub3d *cube, int x, int y)
+{
+	//check_left
+	if ((x/64 >= 0 && y/64 >= 0))
+		printf("map of ( %d, %d ) is %c \n", x/64, y/64, cube->level.map[x/64][y/64]);
+	if ((x/64 >= 0 && y/64 >= 0))
+	{
+		if (cube->level.map[x/64][y/64] == '1')
+		{
+			printf("NOT SAFE\n");
+			return (false);
+		}
+		else if (cube->level.map[x / 64][(y + 16)/64] == '1')
+		{
+			printf("NOT SAFE\n");
+			return (false);
+		}
+		else if (cube->level.map[(x + 16) / 64][(y)/64] == '1')
+		{
+			printf("NOT SAFE\n");
+			return (false);
+		}
+	}
+	return (true);
+}
 
 void	player_movement(t_cub3d *cube, bool dir[4])
 {
