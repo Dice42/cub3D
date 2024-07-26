@@ -6,24 +6,11 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/25 20:22:10 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:12:32 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-int	get_direction(int dr)
-{
-	if (dr == D)
-		return (0);
-	else if (dr == W)
-		return (1);
-	else if (dr == A)
-		return (2);
-	else if (dr == S)
-		return (3);
-	return (-1);
-}
 
 void	player_movement(t_cub3d *cube, bool dir[4])
 {
@@ -36,6 +23,7 @@ void	player_movement(t_cub3d *cube, bool dir[4])
 	if (dir[3])
 		move_player(cube, 1, true);
 }
+
 void	player_rotation(t_cub3d *cube, bool rot_dir[2])
 {
 	if (rot_dir[0])
@@ -50,13 +38,5 @@ void	player_rotation(t_cub3d *cube, bool rot_dir[2])
 		if (cube->player.transform.angle < 0)
 			cube->player.transform.angle = 2 * PI;
 	}
-	cube->player.transform.dx = cos(cube->player.transform.angle);
-	cube->player.transform.dy = sin(cube->player.transform.angle);
+	update_player_direction(cube);
 }
-// void	player_rotation(t_cub3d *cube, int rot_dir)
-// {
-	
-	
-// 	cube->player.transform.dx = cos(cube->player.transform.angle);
-// 	cube->player.transform.dy = sin(cube->player.transform.angle);
-// }

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/25 20:21:48 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:41:39 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,10 @@ typedef struct s_player
 {
 	t_transform	transform;
 	char		orientation;
-	bool		move;
-	int			rot_axis;
-	bool		rotate;
 	bool		move_dir[4];
+	bool		move;
 	bool		rot_dir[2];
-	float		forward_vector;
+	bool		rotate;
 }	t_player;
 
 typedef struct s_textures
@@ -149,17 +147,17 @@ void 	convert_rgb_hex(t_level *level);
 bool	validate_level(char *level_path, t_level *level, t_player *player);
 bool	validate_textures_info(t_level *level);
 bool	validate_map(t_level *level, t_player *player);
-bool	check_sides(int x, int y, t_level *level, char *expected);
 void	copy_map(t_level *level);
-void	fill_visited(bool **visited, char **map, int n_rows);
+bool	check_sides(int x, int y, t_level *level, char *expected);
 bool	check_if_valid(int x, int y, t_level *level);
+void	fill_visited(bool **visited, char **map, int n_rows);
+void	get_columns_num(t_level *level);
 
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */
 /* ************************************************************************** */
 
 void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
-void	get_columns_num(t_level *level);
 
 /* ************************************************************************** */
 /* 									Gameplay								  */
@@ -171,21 +169,18 @@ void	ft_start(t_cub3d *cube);
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
-void	init_player(t_cub3d *cube, int x, int y);
+void	init_player_pos(t_cub3d *cube, int x, int y);
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);
-void	draw_player(t_cub3d *cube);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
-int		get_direction(int dr);
-void	move_dir_flipflop(t_cub3d *cube, int dir);
-void	draw_direction_vector(t_cub3d *cube, int length);
 void	update_player_direction(t_cub3d *cube);
-void	draw_line(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 									Visuals									  */
 /* ************************************************************************** */
 
+void	draw_line(t_cub3d *cube);
+void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
 void	init_draw_player(t_cub3d *cube, int x, int y);
 int		draw_mini_map(t_cub3d *cube);
