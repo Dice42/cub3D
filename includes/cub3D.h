@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 14:38:14 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 16:57:59 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
 /* ************************************************************************** */
 
 void	ft_start(t_cub3d *cube);
+void	update(t_cub3d *cube);
 int		handle_keyrelease(int key, t_cub3d *cube);
 int		handle_keypress(int key, t_cub3d *cube);
 

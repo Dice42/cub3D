@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:53 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 16:58:36 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ void	update_player_direction(t_cub3d *cube)
 void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 {
 	float	speed;
+	float	x;
+	float	y;
 
 	speed = 2;
 	update_player_direction(cube);
+	x = cube->player.transform.x0;
+	y = cube->player.transform.y0;
 	if (is_vertical)
 	{
 		cube->player.transform.x0 -= dir * cube->player.transform.dx * speed;
@@ -33,5 +37,11 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 	{
 		cube->player.transform.x0 -= dir * cube->player.transform.dy * speed;
 		cube->player.transform.y0 += dir * cube->player.transform.dx * speed;
+	}
+	if (!player_collisions(cube, cube->player.transform.x0,
+			cube->player.transform.y0))
+	{
+		cube->player.transform.x0 = x;
+		cube->player.transform.y0 = y;
 	}
 }
