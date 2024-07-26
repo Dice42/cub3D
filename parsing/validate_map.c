@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 10:16:10 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:56:32 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,13 +158,10 @@ bool	validate_map(t_level *level, t_player *player)
 	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows + 1);
 	fill_visited(level->visited, level->map, level->num_of_rows);
 	if (!validate_map_content(level->map, level->num_of_rows, player))
-	{
-		printf("NO\n");
 		return (false);
 	if (!vertical_borders(level, 0) 
 		|| !vertical_borders(level, level->num_of_rows - 1))
 		return (false);
-	}
 	if (!check_sides(0, 0, level, " 1"))
 		return (false);
 	return (true);

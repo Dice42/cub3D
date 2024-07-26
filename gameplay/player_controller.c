@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 14:09:44 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:59:29 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,16 @@
 
 bool	player_collisions(t_cub3d *cube, int x, int y)
 {
-	//check_left
-	if ((x/64 >= 0 && y/64 >= 0))
-		printf("map of ( %d, %d ) is %c \n", x/64, y/64, cube->level.map[x/64][y/64]);
-	if ((x/64 >= 0 && y/64 >= 0))
+	if ((x / 64 >= 0 && y / 64 >= 0))
 	{
-		if (cube->level.map[x/64][y/64] == '1')
-		{
-			printf("NOT SAFE\n");
+		if (cube->level.map[x / 64][y / 64] == '1')
 			return (false);
-		}
-		else if (cube->level.map[x / 64][(y + 16)/64] == '1')
-		{
-			printf("NOT SAFE\n");
+		else if (cube->level.map[x / 64][(y + 15) / 64] == '1')
 			return (false);
-		}
-		else if (cube->level.map[(x + 16) / 64][(y)/64] == '1')
-		{
-			printf("NOT SAFE\n");
+		else if (cube->level.map[(x + 15) / 64][y / 64] == '1')
 			return (false);
-		}
+		else if (cube->level.map[(x + 15) / 64][(y + 15) / 64] == '1')
+			return (false);
 	}
 	return (true);
 }
