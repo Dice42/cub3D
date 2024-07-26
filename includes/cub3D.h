@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 11:41:39 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:45:54 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,18 +171,18 @@ void	ft_start(t_cub3d *cube);
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
 void	player_movement(t_cub3d *cube, bool dir[4]);
-void	move_player(t_cub3d *cube, int dir, bool is_vertical);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
+void	move_player(t_cub3d *cube, int dir, bool is_vertical);
 void	update_player_direction(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 									Visuals									  */
 /* ************************************************************************** */
 
+void	init_draw_player(t_cub3d *cube, int x, int y);
 void	draw_line(t_cub3d *cube);
 void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
-void	init_draw_player(t_cub3d *cube, int x, int y);
 int		draw_mini_map(t_cub3d *cube);
 
 /* ************************************************************************** */

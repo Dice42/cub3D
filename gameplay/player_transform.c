@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 11:08:33 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:37:45 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,14 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 
 	speed = 2;
 	update_player_direction(cube);
-	if (cube->player.orientation == 'N' && cube->player.orientation == 'S')
+	if (is_vertical)
 	{
-		if (is_vertical)
-		{
-			cube->player.transform.x0 += dir * cube->player.transform.dx * speed;
-			cube->player.transform.y0 += dir * cube->player.transform.dy * speed;
-		}
-		else
-		{
-			cube->player.transform.x0 += dir * cube->player.transform.dy * speed;
-			cube->player.transform.y0 -= dir * cube->player.transform.dx * speed;
-		}
+		cube->player.transform.x0 -= dir * cube->player.transform.dx * speed;
+		cube->player.transform.y0 -= dir * cube->player.transform.dy * speed;
 	}
 	else
 	{
-		if (is_vertical)
-		{
-			cube->player.transform.x0 -= dir * cube->player.transform.dx * speed;
-			cube->player.transform.y0 -= dir * cube->player.transform.dy * speed;
-		}
-		else
-		{
-			cube->player.transform.x0 -= dir * cube->player.transform.dy * speed;
-			cube->player.transform.y0 += dir * cube->player.transform.dx * speed;
-		}
+		cube->player.transform.x0 -= dir * cube->player.transform.dy * speed;
+		cube->player.transform.y0 += dir * cube->player.transform.dx * speed;
 	}
 }
