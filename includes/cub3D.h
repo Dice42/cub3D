@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 20:00:37 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:25:33 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1920
+# define HEIGHT 1080
+# define RAD PI / 180
 
 typedef enum keys
 {
@@ -67,8 +68,19 @@ typedef struct s_transform
 	float	angle;
 }	t_transform;
 
+typedef struct s_rays
+{
+	float	x;
+	float	y;
+	float	rx;
+	float	ry;
+	float	angle;
+	float	dist;
+}	t_rays;
+
 typedef struct s_player
 {
+	t_rays		rays;
 	t_transform	transform;
 	char		orientation;
 	bool		move_dir[4];
@@ -193,6 +205,7 @@ void	cast_rays_from_player(t_cub3d *cube);
 /* 								Window Handling								  */
 /* ************************************************************************** */
 
+void	init_mlx_img(t_cub3d *cube);
 int		close_window(t_cub3d *cube);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 

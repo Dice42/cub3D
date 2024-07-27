@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:53:28 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/23 21:25:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 07:30:44 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ int	close_window(t_cub3d	*cube)
 	exit(0);
 	//exit_game(sl);
 	return (0);
+}
+
+void	init_mlx_img(t_cub3d *cube)
+{
+	int	height;
+	int	width;
+
+	height = cube->level.num_of_rows * 64;
+	width = cube->level.num_of_columns * 64;
+	cube->data.img.img = mlx_new_image(cube->data.mlx_ptr, width, height);
+	cube->data.img.addr = mlx_get_data_addr(cube->data.img.img,
+			&cube->data.img.bits_per_pixel, 
+			&cube->data.img.line_length, &cube->data.img.endian);
 }

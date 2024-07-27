@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 19:09:43 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:29:07 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_line(t_cub3d *cube)
 	i = 0;
 	while (i < 35)
 	{
-		mlx_pixel_put(cube->data.mlx_ptr, cube->data.win,
+		my_mlx_pixel_put(&cube->data.img,
 			((cube->player.transform.x0 + 7) + (cube->player.transform.dx * i)),
 			((cube->player.transform.y0 + 7) + (cube->player.transform.dy * i)),
 			0xFF0000);

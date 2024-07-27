@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 16:57:54 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:58:19 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	player_collisions(t_cub3d *cube, int x, int y)
 			return (false);
 		else if (cube->level.map[(y + 15) / 64][(x + 15) / 64] == '1')
 			return (false);
+		else
+			return (true);
 	}
 	return (true);
 }
