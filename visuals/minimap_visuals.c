@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 14:44:09 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:25:22 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ void	draw_borders(t_cub3d *cube, int x, int y)
 		i++;
 	}
 }
+void	draw_background(t_cub3d *cube, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 63)
+	{
+		j = 0;
+		while (j < 63)
+		{
+			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0x8e918a);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	draw_mini_map(t_cub3d *cube)
 {
@@ -37,15 +54,20 @@ int	draw_mini_map(t_cub3d *cube)
 
 	y = 0;
 	init_mlx_img(cube);
+	draw_floor(cube);
+	draw_ceiling(cube);
 	while (cube->level.map[y])
 	{
 		x = 0;
 		while (cube->level.map[y][x])
 		{
-			if (cube->level.map[y][x] == '1')
+			if (cube->level.map[y][x] == '1' || cube->level.map[y][x] == ' ')
 				draw_borders(cube, x, y);
+			else if (cube->level.map[y][x] == '0')
+				draw_background(cube, x, y);
 			else if (cube->level.map[y][x] == cube->player.orientation)
 			{
+				draw_background(cube, x, y);
 				if (!cube->level.start)
 					init_player_pos(cube, x, y);
 			}

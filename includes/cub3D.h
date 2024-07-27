@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/27 15:25:33 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:11:37 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ typedef struct s_transform
 
 typedef struct s_rays
 {
-	float	x;
-	float	y;
 	float	rx;
 	float	ry;
+	float	rx1[1080];
+	float	ry1[1080];
 	float	angle;
+	float	angle_step;
 	float	dist;
 }	t_rays;
 
@@ -200,6 +201,8 @@ void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
 int		draw_mini_map(t_cub3d *cube);
 void	cast_rays_from_player(t_cub3d *cube);
+void	draw_floor(t_cub3d *cube);
+void	draw_ceiling(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 								Window Handling								  */

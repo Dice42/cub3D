@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/26 20:01:02 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/07/27 16:56:33 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ CLEAN_DIR = ./cleanup
 
 OBJ_DIR = ./obj
 
+VISUALS_DIR = ./visuals
+
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
 		$(PARSE_DIR)/validate_map.c \
@@ -33,14 +35,15 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(CUB_UTILS_DIR)/map_utils.c \
 		$(GAMEPLAY_DIR)/cub3D.c \
 		$(GAMEPLAY_DIR)/window_handler.c \
-		$(GAMEPLAY_DIR)/minimap_visuals.c \
 		$(GAMEPLAY_DIR)/player_init.c \
 		$(GAMEPLAY_DIR)/player_controller.c \
 		$(GAMEPLAY_DIR)/player_transform.c \
-		$(GAMEPLAY_DIR)/player_visuals.c \
-		$(GAMEPLAY_DIR)/draw_utils.c \
 		$(GAMEPLAY_DIR)/keys_handler.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
+		$(VISUALS_DIR)/player_visuals.c \
+		$(VISUALS_DIR)/minimap_visuals.c \
+		$(VISUALS_DIR)/draw_utils.c \
+		$(VISUALS_DIR)/3d_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
@@ -61,7 +64,7 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 all: $(CUB3D)
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) \
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(VISUALS_DIR) \
 			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) 
 
 $(LIBFT):
