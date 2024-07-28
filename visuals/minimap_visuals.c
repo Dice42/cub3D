@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_visuals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 19:25:22 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:38:16 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	draw_borders(t_cub3d *cube, int x, int y)
 	int	j;
 
 	i = 0;
-	while (i < 63)
+	while (i < MINIMAP_X - 1)
 	{
 		j = 0;
-		while (j < 63)
+		while (j < MINIMAP_Y - 1)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0xADD8E6);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y + j, 0xADD8E6);
 			j++;
 		}
 		i++;
@@ -35,12 +35,12 @@ void	draw_background(t_cub3d *cube, int x, int y)
 	int	j;
 
 	i = 0;
-	while (i < 63)
+	while (i < MINIMAP_X - 1)
 	{
 		j = 0;
-		while (j < 63)
+		while (j < MINIMAP_Y - 1)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * 64 + i, y * 64 + j, 0x8e918a);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y + j, 0x8e918a);
 			j++;
 		}
 		i++;

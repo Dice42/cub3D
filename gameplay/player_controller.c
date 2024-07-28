@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 10:58:19 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/28 14:22:00 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 bool	player_collisions(t_cub3d *cube, int x, int y)
 {
-	if ((x / 64 >= 0 && y / 64 >= 0))
+	if ((x / MINIMAP_X >= 0 && y / MINIMAP_Y >= 0))
 	{
-		if (cube->level.map[y / 64][x / 64] == '1')
+		if (cube->level.map[y / MINIMAP_Y][x / MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[y / 64][(x + 15) / 64] == '1')
+		else if (cube->level.map[y / MINIMAP_Y][(x + 6) / MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[(y + 15) / 64][x / 64] == '1')
+		else if (cube->level.map[(y + 6) / MINIMAP_Y][x / MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[(y + 15) / 64][(x + 15) / 64] == '1')
+		else if (cube->level.map[(y + 6) / MINIMAP_Y][(x + 6) / MINIMAP_X] == '1')
 			return (false);
 		else
 			return (true);

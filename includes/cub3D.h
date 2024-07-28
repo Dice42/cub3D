@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/27 20:34:20 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:29:23 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define PI 3.14159265
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MINIMAP_X ((720*64) / WIDTH)
+# define MINIMAP_Y ((480*64) / HEIGHT)
 # define RAD PI / 180
 
 typedef enum keys

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_visuals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 11:29:07 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:35:46 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	draw_line(t_cub3d *cube)
 	int	i;
 
 	i = 0;
-	while (i < 35)
+	while (i < 7)
 	{
 		my_mlx_pixel_put(&cube->data.img,
-			((cube->player.transform.x0 + 7) + (cube->player.transform.dx * i)),
-			((cube->player.transform.y0 + 7) + (cube->player.transform.dy * i)),
+			((cube->player.transform.x0 + 3) + (cube->player.transform.dx * i)),
+			((cube->player.transform.y0 + 3) + (cube->player.transform.dy * i)),
 			0xFF0000);
 		i ++;
 	}
@@ -32,10 +32,10 @@ void	draw_player(t_cub3d *cube)
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
-	while (ctr.i < 15)
+	while (ctr.i < 6)
 	{
 		ctr.j = 0;
-		while (ctr.j < 15)
+		while (ctr.j < 6)
 		{
 			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win,
 				cube->player.transform.x0 + ctr.i,

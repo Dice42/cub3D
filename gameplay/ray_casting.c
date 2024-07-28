@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/27 21:19:57 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/28 14:23:25 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	cast_ray(t_cub3d *cube, int i)
 	ray_y = cube->player.rays.ry;
 	dir_x = cos(cube->player.rays.angle);
 	dir_y = sin(cube->player.rays.angle);
-	while (player_collisions(cube, ray_x - 15, ray_y - 15))
+	while (player_collisions(cube, ray_x - 6, ray_y - 6))
 	{
 		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
@@ -38,13 +38,13 @@ void	cast_ray(t_cub3d *cube, int i)
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
-	while (player_collisions(cube, ray_x, ray_y - 15))
+	while (player_collisions(cube, ray_x, ray_y - 6))
 	{
 		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
-	while (player_collisions(cube, ray_x - 15, ray_y))
+	while (player_collisions(cube, ray_x - 6, ray_y))
 	{
 		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
@@ -58,12 +58,12 @@ void	cast_ray(t_cub3d *cube, int i)
 
 void	cast_rays_from_player(t_cub3d *cube)
 {
-	cube->player.rays.rx = cube->player.transform.x0 + 7;
-	cube->player.rays.ry = cube->player.transform.y0 + 7;
-	cube->player.rays.angle = cube->player.transform.angle - (45.0 * RAD );
-	cube->player.rays.angle_step = (90 * RAD) / 1080;
+	cube->player.rays.rx = cube->player.transform.x0 + 3;
+	cube->player.rays.ry = cube->player.transform.y0 + 3;
+	cube->player.rays.angle = cube->player.transform.angle - (30.0 * RAD );
+	cube->player.rays.angle_step = (60 * RAD) / 720;
 
-	for (int i = 0; i < 1080; i++)
+	for (int i = 0; i < 720; i++)
 	{
 		cast_ray(cube, i);
 		cube->player.rays.angle += cube->player.rays.angle_step;
