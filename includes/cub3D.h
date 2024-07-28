@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/28 12:29:23 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/28 16:11:26 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ typedef struct s_transform
 	float	y0;
 	float	x1;
 	float	y1;
-	float	sx;
-	float	sy;
-	float	err;
 	float	dx;
 	float	dy;
 	float	angle;
@@ -76,6 +73,11 @@ typedef struct s_rays
 	float	ry;
 	float	rx1[1080];
 	float	ry1[1080];
+	float	sx;
+	float	sy;
+	float	dx;
+	float	dy;
+	float	err;
 	float	angle;
 	float	angle_step;
 	float	dist;
@@ -205,6 +207,7 @@ int		draw_mini_map(t_cub3d *cube);
 void	cast_rays_from_player(t_cub3d *cube);
 void	draw_floor(t_cub3d *cube);
 void	draw_ceiling(t_cub3d *cube);
+void	bresenham(t_cub3d *cube, int x1, int y1);
 
 /* ************************************************************************** */
 /* 								Window Handling								  */
