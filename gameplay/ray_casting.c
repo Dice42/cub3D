@@ -54,30 +54,25 @@ void minimap_rays(t_cub3d *cube, int i)
 		ray_y += dir_y * speed;
 	}
 
-	cube->player.rays.rx1[i] = ray_x;
-	cube->player.rays.ry1[i] = ray_y;
+	cube->player.rays.rx1 = ray_x;
+	cube->player.rays.ry1 = ray_y;
 
-	// Calculate the distance from the player to the wall
 	distance = sqrt(pow(ray_x - cube->player.rays.rx, 2) + pow(ray_y - cube->player.rays.ry, 2));
 	if (distance == 0)
 		distance = 1;
-	line_height = ( 3.5 * HEIGHT) / distance;
-	if (line_height > HEIGHT)
+	line_height =  (3 * HEIGHT) / distance;
+	if (line_height >= HEIGHT)
 		line_height = HEIGHT;
-	// int screen_center_x = WIDTH / 2;
 	int screen_center_y = HEIGHT / 2;
-
-	// Determine the starting and ending y-coordinates for the vertical line
 	int line_start_y = screen_center_y - line_height / 2;
 	int line_end_y = screen_center_y + line_height / 2;
-		int x = (i * WIDTH) / 720;
-	// Draw the vertical line on the main screen
-	draw_vertical_line(cube, x, line_start_y, line_end_y, 0x00FF00);
+	int x = (i * WIDTH) / 1920;
+	draw_vertical_line(cube, x, line_start_y, line_end_y, 0x182424);
 
 	printf("Distance: %f\n", distance);
 	printf("Line Height: %f\n", line_height);
-	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1[i]);
-	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1[i]);
+	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1);
+	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1);
 }
 
 void cast_rays_from_player(t_cub3d *cube)
@@ -85,11 +80,12 @@ void cast_rays_from_player(t_cub3d *cube)
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = cube->player.transform.angle - (30.0 * RAD);
-	cube->player.rays.angle_step = (60 * RAD) / 720;
+	cube->player.rays.angle_step = (60 * RAD) / WIDTH;  // Adjust step based on screen width
 
-	for (int i = 0; i < 720; i++)
+	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
-		minimap_rays(cube, i);
+		minimap_rays(cube, x);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
 }
+

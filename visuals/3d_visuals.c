@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 16:50:52 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/27 19:18:31 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:49:06 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_ceiling(t_cub3d *cube)
 		j = 0;
 		while (j < HEIGHT / 2)
 		{
-			my_mlx_pixel_put(&cube->data.img, i, j, 0x3474eb);
+			my_mlx_pixel_put(&cube->data.img, i, j, 0x5c5f80);
 			j++;
 		}
 		i++;
@@ -41,7 +41,7 @@ void	draw_floor(t_cub3d *cube)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			my_mlx_pixel_put(&cube->data.img, i, j, 0xeb8c34);
+			my_mlx_pixel_put(&cube->data.img, i, j, 0x50abbf);
 			j++;
 		}
 		i++;

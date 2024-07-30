@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 20:18:15 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:42:49 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct s_rays
 {
 	float	rx;
 	float	ry;
-	float	rx1[1080];
-	float	ry1[1080];
+	float	rx1;
+	float	ry1;
 	float	sx;
 	float	sy;
 	float	dx;
