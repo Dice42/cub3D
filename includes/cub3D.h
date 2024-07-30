@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 15:21:48 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/07/30 20:43:57 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,38 @@ typedef struct s_transform
 	float	angle;
 }	t_transform;
 
+/**
+ * @brief everything related to rays
+ * 
+ * side represents the side the ray intersects with
+ * (vertical or horizontal)
+ * 
+ * vx and vy coordinates of the vertical intersection
+ * point where the ray hits a wall.
+ * 
+ */
 typedef struct s_rays
 {
+	float	start_rx;
+	float	start_ry;
+	float	end_rx;
+	float	end_ry;
+	float	vertical_x_intersection;
+	float	vertical_y_intersection;
+	float	x_offset;
+	float	y_offset;
+	float	verical_distance;
+	float	horizontal_distance;
+	//float	ray_angle;
+
+	int		current_ray_x;
+	int		current_ray_y;
+	int		current_map_index;
+	int		depth_of_field;
+	int		side;
+
 	float	rx;
 	float	ry;
-	float	rx1[1080];
-	float	ry1[1080];
 	float	sx;
 	float	sy;
 	float	dx;
