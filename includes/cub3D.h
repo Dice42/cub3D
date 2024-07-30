@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 13:15:41 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/07/30 15:21:48 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
 //bool	player_collisions(t_cub3d *cube, int x, int y);
+void    cast_ray(t_cub3d *cube);
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);

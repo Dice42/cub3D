@@ -6,7 +6,7 @@
 #    By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/07/30 12:52:56 by vtcsbza          ###   ########.fr        #
+#    Updated: 2024/07/30 15:22:03 by vtcsbza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/keys_handler.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(GAMEPLAY_DIR)/level_collisions.c \
+		$(GAMEPLAY_DIR)/ray_cast.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/minimap_visuals.c \
 		$(VISUALS_DIR)/draw_utils.c \
