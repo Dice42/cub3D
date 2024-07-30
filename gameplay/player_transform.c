@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 15:41:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:55:07 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 		cube->player.transform.x0 -= dir * cube->player.transform.dy * speed;
 		cube->player.transform.y0 += dir * cube->player.transform.dx * speed;
 	}
-	if (!player_collisions(cube, cube->player.transform.x0,
-			cube->player.transform.y0))
+	if (!level_collision(cube, cube->player.transform.x0,
+			cube->player.transform.y0, true))
 	{
 		cube->player.transform.x0 = x;
 		cube->player.transform.y0 = y;

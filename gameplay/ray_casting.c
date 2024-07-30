@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/28 16:53:37 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:59:24 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,31 @@ void	minimap_rays(t_cub3d *cube, int i)
 	ray_y = cube->player.rays.ry;
 	dir_x = cos(cube->player.rays.angle);
 	dir_y = sin(cube->player.rays.angle);
-	while (player_collisions(cube, ray_x - 6, ray_y - 6))
+	while (level_collision(cube, ray_x - 3, ray_y - 3, false))
 	{
-		// bresenham(cube, ray_x, ray_y);
-		// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
+		//bresenham(cube, ray_x, ray_y);
+		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
-	while (player_collisions(cube, ray_x, ray_y))
+	while (level_collision(cube, ray_x, ray_y, false))
 	{
-		// bresenham(cube, ray_x, ray_y);
-		// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
+		//bresenham(cube, ray_x, ray_y);
+		 my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
-	while (player_collisions(cube, ray_x, ray_y - 6))
+	while (level_collision(cube, ray_x, ray_y - 3, false))
 	{
-		// bresenham(cube, ray_x, ray_y);
-		// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
+		//bresenham(cube, ray_x, ray_y);
+		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
-	while (player_collisions(cube, ray_x - 6, ray_y))
+	while (level_collision(cube, ray_x - 3, ray_y, false))
 	{
-		// bresenham(cube, ray_x, ray_y);
-		// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
+		//bresenham(cube, ray_x, ray_y);
+		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 		ray_x += dir_x * speed;
 		ray_y += dir_y * speed;
 	}
@@ -58,7 +58,7 @@ void	minimap_rays(t_cub3d *cube, int i)
 	cube->player.rays.ry1[i] = ray_y;
 	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1[i]);
 	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1[i]);
-	bresenham(cube, cube->player.rays.rx1[i], cube->player.rays.ry1[i]);
+	//bresenham(cube, cube->player.rays.rx1[i], cube->player.rays.ry1[i]);
 }
 
 void	cast_rays_from_player(t_cub3d *cube)
