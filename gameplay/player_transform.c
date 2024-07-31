@@ -24,7 +24,7 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 	float	x;
 	float	y;
 
-	speed = 2;
+	speed = 1;
 	update_player_direction(cube);
 	x = cube->player.transform.x0;
 	y = cube->player.transform.y0;

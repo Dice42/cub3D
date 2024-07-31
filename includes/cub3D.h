@@ -32,11 +32,16 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265
-# define WIDTH 1920
+# define WIDTH 1280
 # define HEIGHT 1080
 # define MINIMAP_X ((720*64) / WIDTH)
 # define MINIMAP_Y ((480*64) / HEIGHT)
-# define RAD PI / 180
+# define RAD (PI / 180)
+# define FOV 60.0
+# define WALL_HEIGHT 1.0
+#define EPSILON 0.1f   // Small value to avoid division by zero
+#define MIN_HEIGHT 1   // Minimum height for line
+
 
 typedef enum keys
 {
@@ -139,6 +144,7 @@ typedef struct s_mlx_data
 	void		*mlx_ptr;
 	void		*win;
 	t_img_data		img;
+	t_img_data		textures[4];
 }	t_mlx_data;
 
 typedef struct s_cub3d
