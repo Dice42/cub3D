@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/28 12:44:21 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:21:35 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player_pos(t_cub3d *cube, int x, int y)
 {
-	cube->player.transform.x0 = x * MINIMAP_X + 10.7;
-	cube->player.transform.y0 = y * MINIMAP_Y + 10.7;
+	cube->player.transform.x0 = x * MINIMAP_X + 7;
+	cube->player.transform.y0 = y * MINIMAP_Y + 7;
 	if (cube->player.orientation == 'N')
 		cube->player.transform.angle = 3 * PI / 2;
 	else if (cube->player.orientation == 'E')

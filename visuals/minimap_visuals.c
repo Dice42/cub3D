@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_visuals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/28 12:38:16 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:11:58 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	draw_mini_map(t_cub3d *cube)
 		}
 		y++;
 	}
-	cast_rays_from_player(cube);
+	//cast_rays_from_player(cube);
 	draw_line(cube);
 	mlx_put_image_to_window(cube->data.mlx_ptr, cube->data.win,
 		cube->data.img.img, 0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/21 21:22:44 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:45:51 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main(int ac, char **av)
 	if (!validate_level(av[1], &cube.level, &cube.player))
 		return (0); //print error
 	// convert_rgb_hex(&cube.level);
+	//printf("the minimap x is %d and minimap y is %d\n", MINIMAP_X, MINIMAP_Y);
 	ft_start(&cube);
 	return (0);
 }

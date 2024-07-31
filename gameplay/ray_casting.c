@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 20:46:00 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/31 12:42:00 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 
-void draw_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, int color)
-{
-    int y;
+// void draw_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, int color)
+// {
+//     int y;
 
-    if (start_y > end_y)
-    {
-        int temp = start_y;
-        start_y = end_y;
-        end_y = temp;
-    }
+//     if (start_y > end_y)
+//     {
+//         int temp = start_y;
+//         start_y = end_y;
+//         end_y = temp;
+//     }
 
-    y = start_y;
-    while (y <= end_y)
-    {
-        my_mlx_pixel_put(&cube->data.img, x, y, color);
-        y++;
-    }
-}
+//     y = start_y;
+//     while (y <= end_y)
+//     {
+//         my_mlx_pixel_put(&cube->data.img, x, y, color);
+//         y++;
+//     }
+// }
 
 
 void	minimap_rays(t_cub3d *cube, int i)
@@ -79,8 +79,8 @@ void	minimap_rays(t_cub3d *cube, int i)
 	// 	ray_x += dir_x * speed;
 	// 	ray_y += dir_y * speed;
 	// }
-	cube->player.rays.rx1[i] = ray_x;
-	cube->player.rays.ry1[i] = ray_y;
+	cube->player.rays.rx1 = ray_x;
+	cube->player.rays.ry1 = ray_y;
 	distance = sqrt((pow(ray_x, 2) + pow(ray_y, 2)));
 	// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 	line_3d = (64 * 1080) / distance;
@@ -90,10 +90,10 @@ void	minimap_rays(t_cub3d *cube, int i)
 	screen_center_y = HEIGHT / 2;
 	projected_x = screen_center_x + (ray_x - cube->player.rays.rx);
 //    draw_vertical_line(cube, i + projected_x, screen_center_y, screen_center_y + distance, 0x00FF00);
-	draw_vertical_line(cube, (i * 1920) / 1080, 1080 / 2, distance, 0x00FF00);
+//	draw_vertical_line(cube, (i * 1920) / 1080, 1080 / 2, distance, 0x00FF00);
 	printf("distance is: %f\n", distance);
-	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1[i]);
-	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1[i]);
+	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1);
+	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1);
 	//bresenham(cube, cube->player.rays.rx1[i], cube->player.rays.ry1[i]);
 }
 
@@ -106,10 +106,10 @@ void	cast_rays_from_player(t_cub3d *cube)
 
 	for (int i = 0; i < 720; i++)
 	{
-		cube->player.rays.dof = 0;
+		//cube->player.rays.depth_of_field = 0;
 		cube->player.rays.verical_distance = 100000;
-		minimap_rays(cube, i);
-		//cast_ray(cube);
+		//minimap_rays(cube, i);
+		cast_ray(cube);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
 }

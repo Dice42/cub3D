@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_visuals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/28 12:35:46 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:24:27 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	draw_player(t_cub3d *cube)
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
-	while (ctr.i < 6)
+	while (ctr.i < 7)
 	{
 		ctr.j = 0;
-		while (ctr.j < 6)
+		while (ctr.j < 7)
 		{
 			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win,
 				cube->player.transform.x0 + ctr.i,

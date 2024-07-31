@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 20:43:57 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:15:26 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define PI 3.14159265
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINIMAP_X ((720*64) / WIDTH)
-# define MINIMAP_Y ((480*64) / HEIGHT)
+# define MINIMAP_X (((1280*64) / WIDTH) / 2)
+# define MINIMAP_Y (((720*64) / HEIGHT) / 2)
 # define RAD PI / 180
 
 typedef enum keys
@@ -79,16 +79,17 @@ typedef struct s_transform
  */
 typedef struct s_rays
 {
-	float	start_rx;
-	float	start_ry;
-	float	end_rx;
-	float	end_ry;
-	float	vertical_x_intersection;
-	float	vertical_y_intersection;
+	float	ray_x;
+	float	ray_y;
+	//float	end_rx;
+	//float	end_ry;
+	float	x_intersection;
+	float	y_intersection;
 	float	x_offset;
 	float	y_offset;
 	float	verical_distance;
 	float	horizontal_distance;
+	float	distance;
 	//float	ray_angle;
 
 	int		current_ray_x;
@@ -99,6 +100,8 @@ typedef struct s_rays
 
 	float	rx;
 	float	ry;
+	float	rx1;
+	float	ry1;
 	float	sx;
 	float	sy;
 	float	dx;
