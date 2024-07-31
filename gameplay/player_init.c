@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/31 14:21:35 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/07/31 14:45:32 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	init_player_pos(t_cub3d *cube, int x, int y)
 		cube->player.transform.angle = PI / 2;
 	else if (cube->player.orientation == 'W')
 		cube->player.transform.angle = PI;
+	
 	update_player_direction(cube);
 }

@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/31 14:15:26 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:07:18 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ void	update_player_direction(t_cub3d *cube);
 
 void	init_draw_player(t_cub3d *cube, int x, int y);
 void	draw_line(t_cub3d *cube);
+void	draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color);
 void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
 int		draw_mini_map(t_cub3d *cube);

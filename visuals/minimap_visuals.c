@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/31 14:11:58 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/07/31 14:25:41 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	draw_mini_map(t_cub3d *cube)
 		}
 		y++;
 	}
-	//cast_rays_from_player(cube);
+	cast_rays_from_player(cube);
 	draw_line(cube);
 	mlx_put_image_to_window(cube->data.mlx_ptr, cube->data.win,
 		cube->data.img.img, 0, 0);
