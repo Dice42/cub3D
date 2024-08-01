@@ -41,6 +41,8 @@ void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t
     while (y <= end_y)
     {
         int texture_y = ((y - start_y) * texture_height) / (end_y - start_y);
+        if ((texture_y < 0) || (texture_y >= texture_height))
+            texture_y = 0;
         printf("texture_x: %d, texture_y: %d\n", texture_x, texture_y);
         int color = get_texture_pixel(texture, texture_x, texture_y);
         printf("y: %d, color: %d\n", y, color);
@@ -82,13 +84,13 @@ void minimap_rays(t_cub3d *cube, int x)
     int screen_center_y = HEIGHT / 2;
     int line_start_y = screen_center_y - line_height / 2;
     int line_end_y = screen_center_y + line_height / 2;
+    // load_textures(cube);
 
     float wall_x = (ray_x - (int)ray_x) * cube->data.textures[0].line_length;
     int texture_x = (int)wall_x;
 
     draw_textured_vertical_line(cube, x, line_start_y, line_end_y, &cube->data.textures[0], texture_x);
 }
-
 
 
 /**
