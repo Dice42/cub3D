@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/31 20:50:38 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/01 05:35:20 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,11 @@ void	cast_rays_from_player(t_cub3d *cube)
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	printf("PLAYER ANGLE IS (before rays) : %f\n", cube->player.transform.angle);
-	cube->player.rays.angle = cube->player.transform.angle + (30 * RAD);
+	//cube->player.rays.angle = cube->player.transform.angle + (30 * RAD);
 	printf("RAY ANGLE: %f\n", cube->player.rays.angle);
+	cube->player.rays.angle = cube->player.transform.angle;
 	cube->player.rays.angle_step = (60 * RAD) / 1280;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		//cube->player.rays.depth_of_field = 0;
 		cube->player.rays.verical_distance = 100000;
