@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/31 17:07:18 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/01 14:20:43 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
-# define PI 3.14159265
+# define PI 3.14159265358979323846
+# define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MINIMAP_X (((1280*64) / WIDTH) / 2)
@@ -165,8 +166,8 @@ typedef struct s_img_data
 
 typedef struct s_mlx_data
 {
-	void		*mlx_ptr;
-	void		*win;
+	void			*mlx_ptr;
+	void			*win;
 	t_img_data		img;
 }	t_mlx_data;
 

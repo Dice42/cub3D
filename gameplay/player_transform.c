@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/30 12:55:07 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/01 13:11:16 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	update_player_direction(t_cub3d *cube)
 {
+	printf("angle of the player is %f\n", cube->player.transform.angle);
+
 	cube->player.transform.dx = cos(cube->player.transform.angle);
 	cube->player.transform.dy = sin(cube->player.transform.angle);
 }
@@ -25,11 +27,13 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 	float	y;
 
 	speed = 2;
+	printf("the angle of the player is %f\n", cube->player.transform.angle);
 	update_player_direction(cube);
 	x = cube->player.transform.x0;
 	y = cube->player.transform.y0;
 	if (is_vertical)
 	{
+		printf("vertical\n");
 		cube->player.transform.x0 -= dir * cube->player.transform.dx * speed;
 		cube->player.transform.y0 -= dir * cube->player.transform.dy * speed;
 	}

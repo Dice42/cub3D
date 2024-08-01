@@ -1,11 +1,11 @@
-              NO            ./includes/levels/textures
-             SO        ./includes/levels/textures
+              NO            ./includes/levels/textures/texture.xpm
+             SO        ./includes/levels/textures/texture.xpm
 
 
          C                           42,42,0
         F                42   ,       42,          0
-       EA              ./includes/levels/textures
-       WE           ./includes/levels/textures
+       EA              ./includes/levels/textures/texture.xpm
+       WE           ./includes/levels/textures/texture.xpm
 
 
 
@@ -13,6 +13,6 @@
 
 11111
 10001
-10N01
+10E01
 10001
 11111
