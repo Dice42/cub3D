@@ -141,8 +141,8 @@ typedef struct s_img_data
 
 typedef struct s_mlx_data
 {
-	void		*mlx_ptr;
-	void		*win;
+	void			*mlx_ptr;
+	void			*win;
 	t_img_data		img;
 	t_img_data		textures[4];
 }	t_mlx_data;
