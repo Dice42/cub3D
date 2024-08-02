@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_visuals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/01 13:09:59 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/02 21:53:34 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_line(t_cub3d *cube)
 	int	i;
 
 	i = 0;
-	while (i < 7)
+	while (i < 20)
 	{
 		// printf("dx of the player is %f\n", cube->player.transform.dx);
 		// printf("dy of the player is %f\n", cube->player.transform.dy);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/01 05:35:20 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/02 21:47:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	cast_rays_from_player(t_cub3d *cube)
 	{
 		//cube->player.rays.depth_of_field = 0;
 		cube->player.rays.verical_distance = 100000;
-		//minimap_rays(cube, i);
+		// minimap_rays(cube, i);
 		cast_ray(cube);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}

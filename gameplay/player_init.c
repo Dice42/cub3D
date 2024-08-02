@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/01 13:12:56 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/02 20:28:46 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	init_player_pos(t_cub3d *cube, int x, int y)
 	cube->player.transform.x0 = x * MINIMAP_X + 7;
 	cube->player.transform.y0 = y * MINIMAP_Y + 7;
 	if (cube->player.orientation == 'N')
-		cube->player.transform.angle = 3 * PI / 2;
+		cube->player.transform.angle = atan2(-1, 0);
 	else if (cube->player.orientation == 'E')
-		cube->player.transform.angle = 0;
+		cube->player.transform.angle = atan2(0, 1);
 	else if (cube->player.orientation == 'S')
-		cube->player.transform.angle = PI / 2;
+		cube->player.transform.angle = atan2(1, 0);
 	else if (cube->player.orientation == 'W')
-		cube->player.transform.angle = PI;
+		cube->player.transform.angle = atan2(0, -1);
 		
 	printf("the angle of the player is %f\n", cube->player.transform.angle);
 	update_player_direction(cube);
