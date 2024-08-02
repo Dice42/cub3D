@@ -367,7 +367,7 @@ void cast_rays_from_player(t_cub3d *cube)
     cube->player.rays.rx = cube->player.transform.x0 + 3;
     cube->player.rays.ry = cube->player.transform.y0 + 3;
     cube->player.rays.angle = cube->player.transform.angle - (30.0 * RAD);
-    cube->player.rays.angle_step = (60 * RAD) / WIDTH;  // Adjust step based on screen width
+    cube->player.rays.angle_step = (float)(60 * RAD) / WIDTH;  // Adjust step based on screen width
 
     for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
     {

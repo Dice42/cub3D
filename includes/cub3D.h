@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/30 20:42:49 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/02 19:29:03 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265
-# define WIDTH 1280
+# define WIDTH 1920
 # define HEIGHT 1080
 # define MINIMAP_X ((720*64) / WIDTH)
 # define MINIMAP_Y ((480*64) / HEIGHT)
-# define RAD (PI / 180)
+# define RAD (M_PI / 180)
 # define FOV 60.0
 # define WALL_HEIGHT 1.0
 #define EPSILON 0.1f   // Small value to avoid division by zero

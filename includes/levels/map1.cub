@@ -1,18 +1,18 @@
               NO            ./includes/levels/textures/texture.xpm
-             SO        ./includes/levels/textures/texture.xpm
+             SO        ./includes/levels/textures/eagle.xpm
 
 
          C                           42,42,0
         F                42   ,       42,          0
-       EA              ./includes/levels/textures/texture.xpm
-       WE           ./includes/levels/textures/texture.xpm
+       EA              ./includes/levels/textures/bluestone.xpm
+       WE           ./includes/levels/textures/redbrick.xpm
 
 
 
 
 
 111111111111
-1E0000100001
+1000E100001
 100000000001
 100000100001
 111111111111
