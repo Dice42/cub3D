@@ -31,13 +31,14 @@ void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)
 	}
 }
 
-void	cast_rays(t_cub3d *cube)
+float	cast_rays(t_cub3d *cube)
 {
 	float	angle;
 	float	init_pos[2];
 	float	ray_length[2];
 	float	ray_dir_x;
 	float	ray_dir_y;
+	float	len;
 
 	angle = cube->player.rays.angle;
 	ray_length[0] = 0;
@@ -49,7 +50,7 @@ void	cast_rays(t_cub3d *cube)
 		init_pos[0] += MINIMAP_X;
 	else if (ray_dir_x < 0)
 		init_pos[0] -= MINIMAP_X;
-	printf("RAY DIR X IS: %f\n", ray_dir_x);
+	//printf("RAY DIR X IS: %f\n", ray_dir_x);
 	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir_y / ray_dir_x);
 	float step_x = (ray_dir_x > 0) ? MINIMAP_X : -MINIMAP_X;
 	float step_y = step_x * (ray_dir_y / ray_dir_x);
@@ -79,6 +80,49 @@ void	cast_rays(t_cub3d *cube)
 			break;
 		}
 	}
+
+
+
+	//HORIZONTAL CHECKS
+	init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y;
+	ray_dir_x = cos(angle);
+	ray_dir_y = sin(angle);
+	if (ray_dir_y > 0)
+		init_pos[1] += MINIMAP_Y;
+	else if (ray_dir_y < 0)
+		init_pos[1] -= MINIMAP_Y;
+	//printf("RAY DIR X IS: %f\n", ray_dir_x);
+	init_pos[0] = cube->player.rays.rx + (init_pos[1] - cube->player.rays.ry) * (ray_dir_x / ray_dir_y);
+	step_y = (ray_dir_y > 0) ? MINIMAP_Y : -MINIMAP_Y;
+	step_x = step_y * (ray_dir_x / ray_dir_y);
+
+	while (1)
+	{
+		int x = (int)(init_pos[0] / MINIMAP_X);
+		int y = (int)(init_pos[1] / MINIMAP_Y);
+		
+		if (x >= 0 && x < cube->level.num_of_columns && y >= 0 && y < cube->level.num_of_rows)
+		{
+			if (cube->level.map[y][x] == '1')
+			{
+				//printf("HIT at x %d y %d\n", x, y);
+				ray_length[1] = (init_pos[1] - cube->player.rays.ry) / sin(angle);
+				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+				break;
+			}
+			else
+			{
+				init_pos[0] += step_x;
+				init_pos[1] += step_y;
+			}
+		}
+		else
+		{
+			break;
+		}
+	}
+	printf("ray length [1] is : (%f) ray length [0] is : (%f)\n", ray_length[1], ray_length[0]);
+	return ((ray_length[1] > ray_length[0]) ? ray_length[0] : ray_length[1]);
 }
 
 void	cast_ray(t_cub3d *cube)
