@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/02 20:28:46 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/03 15:51:46 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	init_player_pos(t_cub3d *cube, int x, int y)
 	else if (cube->player.orientation == 'W')
 		cube->player.transform.angle = atan2(0, -1);
 		
-	printf("the angle of the player is %f\n", cube->player.transform.angle);
+	//printf("the angle of the player is %f\n", cube->player.transform.angle);
 	update_player_direction(cube);
 }

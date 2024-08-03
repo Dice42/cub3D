@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/02 21:47:10 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/03 15:56:36 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ void	cast_rays_from_player(t_cub3d *cube)
 {
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
-	printf("PLAYER ANGLE IS (before rays) : %f\n", cube->player.transform.angle);
+	//printf("PLAYER ANGLE IS (before rays) : %f\n", cube->player.transform.angle);
 	//cube->player.rays.angle = cube->player.transform.angle + (30 * RAD);
-	printf("RAY ANGLE: %f\n", cube->player.rays.angle);
+	//printf("RAY ANGLE: %f\n", cube->player.rays.angle);
 	cube->player.rays.angle = cube->player.transform.angle;
 	cube->player.rays.angle_step = (60 * RAD) / 1280;
 	for (int i = 0; i < 1; i++)
@@ -111,7 +111,7 @@ void	cast_rays_from_player(t_cub3d *cube)
 		//cube->player.rays.depth_of_field = 0;
 		cube->player.rays.verical_distance = 100000;
 		// minimap_rays(cube, i);
-		cast_ray(cube);
+		cast_rays(cube);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
 }

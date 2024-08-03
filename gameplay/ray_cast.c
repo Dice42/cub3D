@@ -5,30 +5,80 @@
 
 void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)
 {
-    int dx = abs(x1 - x0);
-    int dy = -abs(y1 - y0);
-    int sx = x0 < x1 ? 1 : -1;
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx + dy;
-    int e2;
+	int dx = abs(x1 - x0);
+	int dy = -abs(y1 - y0);
+	int sx = x0 < x1 ? 1 : -1;
+	int sy = y0 < y1 ? 1 : -1;
+	int err = dx + dy;
+	int e2;
 
-    while (1)
-    {
-        my_mlx_pixel_put(&cube->data.img, x0, y0, color);
-        if (x0 == x1 && y0 == y1)
-            break;
-        e2 = 2 * err;
-        if (e2 >= dy)
-        {
-            err += dy;
-            x0 += sx;
-        }
-        if (e2 <= dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
+	while (1)
+	{
+		my_mlx_pixel_put(&cube->data.img, x0, y0, color);
+		if (x0 == x1 && y0 == y1)
+			break;
+		e2 = 2 * err;
+		if (e2 >= dy)
+		{
+			err += dy;
+			x0 += sx;
+		}
+		if (e2 <= dx)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
+}
+
+void	cast_rays(t_cub3d *cube)
+{
+	float	angle;
+	float	init_pos[2];
+	float	ray_length[2];
+	float	ray_dir_x;
+	float	ray_dir_y;
+
+	angle = cube->player.rays.angle;
+	ray_length[0] = 0;
+	//VERTICAL CHECKS
+	init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X;
+	ray_dir_x = cos(angle);
+	ray_dir_y = sin(angle);
+	if (ray_dir_x > 0)
+		init_pos[0] += MINIMAP_X;
+	else if (ray_dir_x < 0)
+		init_pos[0] -= MINIMAP_X;
+	printf("RAY DIR X IS: %f\n", ray_dir_x);
+	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir_y / ray_dir_x);
+	float step_x = (ray_dir_x > 0) ? MINIMAP_X : -MINIMAP_X;
+	float step_y = step_x * (ray_dir_y / ray_dir_x);
+
+	while (1)
+	{
+		int x = (int)(init_pos[0] / MINIMAP_X);
+		int y = (int)(init_pos[1] / MINIMAP_Y);
+		
+		if (x >= 0 && x < cube->level.num_of_columns && y >= 0 && y < cube->level.num_of_rows)
+		{
+			if (cube->level.map[y][x] == '1')
+			{
+				//printf("HIT at x %d y %d\n", x, y);
+				ray_length[0] = (init_pos[1] - cube->player.rays.ry) / sin(angle);
+				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+				break;
+			}
+			else
+			{
+				init_pos[0] += step_x;
+				init_pos[1] += step_y;
+			}
+		}
+		else
+		{
+			break;
+		}
+	}
 }
 
 void	cast_ray(t_cub3d *cube)
@@ -59,33 +109,74 @@ void	cast_ray(t_cub3d *cube)
 
 	ray_xy1[0] = cube->player.rays.rx;
 	ray_xy1[1] = cube->player.rays.ry;
-	printf("tan is %f\n", tan(angle));
+	//printf("tan is %f\n", tan(angle));
 	
-	float	ray_length = 0.5;
+	float	temp_ray_length = 0.5;
 
 float x , y;
+	// while (1)
+	// {
+	// 	x = (cube->player.rays.rx + MINIMAP_X * ray_length* cos(angle)) / MINIMAP_X;
+	// 	y = (cube->player.rays.ry + MINIMAP_Y * ray_length * sin(angle)) / MINIMAP_Y;
+	// 	if ( (int)x >= 0 && (int)x < cube->level.num_of_columns &&
+    //       	(int)y >= 0 && (int)y < cube->level.num_of_rows)
+	// 		{
+	// 			if (cube->level.map[(int)y][(int)x] == '1')
+	// 			{
+	// 				printf("HIT at x %d y %d", (int)x, (int)y);
+	// 				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, x * MINIMAP_X, y * MINIMAP_Y, 0xFF0000);
+	// 				break;
+	// 			}
+	// 			else
+	// 			{
+	// 				ray_length += 0.5;
+	// 			}
+	// 		}
+	// }
+
+	float init_pos[2];
+	float ray_length[2];
+	float ray_dir_x;
+	float ray_dir_y;
+
+	ray_length[0] = 0;
+	//VERTICAL CHECKS
+	init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X;
+	ray_dir_x = cos(angle); // direction of the ray in the x-axis
+	ray_dir_y = sin(angle);
+	if (ray_dir_x > 0)
+		init_pos[0] += MINIMAP_X;
+	else if (ray_dir_x < 0)
+		init_pos[0] -= MINIMAP_X;
+	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir_y / ray_dir_x);
+
+	float step_x = (ray_dir_x > 0) ? MINIMAP_X : -MINIMAP_X;
+	float step_y = step_x * (ray_dir_y / ray_dir_x);
+
 	while (1)
 	{
-		x = (cube->player.rays.rx + MINIMAP_X * ray_length* cos(angle)) / MINIMAP_X;
-		y = (cube->player.rays.ry + MINIMAP_Y * ray_length * sin(angle)) / MINIMAP_Y;
-		if ( (int)x >= 0 && (int)x < cube->level.num_of_columns &&
-          	(int)y >= 0 && (int)y < cube->level.num_of_rows)
+		int x = (int)(init_pos[0] / MINIMAP_X);
+		int y = (int)(init_pos[1] / MINIMAP_Y);
+		
+		if (x >= 0 && x < cube->level.num_of_columns && y >= 0 && y < cube->level.num_of_rows) {
+			if (cube->level.map[y][x] == '1')
 			{
-				if (cube->level.map[(int)y][(int)x] == '1')
-				{
-					printf("HIT at x %d y %d", (int)x, (int)y);
-					draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, x * MINIMAP_X, y * MINIMAP_Y, 0xFF0000);
-					break;
-				}
-				else
-				{
-					ray_length += 0.5;
-				}
+				printf("HIT at x %d y %d\n", x, y);
+				ray_length[0] = (init_pos[1] - cube->player.rays.ry) / sin(angle);
+				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0xFF0000);
+				break;
 			}
+			else
+			{
+				init_pos[0] += step_x;
+				init_pos[1] += step_y;
+			}
+		}
+		else
+		{
+			break;
+		}
 	}
-
-
-
 
 
 

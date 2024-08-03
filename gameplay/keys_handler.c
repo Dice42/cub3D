@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:43:14 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/02 21:31:47 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/03 15:51:36 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	set_keys_setting(t_cub3d *cube, int key, bool setting)
 		cube->player.rot_dir[0] = setting;
 	if (key == LOOK_LEFT)
 	{
-		printf("LEFT\n");
+		//printf("LEFT\n");
 		cube->player.rot_dir[1] = setting;
 	}
 }
