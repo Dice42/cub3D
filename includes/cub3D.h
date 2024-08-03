@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/02 19:29:03 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:53:01 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define HEIGHT 1080
 # define MINIMAP_X ((720*64) / WIDTH)
 # define MINIMAP_Y ((480*64) / HEIGHT)
-# define RAD (M_PI / 180)
+# define RAD (M_PI / 180.0f)
 # define FOV 60.0
 # define WALL_HEIGHT 1.0
 #define EPSILON 0.1f   // Small value to avoid division by zero
@@ -58,7 +58,7 @@ typedef struct s_counters
 {
 	int	i;
 	int	j;
-	int	c;
+	int	c;	
 }	t_ctr;
 
 typedef struct s_transform
@@ -186,10 +186,16 @@ void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
 /* 									Gameplay								  */
 /* ************************************************************************** */
 
-void	ft_start(t_cub3d *cube);
-int		handle_keyrelease(int key, t_cub3d *cube);
-int		handle_keypress(int key, t_cub3d *cube);
-bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
+void		ft_start(t_cub3d *cube);
+int			handle_keyrelease(int key, t_cub3d *cube);
+int			handle_keypress(int key, t_cub3d *cube);
+bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
+
+/* texture */
+void		load_textures(t_cub3d *cube);
+int			get_texture_pixel(t_img_data *texture, int x, int y);
+t_img_data	choose_texture(t_cub3d *cube, float dir_x, float dir_y);
+
 
 /* ************************************************************************** */
 /* 								Player Controller							  */
