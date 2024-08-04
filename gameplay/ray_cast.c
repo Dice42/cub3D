@@ -37,20 +37,21 @@ void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)
 
 float cast_rays(t_cub3d *cube)
 {
-    float angle;
-    float init_pos[2];
-    float ray_length[2] = {0};
-    float ray_dir_x;
-    float ray_dir_y;
-    float step_x;
-    float step_y;
+    float   angle;
+    float   init_pos[2];
+    float   ray_length[2] = {0};
+    float   ray_dir_x;
+    float   ray_dir_y;
+    float   step_x;
+    float   step_y;
+    bool    reduce_mapsize[2];
 
     angle = cube->player.rays.angle + 0.001;
 
     ray_dir_x = cos(angle);
     ray_dir_y = sin(angle);
 
-    // Handle vertical rays
+//    Handle vertical rays
     if (ray_dir_x == 0) {
         if (ray_dir_y > 0) {
             init_pos[1] = ((int)(cube->player.rays.ry / MINIMAP_Y) + 1) * MINIMAP_Y;
@@ -81,9 +82,17 @@ float cast_rays(t_cub3d *cube)
         // Non-vertical rays
         init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X;
         if (ray_dir_x > 0)
+        {
+          //  printf("LOOKING RIGHT?\n");
+            reduce_mapsize[0] = false;
             init_pos[0] += MINIMAP_X;
+        }
         else
+        {
+           // printf("LOOKING LEFT??\n");
+            reduce_mapsize[0] = true;
             init_pos[0] -= MINIMAP_X;
+        }
 
         init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir_y / ray_dir_x);
         step_x = (ray_dir_x > 0) ? MINIMAP_X : -MINIMAP_X;
@@ -95,8 +104,16 @@ float cast_rays(t_cub3d *cube)
 
             if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows)) {
                 if (cube->level.map[y][x] == '1') {
-                    ray_length[0] = (init_pos[1] - cube->player.rays.ry) / ray_dir_y;
-                    draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+                    if (reduce_mapsize[0])
+                    {
+                        ray_length[0] = ((init_pos[1] - cube->player.rays.ry) / ray_dir_y) + MINIMAP_X;
+                        draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0] + MINIMAP_X, (int)init_pos[1], 0X00FF00);
+                    }
+                    else
+                    {
+                        ray_length[0] = (init_pos[1] - cube->player.rays.ry) / ray_dir_y;
+                        draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+                    }
                     break;
                 } else {
                     init_pos[0] += step_x;
@@ -108,7 +125,7 @@ float cast_rays(t_cub3d *cube)
         }
     }
 
-    // Handle horizontal rays
+    //Handle horizontal rays
     if (ray_dir_y == 0) {
         if (ray_dir_x > 0) {
             init_pos[0] = ((int)(cube->player.rays.rx / MINIMAP_X) + 1) * MINIMAP_X;
@@ -139,9 +156,17 @@ float cast_rays(t_cub3d *cube)
         // Non-horizontal rays
         init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y;
         if (ray_dir_y > 0)
+        {
+            //printf("LOOKING DOWN?\n");
+            reduce_mapsize[1] = false;
             init_pos[1] += MINIMAP_Y;
+        }
         else
+        {
+           // printf("LOOKING UP?\n");
+            reduce_mapsize[1] = true;
             init_pos[1] -= MINIMAP_Y;
+        }
 
         init_pos[0] = cube->player.rays.rx + (init_pos[1] - cube->player.rays.ry) * (ray_dir_x / ray_dir_y);
         step_y = (ray_dir_y > 0) ? MINIMAP_Y : -MINIMAP_Y;
@@ -153,8 +178,19 @@ float cast_rays(t_cub3d *cube)
 
             if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows)) {
                 if (cube->level.map[y][x] == '1') {
-                    ray_length[1] = (init_pos[1] - cube->player.rays.ry) / ray_dir_y;
-                    draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+                    if (reduce_mapsize[1])
+                    {
+                        //not just reduce minimap, we need to reduce that from the 
+                        ray_length[1] = ((init_pos[1] - cube->player.rays.ry) / ray_dir_y) - MINIMAP_Y;
+                        //init_pos[0] = ray_length[1] * cos(angle);
+                        //init_pos[1] = ray_length[1] * sin(angle);
+                        draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1] + MINIMAP_Y, 0X0000FF);
+                    }
+                    else
+                    {
+                        ray_length[1] = ((init_pos[1] - cube->player.rays.ry) / ray_dir_y);
+                        draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+                    }
                     break;
                 } else {
                     init_pos[0] += step_x;
@@ -167,10 +203,8 @@ float cast_rays(t_cub3d *cube)
     }
 
     // Return the shortest ray length
-    printf("ray 0 is %f and ray 1 is %f\n ", ray_length[0], ray_length[1]);
-    if (ray_length[0] == 0 && ray_length[1] == 0)
-        return 0;
-    else if (ray_length[0] == 0)
+    // printf("ray 0 is %f and ray 1 is %f\n ", ray_length[0], ray_length[1]);
+    if (ray_length[0] == 0)
         return ray_length[1];
     else if (ray_length[1] == 0)
         return ray_length[0];

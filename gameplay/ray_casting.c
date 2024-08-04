@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/04 08:06:36 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/04 22:27:15 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,19 @@ void	minimap_rays(t_cub3d *cube, int i)
 	cube->player.rays.rx1 = ray_x;
 	cube->player.rays.ry1 = ray_y;
 	distance = sqrt((pow(ray_x, 2) + pow(ray_y, 2)));
+	printf("ray length from other way is : %f\n", distance);
 	// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
 	line_3d = (64 * 1080) / distance;
 	if (line_3d > 1080)
 		line_3d = 1080;
 	screen_center_x = WIDTH / 2;
 	screen_center_y = HEIGHT / 2;
-	projected_x = screen_center_x + (ray_x - cube->player.rays.rx);
+//	projected_x = screen_center_x + (ray_x - cube->player.rays.rx);
 //    draw_vertical_line(cube, i + projected_x, screen_center_y, screen_center_y + distance, 0x00FF00);
 //	draw_vertical_line(cube, (i * 1920) / 1080, 1080 / 2, distance, 0x00FF00);
-	printf("distance is: %f\n", distance);
-	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1);
-	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1);
+	//printf("distance is: %f\n", distance);
+//	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1);
+//	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1);
 	//bresenham(cube, cube->player.rays.rx1[i], cube->player.rays.ry1[i]);
 }
 
@@ -102,17 +103,17 @@ void	cast_rays_from_player(t_cub3d *cube)
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	//printf("PLAYER ANGLE IS (before rays) : %f\n", cube->player.transform.angle);
-	//cube->player.rays.angle = cube->player.transform.angle - (30 * RAD);
+	cube->player.rays.angle = cube->player.transform.angle - (30 * RAD);
 	//printf("RAY ANGLE: %f\n", cube->player.rays.angle);
-	cube->player.rays.angle = cube->player.transform.angle;
-	//cube->player.rays.angle_step = (60 * RAD) / 1280;
-	for (int i = 0; i < 1; i++)
+	//cube->player.rays.angle = cube->player.transform.angle;
+	cube->player.rays.angle_step = (60 * RAD) / 1280;
+	for (int i = 0; i < 1280; i++)
 	{
 		//cube->player.rays.depth_of_field = 0;
 		cube->player.rays.verical_distance = 100000;
-		// minimap_rays(cube, i);
-		printf("player angle is : %f \n", cube->player.rays.angle);
+		//printf("player angle is : %f \n", cube->player.rays.angle);
 		printf("the ray length is: %f \n", cast_rays(cube));
+		//minimap_rays(cube, i);
 		printf("\n");
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
