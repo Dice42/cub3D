@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:53:56 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/28 17:00:46 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/04 05:52:08 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	bresenham(t_cub3d *cube, int x1, int y1)
 	float ray_start_x = cube->player.rays.rx;
 	float ray_start_y = cube->player.rays.ry;
 	param(cube, x1, y1);
-	printf("ray start is x %f and the end is x1 %d\n", ray_start_x, x1);
-	printf("ray start is y %f and the end is y1 %d\n", ray_start_y, y1);
+//	printf("ray start is x %f and the end is x1 %d\n", ray_start_x, x1);
+//	printf("ray start is y %f and the end is y1 %d\n", ray_start_y, y1);
 	//transform = &cube->player.transform;
 	while (1)
 	{

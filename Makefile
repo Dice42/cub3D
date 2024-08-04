@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
+#    By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/02 21:45:57 by ssibai           ###   ########.fr        #
+#    Updated: 2024/08/03 22:12:34 by vtcsbza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		main.c
 
 # CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
+CFLAGS = -fsanitize=address -g3 -I./includes
 
 RM = rm -rf
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/03 15:51:43 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/04 05:52:21 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 		cube->player.transform.y0 = y;
 	}
 
-	printf("player x is %f, player y is %f\n", cube->player.transform.x0, cube->player.transform.y0);
+//	printf("player x is %f, player y is %f\n", cube->player.transform.x0, cube->player.transform.y0);
 }
