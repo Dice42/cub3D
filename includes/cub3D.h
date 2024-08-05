@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:05:47 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:15:29 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct s_rays
 {
 	float	rx;
 	float	ry;
+	float	intersection_x;
+	float	intersection_y;
 	float	angle;
 	float	angle_step;
 	float	verical_distance;

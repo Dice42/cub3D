@@ -177,11 +177,15 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 		while (1) {
 			int x = (int)(init_pos[0] / MINIMAP_X);
 			int y = (int)(init_pos[1] / MINIMAP_Y);
-			if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows)) {
-				if (cube->level.map[y][x] == '1') {
+			if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows)) 
+			{
+				if (cube->level.map[y][x] == '1')
+				{
 					if (subtract_mapsize)
 					{
-						draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1] + MINIMAP_Y, 0X0000FF);
+						
+						//draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1] + MINIMAP_Y, 0X0000FF);
+						 draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1] + MINIMAP_Y, 0X0000FF);
 						return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]) - MINIMAP_Y;
 					}
 					else
@@ -190,7 +194,9 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 						return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]);
 					}
 					break;
-				} else {
+				} 
+				else
+				{
 					init_pos[0] += step_x;
 					init_pos[1] += step_y;
 				}
@@ -198,6 +204,7 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 				break;
 		}
 	}
+	printf("something's wrong\n");
 	return (0);
 }
 
@@ -225,7 +232,7 @@ float cast_rays(t_cub3d *cube)
 	{
 		cube->player.rays.clr = 0X0000FF;
 		return (cube->player.rays.horizontal_distance);
-	} 
+	}
 	cube->player.rays.clr = 0X00FF00;
 	return (cube->player.rays.verical_distance);
 }
