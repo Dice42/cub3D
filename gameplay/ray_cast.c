@@ -177,7 +177,6 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 		while (1) {
 			int x = (int)(init_pos[0] / MINIMAP_X);
 			int y = (int)(init_pos[1] / MINIMAP_Y);
-
 			if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows)) {
 				if (cube->level.map[y][x] == '1') {
 					if (subtract_mapsize)
@@ -213,8 +212,20 @@ float cast_rays(t_cub3d *cube)
 	cube->player.rays.verical_distance = calculate_vertical_distance(cube, &ray_dir[0]);
 	cube->player.rays.horizontal_distance = calculate_horizontal_distance(cube, &ray_dir[0]);
 	if (cube->player.rays.verical_distance == 0)
-		return cube->player.rays.horizontal_distance;
+	{
+		cube->player.rays.clr = 0X00FF00;
+		return (cube->player.rays.horizontal_distance);
+	}
 	else if (cube->player.rays.horizontal_distance == 0)
-		return cube->player.rays.verical_distance;
-	return ((cube->player.rays.verical_distance > cube->player.rays.horizontal_distance) ? cube->player.rays.horizontal_distance : cube->player.rays.verical_distance);
+	{
+		cube->player.rays.clr = 0X0000FF;
+		return (cube->player.rays.verical_distance);
+	}
+	else if (cube->player.rays.verical_distance > cube->player.rays.horizontal_distance) 
+	{
+		cube->player.rays.clr = 0X0000FF;
+		return (cube->player.rays.horizontal_distance);
+	} 
+	cube->player.rays.clr = 0X00FF00;
+	return (cube->player.rays.verical_distance);
 }

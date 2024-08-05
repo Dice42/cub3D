@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 15:42:18 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:05:56 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t
 		// if ((texture_y < 0) || (texture_y > texture_height) || texture_y > 1000)
 		// 	break;
 		// int color = get_texture_pixel(texture, texture_x, texture_y);
-		my_mlx_pixel_put(&cube->data.img, x, y, 0x00FF00);
+		my_mlx_pixel_put(&cube->data.img, x, y, cube->player.rays.clr);
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 15:00:11 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:05:47 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_rays
 	float	verical_distance;
 	float	horizontal_distance;
 	float	distance;
+	int		clr;
 }	t_rays;
 
 typedef struct s_player
