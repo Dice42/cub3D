@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:15:19 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:25:14 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_rays
 	float	dx;
 	float	dy;
 	float	err;
+	float	intersection_x;
+	float	intersection_y;
 	float	angle;
 	float	angle_step;
 	float	verical_distance;
