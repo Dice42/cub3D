@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/05 18:18:00 by mohammoh          #+#    #+#             */
+/*   Updated: 2024/08/05 18:18:02 by mohammoh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
@@ -21,15 +31,9 @@ void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)
 			break;
 		e2 = 2 * err;
 		if (e2 >= dy)
-		{
-			err += dy;
-			x0 += sx;
-		}
+			err += dy, x0 += sx;
 		if (e2 <= dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
+			err += dx, y0 += sy;
 	}
 }
 

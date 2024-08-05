@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:05:56 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:23:12 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,47 +114,17 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-// void	load_textures(t_cub3d *cube)
-// {
-// 	cube->data.textures[0].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-// 			cube->level.textures.north_texture,
-// 			&cube->data.textures[0].bits_per_pixel,
-// 			&cube->data.textures[0].line_length);
-// 	cube->data.textures[1].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-// 			cube->level.textures.south_texture,
-// 			&cube->data.textures[1].bits_per_pixel,
-// 			&cube->data.textures[1].line_length);
-// 	cube->data.textures[2].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-// 			cube->level.textures.east_texture,
-// 			&cube->data.textures[2].bits_per_pixel,
-// 			&cube->data.textures[2].line_length);
-// 	cube->data.textures[3].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-// 			cube->level.textures.west_texture,
-// 			&cube->data.textures[3].bits_per_pixel,
-// 			&cube->data.textures[3].line_length);
-// }
-// int	get_texture_pixel(t_img_data *texture, int x, int y)
-// {
-// 	char	*data;
-// 	int		pixel_index;
-
-// 	data = mlx_get_data_addr(texture->img,
-// 			&texture->bits_per_pixel,
-// 			&texture->line_length, &texture->endian);
-// 	pixel_index = (y * texture->line_length) + (x * (texture->bits_per_pixel / 8));
-// 	return (*(int *)(data + pixel_index));
-// }
 void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t_img_data *texture, float texture_x)
 {
 	int y;
 	// float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
 	(void)texture_x;
-	if (start_y > end_y)
-	{
-		int temp = start_y;
-		start_y = end_y;
-		end_y = temp;
-	}
+	// if (start_y > end_y)
+	// {
+	// 	int temp = start_y;
+	// 	start_y = end_y;
+	// 	end_y = temp;
+	// }
 	y = start_y;
 	while (y < end_y)
 	{
@@ -169,31 +139,7 @@ void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t
 
 void minimap_rays(t_cub3d *cube, int x, float distance)
 {
-	// float speed = 2.0;
-	// float ray_x = cube->player.rays.rx; 
-	// float ray_y = cube->player.rays.ry;
-	// float dir_x = cos(cube->player.rays.angle);
-	// float dir_y = sin(cube->player.rays.angle);
 
-	// // Trace the ray until it hits a wall
-	// while (level_collision(cube, ray_x, ray_y, false))
-	// {
-	// 	// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-	// 	ray_x += dir_x * speed;
-	// 	ray_y += dir_y * speed;
-	// }
-	// cube->player.rays.rx1 = ray_x - dir_x * speed;
-	// cube->player.rays.ry1 = ray_y - dir_y * speed;
-	// float distance = (cube->player.rays.rx1 + cube->player.rays.ry1) / 2;
-
-	// // float distance = ray_y - cube->player.rays.ry1;
-	// // float distance = ray_x - cube->player.rays.rx;
-	// distance *= cos(cube->player.rays.angle);
-	// printf("ray_x: %f, cube->player.rays.rx: %f\n", ray_x, cube->player.rays.rx);
-	// printf("ray_y: %f, cube->player.rays.ry: %f\n", ray_y, cube->player.rays.ry);
-	// printf
-	// if (distance < 0.1f)
-	// 	distance = 0.1;
 	printf("distance: %f\n", distance);
 	float line_height_f = (8 * HEIGHT) / distance;
 	int line_height = (int)round(line_height_f);
@@ -204,7 +150,6 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 	int screen_center_y = HEIGHT / 2;
 	int line_start_y = (int)round(screen_center_y - (line_height / 2));
 	int line_end_y = (int)round(screen_center_y + (line_height / 2));
-
 	// t_img_data texture = choose_texture(cube, dir_x, dir_y);
 	// float texture_x = cube->data.textures[0].line_length;
 	draw_textured_vertical_line(cube, x, line_start_y, line_end_y, NULL, 0);
@@ -224,7 +169,6 @@ void cast_rays_from_player(t_cub3d *cube)
 	// load_textures(cube);
 	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
-		// minimap_rays(cube, x);
 		cube->player.rays.distance = cast_rays(cube);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
