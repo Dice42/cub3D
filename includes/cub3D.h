@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:33:55 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:00:11 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,37 +80,13 @@ typedef struct s_transform
  */
 typedef struct s_rays
 {
-	float	ray_x;
-	float	ray_y;
-	//float	end_rx;
-	//float	end_ry;
-	float	x_intersection;
-	float	y_intersection;
-	float	x_offset;
-	float	y_offset;
+	float	rx;
+	float	ry;
+	float	angle;
+	float	angle_step;
 	float	verical_distance;
 	float	horizontal_distance;
 	float	distance;
-	//float	ray_angle;
-
-	int		current_ray_x;
-	int		current_ray_y;
-	int		current_map_index;
-	int		depth_of_field;
-	int		side;
-
-	float	rx;
-	float	ry;
-	float	rx1;
-	float	ry1;
-	float	sx;
-	float	sy;
-	float	dx;
-	float	dy;
-	float	err;
-	float	angle;
-	float	angle_step;
-	float	dist;
 }	t_rays;
 
 typedef struct s_player
