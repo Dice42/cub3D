@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:43:14 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 12:50:16 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/03 15:51:36 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static void	set_keys_setting(t_cub3d *cube, int key, bool setting)
 	if (key == LOOK_RIGHT)
 		cube->player.rot_dir[0] = setting;
 	if (key == LOOK_LEFT)
+	{
+		//printf("LEFT\n");
 		cube->player.rot_dir[1] = setting;
+	}
 }
 
 

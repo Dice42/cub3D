@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/05 18:09:33 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/05 18:12:49 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(CLEAN_DIR)/error_handler.c \
 		main.c
 
-CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
+# CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
+CFLAGS = -fsanitize=address -g3 -I./includes
 
 RM = rm -rf
 

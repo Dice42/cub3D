@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/03 18:53:01 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:15:19 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@
 # define INVALID_MAP_INFO "Error: invalid map information\n"
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
-# define PI 3.14159265
+# define PI 3.14159265358979323846
+# define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINIMAP_X ((720*64) / WIDTH)
-# define MINIMAP_Y ((480*64) / HEIGHT)
+# define MINIMAP_X (((1280*64) / WIDTH) / 2)
+# define MINIMAP_Y (((720*64) / HEIGHT) / 2)
 # define RAD (M_PI / 180.0f)
 # define FOV 60.0
 # define WALL_HEIGHT 1.0
@@ -72,6 +73,16 @@ typedef struct s_transform
 	float	angle;
 }	t_transform;
 
+/**
+ * @brief everything related to rays
+ * 
+ * side represents the side the ray intersects with
+ * (vertical or horizontal)
+ * 
+ * vx and vy coordinates of the vertical intersection
+ * point where the ray hits a wall.
+ * 
+ */
 typedef struct s_rays
 {
 	float	rx;
@@ -85,7 +96,10 @@ typedef struct s_rays
 	float	err;
 	float	angle;
 	float	angle_step;
-	float	dist;
+	float	verical_distance;
+	float	horizontal_distance;
+	float	distance;
+	int		clr;
 }	t_rays;
 
 typedef struct s_player
@@ -141,8 +155,8 @@ typedef struct s_img_data
 
 typedef struct s_mlx_data
 {
-	void			*mlx_ptr;
-	void			*win;
+	void				*mlx_ptr;
+	void				*win;
 	t_img_data		img;
 	t_img_data		textures[4];
 }	t_mlx_data;
@@ -204,6 +218,7 @@ t_img_data	choose_texture(t_cub3d *cube, float dir_x, float dir_y);
 void	init_player_pos(t_cub3d *cube, int x, int y);
 //bool	player_collisions(t_cub3d *cube, int x, int y);
 void    cast_ray(t_cub3d *cube);
+float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);
@@ -215,6 +230,7 @@ void	update_player_direction(t_cub3d *cube);
 
 void	init_draw_player(t_cub3d *cube, int x, int y);
 void	draw_line(t_cub3d *cube);
+void	draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color);
 void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
 int		draw_mini_map(t_cub3d *cube);

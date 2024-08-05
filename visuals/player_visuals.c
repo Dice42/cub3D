@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:39:14 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/28 12:35:46 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/02 21:53:34 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	draw_line(t_cub3d *cube)
 	int	i;
 
 	i = 0;
-	while (i < 7)
+	while (i < 20)
 	{
+		// printf("dx of the player is %f\n", cube->player.transform.dx);
+		// printf("dy of the player is %f\n", cube->player.transform.dy);
+
 		my_mlx_pixel_put(&cube->data.img,
 			((cube->player.transform.x0 + 3) + (cube->player.transform.dx * i)),
 			((cube->player.transform.y0 + 3) + (cube->player.transform.dy * i)),
@@ -32,10 +35,10 @@ void	draw_player(t_cub3d *cube)
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
-	while (ctr.i < 6)
+	while (ctr.i < 7)
 	{
 		ctr.j = 0;
-		while (ctr.j < 6)
+		while (ctr.j < 7)
 		{
 			mlx_pixel_put(cube->data.mlx_ptr, cube->data.win,
 				cube->player.transform.x0 + ctr.i,
