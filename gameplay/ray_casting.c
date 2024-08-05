@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 14:40:58 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:42:18 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,9 +217,6 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
  */
 void cast_rays_from_player(t_cub3d *cube)
 {
-	float	ray_distance;
-
-	ray_distance = 0;
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
@@ -228,8 +225,8 @@ void cast_rays_from_player(t_cub3d *cube)
 	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
 		// minimap_rays(cube, x);
-		ray_distance = cast_rays(cube);
-		minimap_rays(cube, x, ray_distance);
+		cube->player.rays.distance = cast_rays(cube);
+		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
 }
