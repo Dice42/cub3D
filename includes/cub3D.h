@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:15:29 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/06 14:20:55 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # define MINIMAP_X (((1280*64) / WIDTH) / 2)
 # define MINIMAP_Y (((720*64) / HEIGHT) / 2)
 # define RAD PI / 180
+# define DEG (180 / PI)  
+# define GREEN 0X00FF00
+# define BLUE 0X0000FF
 
 typedef enum keys
 {
@@ -82,11 +85,15 @@ typedef struct s_rays
 {
 	float	rx;
 	float	ry;
+	float	horizontal_intersection_x;
+	float	horizontal_intersection_y;
+	float	vertical_intersection_x;
+	float	vertical_intersection_y;
 	float	intersection_x;
 	float	intersection_y;
 	float	angle;
 	float	angle_step;
-	float	verical_distance;
+	float	vertical_distance;
 	float	horizontal_distance;
 	float	distance;
 	int		clr;

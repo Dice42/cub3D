@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/02 16:20:05 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:58:49 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	player_rotation(t_cub3d *cube, bool rot_dir[2])
 	if (rot_dir[0])
 	{
 		cube->player.transform.angle += 0.1;
-		if (cube->player.transform.angle > 2 * PI)
+		if (cube->player.transform.angle > (2 * PI))
 			cube->player.transform.angle = 0;
 	}
 	if (rot_dir[1])

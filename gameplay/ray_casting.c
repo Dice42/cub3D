@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:05:56 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:14:20 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,12 @@ void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t
 	int y;
 	// float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
 	(void)texture_x;
-	if (start_y > end_y)
-	{
-		int temp = start_y;
-		start_y = end_y;
-		end_y = temp;
-	}
+	// if (start_y > end_y)
+	// {
+	// 	int temp = start_y;
+	// 	start_y = end_y;
+	// 	end_y = temp;
+	// }
 	y = start_y;
 	while (y < end_y)
 	{
@@ -194,7 +194,7 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 	// printf
 	// if (distance < 0.1f)
 	// 	distance = 0.1;
-	printf("distance: %f\n", distance);
+	//printf("distance: %f\n", distance);
 	float line_height_f = (8 * HEIGHT) / distance;
 	int line_height = (int)round(line_height_f);
 	if (line_height > HEIGHT)
@@ -219,15 +219,25 @@ void cast_rays_from_player(t_cub3d *cube)
 {
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
-	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
-	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
+	//cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));// Start angle
+	cube->player.rays.angle = (cube->player.transform.angle) + 0.001;
+	if (cube->player.rays.angle > (2 * PI))
+		cube->player.rays.angle -= 2 * PI;
+	else if (cube->player.rays.angle < 0)
+		cube->player.rays.angle += 2 * PI;
+	//cube->player.rays.angle = (cube->player.transform.angle);
+	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH;// Adjust step based on screen width
 	// load_textures(cube);
-	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
+	for (int x = 0; x < 1	; x++)  // Loop through every pixel width
 	{
-		// minimap_rays(cube, x);
 		cube->player.rays.distance = cast_rays(cube);
+		draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)cube->player.rays.intersection_x, (int)cube->player.rays.intersection_y, cube->player.rays.clr);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
+		if (cube->player.rays.angle > (2 * PI))
+			cube->player.rays.angle -= 2 * PI;
+		else if (cube->player.rays.angle < 0)
+			cube->player.rays.angle += 2 * PI;
 	}
 }
 
