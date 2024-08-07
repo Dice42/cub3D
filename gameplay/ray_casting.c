@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:05:56 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/07 21:28:17 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 	// printf
 	// if (distance < 0.1f)
 	// 	distance = 0.1;
-	printf("distance: %f\n", distance);
+	//printf("distance: %f\n", distance);
 	float line_height_f = (8 * HEIGHT) / distance;
 	int line_height = (int)round(line_height_f);
 	if (line_height > HEIGHT)
@@ -207,7 +207,7 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 
 	// t_img_data texture = choose_texture(cube, dir_x, dir_y);
 	// float texture_x = cube->data.textures[0].line_length;
-	draw_textured_vertical_line(cube, x, line_start_y, line_end_y, NULL, 0);
+	draw_textured_vertical_line(cube, x + (WIDTH/2), line_start_y, line_end_y, NULL, 0);
 }
 
 /**
@@ -219,13 +219,19 @@ void cast_rays_from_player(t_cub3d *cube)
 {
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
-	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
-	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
+	cube->player.rays.angle = (cube->player.transform.angle - (10 * RAD));  // Start angle
+	//cube->player.rays.angle = cube->player.transform.angle;  // Start angle
+	cube->player.rays.angle_step = (float)(30 * RAD)/ WIDTH ;  // Adjust step based on screen width
 	// load_textures(cube);
-	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
+	for (int x = 0; x < 200; x++)  // Loop through every pixel width
 	{
 		// minimap_rays(cube, x);
 		cube->player.rays.distance = cast_rays(cube);
+		if (x == 100)
+		{
+			printf("vertical distance is : %f\n", cube->player.rays.verical_distance);
+			printf("horizontal distance is: %f\n", cube->player.rays.horizontal_distance);
+		}
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 	}
