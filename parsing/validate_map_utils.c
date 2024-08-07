@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/07 07:52:30 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/07 10:59:15 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ bool	check_if_valid(int x, int y, t_level *level)
 	if (x > 0 && y > ft_strlen(level->map[x - 1]) - 1)
 		return (false);
 	if (y >= ft_strlen(level->map[x]) - 1)
+	{
+		printf("y is : %d\n", y);
 		return (false);
+	}
 	return (true);
 }

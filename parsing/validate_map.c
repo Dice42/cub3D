@@ -6,7 +6,7 @@
 /*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 07:41:29 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:32:33 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 		if (!ft_strchr(expected, entry))
 			return (false);
 		if (entry == ' ')
+		{
+			printf("found space\n");
 			exp = " 1";
+		}
 		else if (entry == '1')
 			exp = " 10NESW";
 		else if (entry == '0')
@@ -129,10 +132,12 @@ bool	vertical_borders(t_level *level, int row)
 			return (false);
 		if (level->map[row][ctr.i] == ' ')
 			ctr.i = ft_skip_char(level->map[row], ' ');
+		printf("ctr.i is: %d \n", ctr.i);
 		if (level->map[row][ctr.i] != '1')
 			return (false);
 		ctr.i ++;
 	}
+	printf("loop end\n");
 	if (!edge)
 		return (false);
 	if (ctr.i > level->num_of_columns)
@@ -159,9 +164,11 @@ bool	validate_map(t_level *level, t_player *player)
 	fill_visited(level->visited, level->map, level->num_of_rows);
 	if (!validate_map_content(level->map, level->num_of_rows, player))
 		return (false);
+	printf("validated map content\n");
 	if (!vertical_borders(level, 0) 
 		|| !vertical_borders(level, level->num_of_rows - 1))
 		return (false);
+	printf("validated borders\n");
 	if (!check_sides(0, 0, level, " 1"))
 		return (false);
 	return (true);
