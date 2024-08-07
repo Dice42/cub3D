@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:20:31 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/19 10:52:59 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/07 14:00:06 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,14 @@ char	*ft_ignorespaces(char *str)
 	return (str + i);
 }
 
-int	ft_skip_char(char *str, char skipped)
+int	ft_skip_char(char *str, char skipped, bool index_given, int i)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] == skipped)
-		i ++;
+	if (!index_given)
+		i = 0;
+	else
+	{
+		while (str[i] == skipped)
+			i ++;
+	}
 	return (i);
 }

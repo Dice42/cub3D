@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 12:32:33 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/07 13:57:38 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,13 @@ bool	vertical_borders(t_level *level, int row)
 	{
 		if (level->map[row][ctr.i] == '1' || level->map[row][ctr.i] == ' ')
 			edge = true;
-		else
+		else 
 			return (false);
 		if (level->map[row][ctr.i] == ' ')
-			ctr.i = ft_skip_char(level->map[row], ' ');
+			ctr.i = ft_skip_char(level->map[row], ' ', true, ctr.i);
 		printf("ctr.i is: %d \n", ctr.i);
+		if (!level->map[row][ctr.i])
+			break;
 		if (level->map[row][ctr.i] != '1')
 			return (false);
 		ctr.i ++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/06 21:03:44 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:49:15 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 void normalize_vector(float *vector)
 {
-    float magnitude;
+	float magnitude;
 
-    magnitude = sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
-    if (magnitude > 0)
-    {
-        vector[0] /= magnitude;
-        vector[1] /= magnitude;
-    }
+	magnitude = sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
+	if (magnitude > 0)
+	{
+		vector[0] /= magnitude;
+		vector[1] /= magnitude;
+	}
 }
 
 void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:21:10 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/19 16:20:07 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:57:24 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strdup(char *src);
 char	*ft_strndup(const char *src, size_t n);
 int		ft_skipspaces(const char *str);
 char	*ft_ignorespaces(char *str);
-int		ft_skip_char(char *str, char skipped);
+int		ft_skip_char(char *str, char skipped, bool index_given, int i);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
