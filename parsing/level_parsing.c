@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 14:05:35 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:24:06 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ bool	validate_rgb_values(char *rgb, t_level *level)
 	floor = true;
 	if (rgb[0] == 'C')
 		floor = false;
+	if (ft_count_char(rgb, ',') != 2)
+		return (false);
 	rgb_list = ft_split(rgb + 1, ',');
 	while (rgb_list[i] != NULL)
 		i++;

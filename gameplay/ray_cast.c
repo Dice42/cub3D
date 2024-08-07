@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 13:49:15 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/07 17:58:24 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,6 +334,10 @@ float	get_horizontal_length(t_cub3d *cube, float *ray_dir)
 	int		y;
 
 	init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y;
+	if (ray_dir[1] > 0)
+	{
+		init_pos[1] += MINIMAP_Y;
+	}
 	init_pos[0] = cube->player.rays.rx + ((init_pos[1] - cube->player.rays.ry)) * ray_dir[0];
 	if (ray_dir[1] < 0)
 	{
@@ -351,7 +355,7 @@ float	get_horizontal_length(t_cub3d *cube, float *ray_dir)
 	}
 	else
 	{
-		//printf("sin of angle is 0 \n");
+        return(10000);
 	}
 	while (1)
 	{
@@ -361,6 +365,8 @@ float	get_horizontal_length(t_cub3d *cube, float *ray_dir)
 		{
 			if (cube->level.map[y][x] == '1' || cube->level.map[y][x] == '\0')
 			{
+				printf("horizontal\n");
+				printf("x is %d and y is %d\n", x, y);
 				if (subtract_mapsize)
 				{
 					init_pos[1] -= step[1];
@@ -427,7 +433,9 @@ float	get_vertical_length(t_cub3d *cube, float *ray_dir)
 	int		y;
 
 	init_pos[0] = (int)(cube->player.rays.rx  / MINIMAP_X) * MINIMAP_X;
-	init_pos[1] = cube->player.rays.ry + ((init_pos[0] - cube->player.rays.rx)) * (ray_dir[1]);
+	if (ray_dir[0] > 0)
+        init_pos[0] += MINIMAP_X;
+	init_pos[1] = (int)(cube->player.rays.ry + ((init_pos[0] - cube->player.rays.rx)) * (ray_dir[1]));
 	if (ray_dir[0] < 0)
 	{
 		//printf("looking left\n");
@@ -444,7 +452,7 @@ float	get_vertical_length(t_cub3d *cube, float *ray_dir)
 	}
 	else
 	{
-		//printf("cos of angle is 0 \n");
+        return(10000);
 	}
 	while(1)
 	{
@@ -454,10 +462,13 @@ float	get_vertical_length(t_cub3d *cube, float *ray_dir)
 		{
 			if (cube->level.map[y][x] == '1')
 			{
+				printf("vertical\n");
+				printf("x is %d and y is %d\n", x, y);
 				if (subtract_mapsize)
 				{
 					init_pos[0] -= step[0];
 					init_pos[1] = cube->player.rays.ry + ((init_pos[0] - cube->player.rays.rx)) * ray_dir[1];
+					printf("init_pos[0] is %f and init_pos[1] is %f\n", init_pos[0], init_pos[1]);
 					cube->player.rays.vertical_intersection_x = init_pos[0];
 					cube->player.rays.vertical_intersection_y = init_pos[1];
 					cube->player.rays.vertical_distance = (init_pos[0] - cube->player.rays.rx) / ray_dir[0];

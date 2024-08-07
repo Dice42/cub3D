@@ -2,16 +2,13 @@
              SO        ./includes/levels/textures/texture.xpm
 
 
-         C                           42,42,0
+         C                           42,     42,0
         F                42   ,       42,          0
        EA              ./includes/levels/textures/texture.xpm
        WE           ./includes/levels/textures/texture.xpm
 
-
-
-
-
-
- 1 
-1S1
- 1 
+  111  
+ 10001 
+ 10S01 
+ 10001 
+  111  
