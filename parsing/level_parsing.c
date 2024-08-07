@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 12:30:06 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/07 14:05:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,26 +123,19 @@ bool	validate_level(char *level_path, t_level *level, t_player *player)
 {
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
 		return (error_handler(INVALID_FILE_TYPE, NULL, NULL, false),false);
-	printf("path checked\n");
 	level->full_file = open_read_level(level_path, 0);
 	if (!level->full_file)
 		return (error_handler(INVALID_FILE, NULL, level, true),false);
-	printf("open read level checked\n");
 	level->map_info = ft_split(level->full_file, '\n');
 	if (!level->map_info)
 		return (error_handler(INVALID_FILE_INFO, NULL, level, true),false);
-	printf("filled file\n");
 	if (!validate_order(level->map_info))
 		return (error_handler(INVALID_MAP_INFO, NULL, level, true),false);
-	printf("checked order\n");
 	if (!find_colors_info(level))
 		return (error_handler(INVALID_RGB, NULL, level, true),false);
-	printf("found colors\n");
 	if (!validate_map(level, player))
 		return (error_handler(INVALID_MAP, NULL, level, true),false);
-	printf("validated map\n");
 	if (!validate_textures_info(level))
 		return (error_handler(INVALID_MAP_TEXTURE, NULL, level, true),false);
-		printf("validated textures\n");
 	return (true);
 }
