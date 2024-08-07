@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 21:54:16 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/07 22:00:20 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ float	calculate_vertical_distance(t_cub3d *cube, float *ray_dir)
 			if (cube->level.map[y][x] == '1') 
 			{
 				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+				cube->player.rays.vertical_intersection_x = init_pos[0];
+				cube->player.rays.vertical_intersection_y = init_pos[1];
 				return (init_pos[1] - cube->player.rays.ry) / ray_dir[1];
 			}
 			else
@@ -122,8 +124,10 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 		{
 			if (cube->level.map[y][x] == '1')
 			{
-					draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
-					return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]);
+				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+				cube->player.rays.horizontal_intersection_x = init_pos[0];
+				cube->player.rays.horizontal_intersection_y = init_pos[1];
+				return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]);
 			}
 			else
 			{
@@ -240,11 +244,8 @@ printf("*************************************\n");
 	ray_dir[0] = cos(angle);
 	ray_dir[1] = sin(angle);
 	normalize_vector(&ray_dir[0]);
-	//printf("cos is %f and sin is %f\n", ray_dir[0], ray_dir[1]);
-	//get_horizontal_length(cube, &ray_dir[0]);
-	//get_vertical_length(cube, &ray_dir[0]);
-	calculate_horizontal_distance(cube, &ray_dir[0]);
-	calculate_vertical_distance(cube, &ray_dir[0]);
+	cube->player.rays.vertical_distance = calculate_vertical_distance(cube, &ray_dir[0]);
+	cube->player.rays.horizontal_distance = calculate_horizontal_distance(cube, &ray_dir[0]);
 	printf("horizontal distance is %f\n",cube->player.rays.horizontal_distance);
 	printf("vertical distance is %f\n",cube->player.rays.vertical_distance);
 	if (cube->player.rays.vertical_distance == 0)

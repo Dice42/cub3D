@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/07 21:51:25 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/07 21:56:51 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 
 	// t_img_data texture = choose_texture(cube, dir_x, dir_y);
 	// float texture_x = cube->data.textures[0].line_length;
-	draw_textured_vertical_line(cube, x + (WIDTH/2), line_start_y, line_end_y, NULL, 0);
+	draw_textured_vertical_line(cube, x, line_start_y, line_end_y, NULL, 0);
 }
 
 /**
