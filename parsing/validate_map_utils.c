@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 14:54:24 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 07:52:30 by vtcsbza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	fill_visited(bool **visited, char **map, int n_rows)
  */
 bool	check_if_valid(int x, int y, t_level *level)
 {
+	printf("y is : %d\n", y);
 	if (level->map[x + 1] == NULL)
 		return (false);
 	if (y > ft_strlen(level->map[x + 1]) - 1)
@@ -75,6 +76,8 @@ bool	check_if_valid(int x, int y, t_level *level)
 	if (x > 0 && level->map[x - 1] == NULL)
 		return (false);
 	if (x > 0 && y > ft_strlen(level->map[x - 1]) - 1)
+		return (false);
+	if (y >= ft_strlen(level->map[x]) - 1)
 		return (false);
 	return (true);
 }
