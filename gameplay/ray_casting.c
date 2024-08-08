@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-<<<<<<<<< Temporary merge branch 1
-/*   Updated: 2024/08/06 20:40:46 by mohammoh         ###   ########.fr       */
-=========
-/*   Updated: 2024/08/07 21:28:17 by ssibai           ###   ########.fr       */
->>>>>>>>> Temporary merge branch 2
+/*   Updated: 2024/08/08 19:22:10 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,16 +221,21 @@ void cast_rays_from_player(t_cub3d *cube)
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
+	if (cube->player.rays.angle > (2 * PI))
+		cube->player.rays.angle -= 2 * PI;
+	else if (cube->player.rays.angle < 0)
+		cube->player.rays.angle += 2 * PI;
 	// load_textures(cube);
 	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
 		cube->player.rays.distance = cast_rays(cube);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
-		// if (cube->player.rays.angle > (2 * PI))
-		// 	cube->player.rays.angle -= 2 * PI;
-		// else if (cube->player.rays.angle < 0)
-		// 	cube->player.rays.angle += 2 * PI;
+		draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, cube->player.rays.intersection_x, cube->player.rays.intersection_y, cube->player.rays.clr);
+		if (cube->player.rays.angle > (2 * PI))
+			cube->player.rays.angle -= 2 * PI;
+		else if (cube->player.rays.angle < 0)
+			cube->player.rays.angle += 2 * PI;
 	}
 }
 
