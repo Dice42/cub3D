@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/08 17:59:17 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/08 19:29:58 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,6 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/level_collisions.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(GAMEPLAY_DIR)/ray_cast.c \
-		$(TEXTURE_DIR)/texture_utils.c \
-		$(TEXTURE_DIR)/get_texture.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/minimap_visuals.c \
 		$(VISUALS_DIR)/draw_utils.c \
@@ -72,6 +70,8 @@ all: $(CUB3D)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(VISUALS_DIR) \
+			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) \
+			 $(OBJ_DIR)/$(TEXTURE_DIR) 
 			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) \
 			 $(OBJ_DIR)/$(TEXTURE_DIR) 
 

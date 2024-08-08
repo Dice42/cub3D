@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 18:26:22 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:31:57 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ typedef struct s_mlx_data
 {
 	void				*mlx_ptr;
 	void				*win;
+	void				*mlx_ptr;
+	void				*win;
 	t_img_data		img;
-	t_img_data		textures[4];
-	t_img_data		*texture;
 }	t_mlx_data;
 
 typedef struct s_cub3d

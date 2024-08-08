@@ -6,7 +6,11 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 18:35:39 by mohammoh         ###   ########.fr       */
+<<<<<<<<< Temporary merge branch 1
+/*   Updated: 2024/08/06 20:40:46 by mohammoh         ###   ########.fr       */
+=========
+/*   Updated: 2024/08/07 21:28:17 by ssibai           ###   ########.fr       */
+>>>>>>>>> Temporary merge branch 2
 /*                                                                            */
 /* ************************************************************************** */
 
