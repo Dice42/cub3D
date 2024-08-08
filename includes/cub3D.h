@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 16:38:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:26:22 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@
 # define WALL_HEIGHT 1.0
 #define EPSILON 0.1f   // Small value to avoid division by zero
 #define MIN_HEIGHT 1   // Minimum height for line
-
-# define RAD PI / 180
 # define DEG (180 / PI)  
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
@@ -103,6 +101,7 @@ typedef struct s_rays
 	float	horizontal_distance;
 	float	distance;
 	int		clr;
+	float	line_offset;
 }	t_rays;
 
 typedef struct s_player
@@ -162,6 +161,7 @@ typedef struct s_mlx_data
 	void				*win;
 	t_img_data		img;
 	t_img_data		textures[4];
+	t_img_data		*texture;
 }	t_mlx_data;
 
 typedef struct s_cub3d
@@ -211,7 +211,8 @@ bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 /* texture */
 void		load_textures(t_cub3d *cube);
 int			get_texture_pixel(t_img_data *texture, int x, int y);
-t_img_data	choose_texture(t_cub3d *cube, float dir_x, float dir_y);
+t_img_data	*choose_texture(t_cub3d *cube, float v_dis, float h_dis, int quarter);
+t_img_data	*check_coordinate(t_cub3d *cube);
 
 
 /* ************************************************************************** */

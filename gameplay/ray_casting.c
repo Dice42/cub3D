@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 16:36:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:35:39 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,17 +150,20 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 	// 	distance = 0.1;
 	printf("distance: %f\n", distance);
 	float line_height_f = (8 * HEIGHT) / distance;
+	//  (data->pixel_y / 2 * HEIGHT)
 	int line_height = (int)round(line_height_f);
 	if (line_height > HEIGHT)
 		line_height = HEIGHT;
 	if (line_height < 1 && abs(line_height) < HEIGHT)
 		line_height = HEIGHT;
 	int screen_center_y = HEIGHT / 2;
-	int line_start_y = (int)round(screen_center_y - (line_height / 2));
+	// int line_start_y = (int)round(screen_center_y - (line_height / 2));
 	int line_end_y = (int)round(screen_center_y + (line_height / 2));
+	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
+	cube->data.texture = check_coordinate(cube);
 	// t_img_data texture = choose_texture(cube, dir_x, dir_y);
-	// float texture_x = cube->data.textures[0].line_length;
-	draw_textured_vertical_line(cube, x, line_start_y, line_end_y, NULL, 0);
+	// int texture_x = cube->data.texture->line_length;
+	draw_textured_vertical_line(cube, x, cube->player.rays.line_offset, line_end_y, NULL, 0);
 }
 
 /**

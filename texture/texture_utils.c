@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/03 17:49:53 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:12:17 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,35 @@ int	get_texture_pixel(t_img_data *texture, int x, int y)
 	return (*(int *)(data + pixel_index));
 }
 
-t_img_data	choose_texture(t_cub3d *cube, float dir_x, float dir_y)
+t_img_data	*choose_texture(t_cub3d *cube, float v_dis, float h_dis, int quarter)
 {
-	bool	is_vertical;
-
-	is_vertical = fabs(dir_x) > fabs(dir_y);
-	if (is_vertical)
-	{
-		if (dir_x > 0)
-			return (cube->data.textures[2]);
+	if (quarter == 1)
+	{	
+		if (cube->player.rays.distance == h_dis)
+			return (&cube->data.textures[0]);
 		else
-			return (cube->data.textures[3]);
+			return (&cube->data.textures[2]);
 	}
-	else
+	if (quarter == 2)
 	{
-		if (dir_y > 0)
-			return (cube->data.textures[1]);
+		if (cube->player.rays.distance == h_dis)
+			return (&cube->data.textures[0]);
 		else
-			return (cube->data.textures[0]);
+			return (&cube->data.textures[3]);
 	}
-	return (cube->data.textures[0]);
+	if (quarter == 3)
+	{
+		if (cube->player.rays.distance == h_dis)
+			return (&cube->data.textures[1]);
+		else
+			return (&cube->data.textures[3]);
+	}
+	if (quarter == 4)
+	{
+		if (cube->player.rays.distance == h_dis)
+			return (&cube->data.textures[1]);
+		else
+			return (&cube->data.textures[2]);
+	}
+	return (&cube->data.textures[0]);
 }
