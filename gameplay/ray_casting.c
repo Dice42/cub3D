@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-<<<<<<<<< Temporary merge branch 1
-/*   Updated: 2024/08/06 20:40:46 by mohammoh         ###   ########.fr       */
-=========
-/*   Updated: 2024/08/07 21:28:17 by ssibai           ###   ########.fr       */
->>>>>>>>> Temporary merge branch 2
+/*   Created: 2024/08/08 19:37:10 by mohammoh          #+#    #+#             */
+/*   Updated: 2024/08/08 19:49:50 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../includes/cub3D.h"
 
@@ -121,22 +119,22 @@
 void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t_img_data *texture, float texture_x)
 {
 	int y;
-	// float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
+	float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
 	(void)texture_x;
-	// if (start_y > end_y)
-	// {
-	// 	int temp = start_y;
-	// 	start_y = end_y;
-	// 	end_y = temp;
-	// }
+	if (start_y > end_y)
+	{
+		int temp = start_y;
+		start_y = end_y;
+		end_y = temp;
+	}
 	y = start_y;
 	while (y < end_y)
 	{
-		// int texture_y = (float)round((y - start_y) * (texture_height)) / (end_y - start_y);
-		// if ((texture_y < 0) || (texture_y > texture_height) || texture_y > 1000)
-		// 	break;
-		// int color = get_texture_pixel(texture, texture_x, texture_y);
-		my_mlx_pixel_put(&cube->data.img, x, y, cube->player.rays.clr);
+		int texture_y = (float)round((y - start_y) * (texture_height)) / (end_y - start_y);
+		if ((texture_y < 0) || (texture_y > texture_height) || texture_y > 1000)
+			break;
+		int color = get_texture_pixel(texture, texture_x, texture_y);
+		my_mlx_pixel_put(&cube->data.img, x, y, color);
 		y++;
 	}
 }
@@ -165,9 +163,9 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
 	int line_end_y = (int)round(screen_center_y + (line_height / 2));
 	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
 	cube->data.texture = check_coordinate(cube);
-	// t_img_data texture = choose_texture(cube, dir_x, dir_y);
-	// int texture_x = cube->data.texture->line_length;
-	draw_textured_vertical_line(cube, x, cube->player.rays.line_offset, line_end_y, NULL, 0);
+	int texture_x = cube->data.texture->line_length;
+	draw_textured_vertical_line(cube, x, cube->player.rays.line_offset, line_end_y, cube->data.texture, texture_x);
+	// ft_memset(cube->data.texture, 0, sizeof(t_img_data));
 }
 
 /**
@@ -177,11 +175,12 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
  */
 void cast_rays_from_player(t_cub3d *cube)
 {
+	cube->data.texture = ft_calloc(1, sizeof(t_img_data));
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
-	// load_textures(cube);
+	load_textures(cube);
 	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
 		cube->player.rays.distance = cast_rays(cube);

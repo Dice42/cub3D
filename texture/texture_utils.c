@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 18:12:17 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:51:15 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	get_texture_pixel(t_img_data *texture, int x, int y)
 {
 	char	*data;
 	int		pixel_index;
-
+	// if (x < 0 || x >= texture->line_length || y < 0 || y >= texture->line_length)
+	// 	return (0);
 	data = mlx_get_data_addr(texture->img,
 			&texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
