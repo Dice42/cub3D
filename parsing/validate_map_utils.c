@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/26 14:54:24 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:06:22 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ bool	check_if_valid(int x, int y, t_level *level)
 	if (x > 0 && level->map[x - 1] == NULL)
 		return (false);
 	if (x > 0 && y > ft_strlen(level->map[x - 1]) - 1)
+		return (false);
+	if (y >= ft_strlen(level->map[x]) - 1)
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/26 19:16:15 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:08:42 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,12 @@ bool	vertical_borders(t_level *level, int row)
 	{
 		if (level->map[row][ctr.i] == '1' || level->map[row][ctr.i] == ' ')
 			edge = true;
-		else
+		else 
 			return (false);
 		if (level->map[row][ctr.i] == ' ')
-			ctr.i = ft_skip_char(level->map[row], ' ');
+			ctr.i = ft_skip_char(level->map[row], ' ', true, ctr.i);
+		if (!level->map[row][ctr.i])
+			break;
 		if (level->map[row][ctr.i] != '1')
 			return (false);
 		ctr.i ++;

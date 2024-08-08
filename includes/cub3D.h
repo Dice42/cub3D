@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:25:14 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:38:04 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 #define EPSILON 0.1f   // Small value to avoid division by zero
 #define MIN_HEIGHT 1   // Minimum height for line
 
+# define RAD PI / 180
+# define DEG (180 / PI)  
+# define GREEN 0X00FF00
+# define BLUE 0X0000FF
 
 typedef enum keys
 {
@@ -87,18 +91,15 @@ typedef struct s_rays
 {
 	float	rx;
 	float	ry;
-	float	rx1;
-	float	ry1;
-	float	sx;
-	float	sy;
-	float	dx;
-	float	dy;
-	float	err;
+	float	horizontal_intersection_x;
+	float	horizontal_intersection_y;
+	float	vertical_intersection_x;
+	float	vertical_intersection_y;
 	float	intersection_x;
 	float	intersection_y;
 	float	angle;
 	float	angle_step;
-	float	verical_distance;
+	float	vertical_distance;
 	float	horizontal_distance;
 	float	distance;
 	int		clr;

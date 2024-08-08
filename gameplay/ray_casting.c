@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 18:23:12 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:36:58 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,14 @@ void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t
 void minimap_rays(t_cub3d *cube, int x, float distance)
 {
 
+	// // float distance = ray_y - cube->player.rays.ry1;
+	// // float distance = ray_x - cube->player.rays.rx;
+	// distance *= cos(cube->player.rays.angle);
+	// printf("ray_x: %f, cube->player.rays.rx: %f\n", ray_x, cube->player.rays.rx);
+	// printf("ray_y: %f, cube->player.rays.ry: %f\n", ray_y, cube->player.rays.ry);
+	// printf
+	// if (distance < 0.1f)
+	// 	distance = 0.1;
 	printf("distance: %f\n", distance);
 	float line_height_f = (8 * HEIGHT) / distance;
 	int line_height = (int)round(line_height_f);
@@ -172,6 +180,10 @@ void cast_rays_from_player(t_cub3d *cube)
 		cube->player.rays.distance = cast_rays(cube);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
+		// if (cube->player.rays.angle > (2 * PI))
+		// 	cube->player.rays.angle -= 2 * PI;
+		// else if (cube->player.rays.angle < 0)
+		// 	cube->player.rays.angle += 2 * PI;
 	}
 }
 
