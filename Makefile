@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+         #
+#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/03 22:12:34 by vtcsbza          ###   ########.fr        #
+#    Updated: 2024/08/05 18:20:19 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ INIT_DIR = ./init
 CUB_UTILS_DIR = ./cub_utils
 
 GAMEPLAY_DIR = ./gameplay
+
+TEXTURE_DIR = ./texture
 
 CLEAN_DIR = ./cleanup
 
@@ -39,9 +41,10 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/player_controller.c \
 		$(GAMEPLAY_DIR)/player_transform.c \
 		$(GAMEPLAY_DIR)/keys_handler.c \
-		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(GAMEPLAY_DIR)/level_collisions.c \
+		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(GAMEPLAY_DIR)/ray_cast.c \
+		$(TEXTURE_DIR)/texture_utils.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/minimap_visuals.c \
 		$(VISUALS_DIR)/draw_utils.c \
@@ -68,7 +71,8 @@ all: $(CUB3D)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(VISUALS_DIR) \
-			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) 
+			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) \
+			 $(OBJ_DIR)/$(TEXTURE_DIR) 
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libs/libft

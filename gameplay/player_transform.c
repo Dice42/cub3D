@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/04 05:52:21 by vtcsbza          ###   ########.fr       */
+/*   Updated: 2024/08/05 18:12:59 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 	float	y;
 
 	speed = 2;
-	//printf("the angle of the player is %f\n", cube->player.transform.angle);
 	update_player_direction(cube);
 	x = cube->player.transform.x0;
 	y = cube->player.transform.y0;
