@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 22:00:20 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/08 18:43:00 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,18 @@ float	calculate_vertical_distance(t_cub3d *cube, float *ray_dir)
 	float	step_x;
 	float	step_y;
 
-	init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X;
 	if (ray_dir[0] > 0)
-		init_pos[0] += MINIMAP_X;
+	{
+		printf("looking right\n");
+		init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X + MINIMAP_X;
+		step_x = MINIMAP_X;
+	}
 	else
-		init_pos[0] -= 0.00001;
-
+	{
+		init_pos[0] = ((int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X) - 0.0001;
+		step_x = -MINIMAP_X;
+	}
 	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir[1] / ray_dir[0]);
-	step_x = (ray_dir[0] > 0) ? MINIMAP_X : -MINIMAP_X;
 	step_y = step_x * (ray_dir[1] / ray_dir[0]);
 	while (1)
 	{
@@ -80,7 +84,7 @@ float	calculate_vertical_distance(t_cub3d *cube, float *ray_dir)
 		{
 			if (cube->level.map[y][x] == '1') 
 			{
-				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+			//	draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
 				cube->player.rays.vertical_intersection_x = init_pos[0];
 				cube->player.rays.vertical_intersection_y = init_pos[1];
 				return (init_pos[1] - cube->player.rays.ry) / ray_dir[1];
@@ -107,13 +111,17 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 	int x;
 	int y;
 
-	init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y;
 	if (ray_dir[1] > 0)
-		init_pos[1] += MINIMAP_Y;
+	{
+		init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y + MINIMAP_Y;
+		step_y = MINIMAP_Y;
+	}
 	else
-		init_pos[1] -= 0.00001;
+	{
+		init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y - 0.0001;
+		step_y = -MINIMAP_Y;
+	}
 	init_pos[0] = cube->player.rays.rx + (init_pos[1] - cube->player.rays.ry) * (ray_dir[0] / ray_dir[1]);
-	step_y = (ray_dir[1] > 0) ? MINIMAP_Y : -MINIMAP_Y;
 	step_x = step_y * (ray_dir[0] / ray_dir[1]);
 
 	while (1)
@@ -124,7 +132,7 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 		{
 			if (cube->level.map[y][x] == '1')
 			{
-				draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+				//draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
 				cube->player.rays.horizontal_intersection_x = init_pos[0];
 				cube->player.rays.horizontal_intersection_y = init_pos[1];
 				return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]);
@@ -236,7 +244,7 @@ float cast_rays(t_cub3d *cube)
 
 	cube->player.rays.vertical_distance = 1000000;
 	cube->player.rays.horizontal_distance = 1000000;
-	angle = cube->player.rays.angle;
+	angle = cube->player.rays.angle + 0.001;
 
 	
 printf("*************************************\n");
