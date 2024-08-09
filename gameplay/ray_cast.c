@@ -26,9 +26,9 @@ void draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color)
 
 	while (1)
 	{
-		if ((x0 >= 0 && x0 < cube->level.num_of_columns * MINIMAP_X)
-			&&  (y0 >= 0 && y0 < cube->level.num_of_rows * MINIMAP_Y))
-			my_mlx_pixel_put(&cube->data.img, x0, y0, color);
+		if ((x0 >= 0 && x0 < cube->level.num_of_columns * MAP_X)
+			&&  (y0 >= 0 && y0 < cube->level.num_of_rows * MAP_Y))
+			// my_mlx_pixel_put(&cube->data.img, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break;
 		e2 = 2 * err;
@@ -46,19 +46,19 @@ float	calculate_vertical_distance(t_cub3d *cube, float *ray_dir)
 	float	step_x;
 	float	step_y;
 
-	init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X;
+	init_pos[0] = (int)(cube->player.rays.rx / MAP_X) * MAP_X;
 	if (ray_dir[0] > 0)
-		init_pos[0] += MINIMAP_X;
+		init_pos[0] += MAP_X;
 	else
 		init_pos[0] -= 0.00001;
 
 	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir[1] / ray_dir[0]);
-	step_x = (ray_dir[0] > 0) ? MINIMAP_X : -MINIMAP_X;
+	step_x = (ray_dir[0] > 0) ? MAP_X : -MAP_X;
 	step_y = step_x * (ray_dir[1] / ray_dir[0]);
 	while (1)
 	{
-		int x = (int)(init_pos[0] / MINIMAP_X);
-		int y = (int)(init_pos[1] / MINIMAP_Y);
+		int x = (int)(init_pos[0] / MAP_X);
+		int y = (int)(init_pos[1] / MAP_Y);
 		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
 		{
 			if (cube->level.map[y][x] == '1') 
@@ -90,19 +90,19 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 	int x;
 	int y;
 
-	init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y;
+	init_pos[1] = (int)(cube->player.rays.ry / MAP_Y) * MAP_Y;
 	if (ray_dir[1] > 0)
-		init_pos[1] += MINIMAP_Y;
+		init_pos[1] += MAP_Y;
 	else
 		init_pos[1] -= 0.00001;
 	init_pos[0] = cube->player.rays.rx + (init_pos[1] - cube->player.rays.ry) * (ray_dir[0] / ray_dir[1]);
-	step_y = (ray_dir[1] > 0) ? MINIMAP_Y : -MINIMAP_Y;
+	step_y = (ray_dir[1] > 0) ? MAP_Y : -MAP_Y;
 	step_x = step_y * (ray_dir[0] / ray_dir[1]);
 
 	while (1)
 	{
-		int x = (int)(init_pos[0] / MINIMAP_X);
-		int y = (int)(init_pos[1] / MINIMAP_Y);
+		int x = (int)(init_pos[0] / MAP_X);
+		int y = (int)(init_pos[1] / MAP_Y);
 		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
 		{
 			if (cube->level.map[y][x] == '1')
@@ -157,22 +157,22 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 // 	int		x;
 // 	int		y;
 
-// 	init_pos[0] = (int)(cube->player.rays.rx  / MINIMAP_X) * MINIMAP_X;
+// 	init_pos[0] = (int)(cube->player.rays.rx  / MAP_X) * MAP_X;
 // 	if (ray_dir[0] > 0)
-//         init_pos[0] += MINIMAP_X;
+//         init_pos[0] += MAP_X;
 // 	init_pos[1] = (int)(cube->player.rays.ry + ((init_pos[0] - cube->player.rays.rx)) * (ray_dir[1]));
 // 	if (ray_dir[0] < 0)
 // 	{
 // 		//printf("looking left\n");
 // 		subtract_mapsize = true;
-// 		step[0] = -MINIMAP_X;
+// 		step[0] = -MAP_X;
 // 		step[1] = step[0] * (ray_dir[1] / ray_dir[0]);
 // 	}
 // 	else if (ray_dir[0] > 0)
 // 	{
 // 		//printf("looking right\n");
 // 		subtract_mapsize = false;
-// 		step[0] = MINIMAP_X;
+// 		step[0] = MAP_X;
 // 		step[1] = step[0] * (ray_dir[1] / ray_dir[0]);
 // 	}
 // 	else
@@ -229,8 +229,7 @@ printf("*************************************\n");
 	normalize_vector(&ray_dir[0]);
 	cube->player.rays.vertical_distance = calculate_vertical_distance(cube, &ray_dir[0]);
 	cube->player.rays.horizontal_distance = calculate_horizontal_distance(cube, &ray_dir[0]);
-	printf("horizontal distance is %f\n",cube->player.rays.horizontal_distance);
-	printf("vertical distance is %f\n",cube->player.rays.vertical_distance);
+
 	if (cube->player.rays.vertical_distance == 0)
 	{
 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;

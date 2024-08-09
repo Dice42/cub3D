@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 19:41:54 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/09 12:24:31 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@
 # define HEIGHT 1080
 # define MINIMAP_X (((1280*64) / WIDTH) / 2)
 # define MINIMAP_Y (((720*64) / HEIGHT) / 2)
+# define MAP_X ((MINIMAP_X * 2) * WIDTH / 1280)
+# define MAP_Y ((MINIMAP_Y * 2) * HEIGHT / 720)
 # define RAD (M_PI / 180.0f)
 # define FOV 60.0
 # define WALL_HEIGHT 1.0
 #define EPSILON 0.1f   // Small value to avoid division by zero
 #define MIN_HEIGHT 1   // Minimum height for line
 
-# define RAD PI / 180
 # define DEG (180 / PI)  
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
@@ -156,6 +157,8 @@ typedef struct s_img_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }		t_img_data;
 
 typedef struct s_mlx_data
@@ -213,7 +216,7 @@ bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 
 /* texture */
 void		load_textures(t_cub3d *cube);
-int			get_texture_pixel(t_img_data *texture, int x, int y);
+int			get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
 t_img_data	*choose_texture(t_cub3d *cube, float dir_x, float dir_y, int quarter);
 t_img_data	*check_coordinate(t_cub3d *cube);
 

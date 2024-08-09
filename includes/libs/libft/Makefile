@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 17:03:04 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/07 17:27:07 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/09 09:46:30 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,10 +87,13 @@ $(NAME): $(OBJECTS)
 clean:
 	@rm -f $(OBJECTS)
 
-fclean: clean
+fclean:
+	make clean
 	@rm -f $(NAME)
 	echo "compilation removed"
 
-re: fclean all
+re: 
+	make fclean
+	make all
 
 .PHONY: all clean fclean re

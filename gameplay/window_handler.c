@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:53:28 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/27 19:17:32 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/09 11:14:57 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color)
 {
 	char	*dst;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

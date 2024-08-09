@@ -3,169 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 19:37:10 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 19:49:50 by mohammoh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
-
-#include "../includes/cub3D.h"
-
-
-// void draw_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, int color)
-// {
-//     int y;
-
-//     if (start_y > end_y)
-//     {
-//         int temp = start_y;
-//         start_y = end_y;
-//         end_y = temp;
-//     }
-
-//     y = start_y;
-//     while (y <= end_y)
-//     {
-//         my_mlx_pixel_put(&cube->data.img, x, y, color);
-//         y++;
-//     }
-// }
-
-
-// void	minimap_rays(t_cub3d *cube, int i)
-// {
-// 	float	speed;
-// 	float	ray_x;
-// 	float	ray_y;
-// 	float	dir_x;
-// 	float	dir_y; 
-// 	float	distance;
-// 	float	line_3d;
-// 	int screen_center_x;
-// 	int screen_center_y;
-// 	int projected_x;
-
-// 	speed = 2;
-// 	ray_x = cube->player.rays.rx;
-// 	ray_y = cube->player.rays.ry;
-// 	dir_x = cos(cube->player.rays.angle);
-// 	dir_y = sin(cube->player.rays.angle);
-// 	while (level_collision(cube, ray_x, ray_y, false))
-// 	{
-// 		//bresenham(cube, ray_x, ray_y);
-// 		my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-// 		ray_x += dir_x * speed;
-// 		ray_y += dir_y * speed;
-// 	}
-// 	// while (level_collision(cube, ray_x, ray_y, false))
-// 	// {
-// 	// 	//bresenham(cube, ray_x, ray_y);
-// 	// 	 my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-// 	// 	ray_x += dir_x * speed;
-// 	// 	ray_y += dir_y * speed;
-// 	// }
-// 	// while (level_collision(cube, ray_x, ray_y - 3, false))
-// 	// {
-// 	// 	//bresenham(cube, ray_x, ray_y);
-// 	// 	my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-// 	// 	ray_x += dir_x * speed;
-// 	// 	ray_y += dir_y * speed;
-// 	// }
-// 	// while (level_collision(cube, ray_x - 3, ray_y, false))
-// 	// {
-// 	// 	//bresenham(cube, ray_x, ray_y);
-// 	// 	my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-// 	// 	ray_x += dir_x * speed;
-// 	// 	ray_y += dir_y * speed;
-// 	// }
-// 	cube->player.rays.rx1 = ray_x;
-// 	cube->player.rays.ry1 = ray_y;
-// 	distance = sqrt((pow(ray_x, 2) + pow(ray_y, 2)));
-// 	printf("ray length from other way is : %f\n", distance);
-// 	// my_mlx_pixel_put(&cube->data.img, ray_x, ray_y, 0x00FF00);
-// 	line_3d = (64 * 1080) / distance;
-// 	if (line_3d > 1080)
-// 		line_3d = 1080;
-// 	screen_center_x = WIDTH / 2;
-// 	screen_center_y = HEIGHT / 2;
-// //	projected_x = screen_center_x + (ray_x - cube->player.rays.rx);
-// //    draw_vertical_line(cube, i + projected_x, screen_center_y, screen_center_y + distance, 0x00FF00);
-// //	draw_vertical_line(cube, (i * 1920) / 1080, 1080 / 2, distance, 0x00FF00);
-// 	//printf("distance is: %f\n", distance);
-// //	printf("cube->player.rays.rx1[%d] = %f\n", i, cube->player.rays.rx1);
-// //	printf("cube->player.rays.ry1[%d] = %f\n", i, cube->player.rays.ry1);
-// 	//bresenham(cube, cube->player.rays.rx1[i], cube->player.rays.ry1[i]);
-// }
-
-
-
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/05 14:34:07 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/09 12:39:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t_img_data *texture, float texture_x)
+
+void draw_textured_vertical_line(t_cub3d *cube, int x, int start_y, int end_y, t_img_data *texture, float line_height)
 {
 	int y;
-	float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
-	(void)texture_x;
-	if (start_y > end_y)
+	float texture_y = 0.0f;
+	// float texture_height = texture->line_length / (texture->bits_per_pixel / 8);
+	// (void)texture_x;
+	// if (start_y > end_y)
+	// {
+	// 	int temp = start_y;
+	// 	start_y = end_y;
+	// 	end_y = temp;
+	// }
+	int texture_x1;
+	if (cube->player.rays.distance == cube->player.rays.vertical_distance)
 	{
-		int temp = start_y;
-		start_y = end_y;
-		end_y = temp;
+		printf("cube->player.rays.vertical_distance = %f\n", cube->player.rays.vertical_distance);
+		printf("cube->player.rays.intersection_y = %f\n", cube->player.rays.intersection_y);
+		printf("cube->player.rays.distance = %f\n", cube->player.rays.distance);
+		printf("cube->data.texture = %p\n", cube->data.texture);
+		printf("cube->data.texture->width = %d\n", cube->data.texture->width);
+		texture_x1 = ((float)((int)cube->player.rays.intersection_y % MAP_X) / (float)(MAP_X)) * cube->data.texture->width;
 	}
+	if (cube->player.rays.distance == cube->player.rays.horizontal_distance)
+		texture_x1 = ((float)((int)cube->player.rays.intersection_x % MAP_X) / (float)(MAP_X)) * cube->data.texture->width;
+				
+	float texture_y_step =  (float)cube->data.texture->height / line_height;
 	y = start_y;
 	while (y < end_y)
 	{
-		int texture_y = (float)round((y - start_y) * (texture_height)) / (end_y - start_y);
-		if ((texture_y < 0) || (texture_y > texture_height) || texture_y > 1000)
-			break;
-		int color = get_texture_pixel(texture, texture_x, texture_y);
+		// int texture_y = (float)round((y - start_y) * (texture_height)) / (end_y - start_y);
+		// if ((texture_y < 0) || (texture_y > texture_height) || texture_y > 1000)
+		// 	break;
+		int color = get_texture_pixel(cube->data.texture, texture_x1, (int)texture_y, cube);
 		my_mlx_pixel_put(&cube->data.img, x, y, color);
+		texture_y += texture_y_step;
 		y++;
 	}
 }
 
+// void	wall_height_cal(t_data *data, t_raycast *ray)
+// {
+// 	ray->line_height = (data->pixel_y / 2 * HEIGHT) / ray->final_dist;
+// 	if (ray->line_height > HEIGHT)
+// 		ray->line_height = HEIGHT;
+// 	ray->line_offset = HEIGHT / 2 - (ray->line_height / 2);
+// }
+
+// void	fisheye_correction(t_data *data, t_raycast *ray)
+// {
+// 	ray->ca = data->player.angle - ray->angle;
+// 	if (ray->ca < 0)
+// 		ray->ca += 360;
+// 	if (ray->ca > 360)
+// 		ray->ca -= 360;
+// 	ray->final_dist = ray->final_dist * cos(deg_to_rad(ray->ca));
+// }
+
 void minimap_rays(t_cub3d *cube, int x, float distance)
 {
-
-	// // float distance = ray_y - cube->player.rays.ry1;
-	// // float distance = ray_x - cube->player.rays.rx;
-	// distance *= cos(cube->player.rays.angle);
-	// printf("ray_x: %f, cube->player.rays.rx: %f\n", ray_x, cube->player.rays.rx);
-	// printf("ray_y: %f, cube->player.rays.ry: %f\n", ray_y, cube->player.rays.ry);
-	// printf
-	// if (distance < 0.1f)
-	// 	distance = 0.1;
 	printf("distance: %f\n", distance);
-	float line_height_f = (8 * HEIGHT) / distance;
-	//  (data->pixel_y / 2 * HEIGHT)
-	int line_height = (int)round(line_height_f);
+	distance = distance * cos(cube->player.rays.angle - cube->player.transform.angle);
+	printf("MINIMAP_X: %d\n", MAP_X * 2);
+	printf("MAP_Y: %d\n", MAP_Y * 2);
+	// float line_height_f = (MINIMAP_Y / 2 * HEIGHT) / distance;
+	float line_height = (float)(((MAP_Y / 2) * HEIGHT) / distance);
+	// int line_height = (int)round(line_height_f);
 	if (line_height > HEIGHT)
 		line_height = HEIGHT;
-	if (line_height < 1 && abs(line_height) < HEIGHT)
-		line_height = HEIGHT;
-	int screen_center_y = HEIGHT / 2;
-	// int line_start_y = (int)round(screen_center_y - (line_height / 2));
-	int line_end_y = (int)round(screen_center_y + (line_height / 2));
 	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
+	// if (line_height < 1 && abs(line_height) < HEIGHT)
+	// 	line_height = HEIGHT;
+	// int screen_center_y = HEIGHT / 2;
+	float line_end_y = cube->player.rays.line_offset + line_height;
+	float line_start_y = cube->player.rays.line_offset;
+	// printf("line_end_y: %f\n", line_end_y);
+	// printf("line_start_y: %f\n", line_start_y);
 	cube->data.texture = check_coordinate(cube);
-	int texture_x = cube->data.texture->line_length;
-	draw_textured_vertical_line(cube, x, cube->player.rays.line_offset, line_end_y, cube->data.texture, texture_x);
-	// ft_memset(cube->data.texture, 0, sizeof(t_img_data));
+	
+	// int texture_x = 0;
+	// if (cube->player.rays.distance == cube->player.rays.vertical_distance)
+	// 	texture_x = ((double)((int)cube->player.rays.vertical_intersection_y % line_height) / (double)(line_height)) * cube->level.num_of_rows;
+	// if (cube->player.rays.distance == cube->player.rays.horizontal_distance)
+	// 	texture_x = ((double)((int)cube->player.rays.vertical_intersection_x % line_height) / (double)(line_height)) * cube->level.num_of_rows;
+	
+	draw_textured_vertical_line(cube, x, line_start_y, line_end_y, NULL, line_height);
 }
 
 /**
@@ -175,21 +106,22 @@ void minimap_rays(t_cub3d *cube, int x, float distance)
  */
 void cast_rays_from_player(t_cub3d *cube)
 {
-	cube->data.texture = ft_calloc(1, sizeof(t_img_data));
+	// cube->data.texture = ft_calloc(1, sizeof(t_img_data));
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
 	load_textures(cube);
-	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
+	for (int x = WIDTH; x > 0; x--) 
 	{
 		cube->player.rays.distance = cast_rays(cube);
+		printf("horizontal distance is %f\n",cube->player.rays.horizontal_distance);
+		printf("vertical distance is %f\n",cube->player.rays.vertical_distance);
+		printf("distance is %f\n",cube->player.rays.distance);
+		printf("cube->player.rays.intersection_y is %f\n",cube->player.rays.intersection_y);
+		printf("cube->player.rays.intersection_x is %f\n",cube->player.rays.intersection_x);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
-		// if (cube->player.rays.angle > (2 * PI))
-		// 	cube->player.rays.angle -= 2 * PI;
-		// else if (cube->player.rays.angle < 0)
-		// 	cube->player.rays.angle += 2 * PI;
 	}
 }
 

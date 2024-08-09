@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/08 19:39:55 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/09 09:55:21 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(VISUALS_DIR)/draw_utils.c \
 		$(VISUALS_DIR)/3d_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \
-		$(TEXTURE_DIR)/get_texture.c \
 		$(TEXTURE_DIR)/texture_utils.c \
 		main.c
 
@@ -69,6 +68,9 @@ MLX_FLAGS = -L./includes/libs/mlx_mac -lmlx -framework OpenGL -framework AppKit
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(CUB3D)
+
+run: $(CUB3D)
+	./$(CUB3D) includes/levels/map1.cub
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(VISUALS_DIR) \
@@ -93,12 +95,15 @@ clean:
 	@$(RM) $(OBJ)
 	@echo "All object files removed."
 
-fclean: clean
+fclean: 
+	make clean
 	@$(MAKE) fclean -C ./includes/libs/libft
 	@$(RM) $(CUB3D) $(OBJ_DIR)
 	@echo "$(CUB3D) and object files removed."
 
-re: fclean all
+re: 
+	make fclean
+	make all
 
 
 .PHONY: all clean fclean re 
