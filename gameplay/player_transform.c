@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:14:24 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/05 18:12:59 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 15:42:05 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	update_player_direction(t_cub3d *cube)
 {
-	//printf("angle of the player is %f\n", cube->player.transform.angle);
-
 	cube->player.transform.dx = cos(cube->player.transform.angle);
 	cube->player.transform.dy = sin(cube->player.transform.angle);
 }
@@ -32,7 +30,6 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 	y = cube->player.transform.y0;
 	if (is_vertical)
 	{
-		//printf("vertical\n");
 		cube->player.transform.x0 -= dir * cube->player.transform.dx * speed;
 		cube->player.transform.y0 -= dir * cube->player.transform.dy * speed;
 	}
@@ -47,6 +44,4 @@ void	move_player(t_cub3d *cube, int dir, bool is_vertical)
 		cube->player.transform.x0 = x;
 		cube->player.transform.y0 = y;
 	}
-
-//	printf("player x is %f, player y is %f\n", cube->player.transform.x0, cube->player.transform.y0);
 }
