@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 22:46:51 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 00:54:04 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_rays
 	float	vertical_distance;
 	float	horizontal_distance;
 	float	distance;
+	float	previous_distance;
 	int		clr;
 }	t_rays;
 
