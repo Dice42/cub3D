@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vtcsbza <vtcsbza@student.42.fr>            +#+  +:+       +#+         #
+#    By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/03 22:12:34 by vtcsbza          ###   ########.fr        #
+#    Updated: 2024/08/11 16:52:43 by ssibai           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/keys_handler.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(GAMEPLAY_DIR)/level_collisions.c \
+		$(GAMEPLAY_DIR)/horizontal_ray.c \
+		$(GAMEPLAY_DIR)/vertical_ray.c \
 		$(GAMEPLAY_DIR)/ray_cast.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/minimap_visuals.c \

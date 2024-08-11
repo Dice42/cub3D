@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/06 14:20:55 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 16:52:27 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,13 +202,20 @@ int		handle_keypress(int key, t_cub3d *cube);
 bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 
 /* ************************************************************************** */
+/* 									RAYCASTS								  */
+/* ************************************************************************** */
+
+void	cast_ray(t_cub3d *cube);
+float	cast_rays(t_cub3d *cube); //actual raycaster
+float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
+float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
+
+/* ************************************************************************** */
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
 //bool	player_collisions(t_cub3d *cube, int x, int y);
-void    cast_ray(t_cub3d *cube);
-float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
 void	move_player(t_cub3d *cube, int dir, bool is_vertical);
