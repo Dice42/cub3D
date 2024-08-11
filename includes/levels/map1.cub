@@ -4,6 +4,7 @@
 
          C                           42,     42,0
         F                42   ,       42,          0
+<<<<<<< HEAD
        EA              ./includes/levels/textures/bluestone.xpm
        WE           ./includes/levels/textures/redbrick.xpm
 
@@ -24,3 +25,13 @@
  10001 
   111  
 >>>>>>> salam
+=======
+       EA              ./includes/levels/textures/texture.xpm
+       WE           ./includes/levels/textures/texture.xpm
+
+  11111111111111111111
+ 100000000000000000001
+ 1000000000000000000S1
+ 100000000000000000001
+  1111111111111111111 
+>>>>>>> f4060230d0509d807e953076045c8373a4fba4d4

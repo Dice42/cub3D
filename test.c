@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heltayb <heltayb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:29:42 by heltayb           #+#    #+#             */
-/*   Updated: 2024/07/20 11:39:01 by heltayb          ###   ########.fr       */
+/*   Updated: 2024/08/11 16:54:25 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <mlx.h>
+
 
 typedef struct s_data {
     void *mlx;
@@ -134,3 +135,179 @@ int main(void)
     mlx_loop(data.mlx);
     return (0);
 }
+
+
+
+
+
+
+
+
+// float	calculate_vertical_distance(t_cub3d *cube, float *ray_dir)
+// {
+// 	bool	subtract_mapsize;
+// 	float	init_pos[2];
+// 	float	step_x;
+// 	float	step_y;
+
+// 	if (ray_dir[0] > 0)
+// 	{
+// 		printf("looking right\n");
+// 		init_pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X + MINIMAP_X;
+// 		step_x = MINIMAP_X;
+// 	}
+// 	else
+// 	{
+// 		init_pos[0] = ((int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X) - 0.0001;
+// 		step_x = -MINIMAP_X;
+// 	}
+// 	init_pos[1] = cube->player.rays.ry + (init_pos[0] - cube->player.rays.rx) * (ray_dir[1] / ray_dir[0]);
+// 	step_y = step_x * (ray_dir[1] / ray_dir[0]);
+// 	while (1)
+// 	{
+// 		int x = (int)(init_pos[0] / MINIMAP_X);
+// 		int y = (int)(init_pos[1] / MINIMAP_Y);
+// 		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
+// 		{
+// 			if (cube->level.map[y][x] == '1') 
+// 			{
+// 			//	draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X0000FF);
+// 				cube->player.rays.vertical_intersection_x = init_pos[0];
+// 				cube->player.rays.vertical_intersection_y = init_pos[1];
+// 				return (init_pos[1] - cube->player.rays.ry) / ray_dir[1];
+// 			}
+// 			else
+// 			{
+// 				init_pos[0] += step_x;
+// 				init_pos[1] += step_y;
+// 			}
+// 		}
+// 		else
+// 			break;
+// 	}
+// 	return (0);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
+// {
+// 	bool	subtract_mapsize;
+// 	float	init_pos[2];
+// 	float	step_x;
+// 	float	step_y;
+// 	int x;
+// 	int y;
+
+// 	if (ray_dir[1] > 0)
+// 	{
+// 		init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y + MINIMAP_Y;
+// 		step_y = MINIMAP_Y;
+// 	}
+// 	else
+// 	{
+// 		init_pos[1] = (int)(cube->player.rays.ry / MINIMAP_Y) * MINIMAP_Y - 0.0001;
+// 		step_y = -MINIMAP_Y;
+// 	}
+// 	init_pos[0] = cube->player.rays.rx + (init_pos[1] - cube->player.rays.ry) * (ray_dir[0] / ray_dir[1]);
+// 	step_x = step_y * (ray_dir[0] / ray_dir[1]);
+
+// 	while (1)
+// 	{
+// 		int x = (int)(init_pos[0] / MINIMAP_X);
+// 		int y = (int)(init_pos[1] / MINIMAP_Y);
+// 		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
+// 		{
+// 			if (cube->level.map[y][x] == '1')
+// 			{
+// 				//draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
+// 				cube->player.rays.horizontal_intersection_x = init_pos[0];
+// 				cube->player.rays.horizontal_intersection_y = init_pos[1];
+// 				return ((init_pos[0] - cube->player.rays.rx) / ray_dir[0]);
+// 			}
+// 			else
+// 			{
+// 				init_pos[0] += step_x;
+// 				init_pos[1] += step_y;
+// 			}
+// 		}
+// 		else
+// 			break;
+// 	}
+// 	return (0);
+// }
+
+
+
+
+
+
+
+// float cast_rays_1(t_cub3d *cube)
+// {
+// 	float	angle;
+// 	float	ray_dir[2];
+
+// 	cube->player.rays.vertical_distance = 1000000;
+// 	cube->player.rays.horizontal_distance = 1000000;
+// 	angle = cube->player.rays.angle + 0.001;
+
+	
+// 	printf("*************************************\n");
+// 	printf("ANGLE IS %f\n", (angle * 180/PI));
+// 	ray_dir[0] = cos(angle);
+// 	ray_dir[1] = sin(angle);
+// 	normalize_vector(&ray_dir[0]);
+// 	cube->player.rays.vertical_distance = calculate_vertical_distance(cube, &ray_dir[0]);
+// 	cube->player.rays.horizontal_distance = calculate_horizontal_distance(cube, &ray_dir[0]);
+// 	printf("horizontal distance is %f\n",cube->player.rays.horizontal_distance);
+// 	printf("vertical distance is %f\n",cube->player.rays.vertical_distance);
+// 	if (cube->player.rays.vertical_distance == 0)
+// 	{
+// 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
+// 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
+// 		cube->player.rays.clr = GREEN;
+// 		return (cube->player.rays.horizontal_distance);
+// 	}
+// 	else if (cube->player.rays.horizontal_distance == 0)
+// 	{
+// 		cube->player.rays.clr = BLUE;
+// 		cube->player.rays.intersection_x = cube->player.rays.vertical_intersection_x;
+// 		cube->player.rays.intersection_y = cube->player.rays.vertical_intersection_y;
+// 		return (cube->player.rays.vertical_distance);
+// 	}
+// 	if (cube->player.rays.vertical_distance > cube->player.rays.horizontal_distance) 
+// 	{
+// 		printf("returning the horizontal distance\n");
+// 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
+// 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
+// 		cube->player.rays.clr = GREEN;
+// 		return (cube->player.rays.horizontal_distance);
+// 	}
+// 	cube->player.rays.clr = BLUE;
+// 	cube->player.rays.intersection_x = cube->player.rays.vertical_intersection_x;
+// 	cube->player.rays.intersection_y = cube->player.rays.vertical_intersection_y;
+// 	printf("returning the vertical distance\n");
+// 	return (cube->player.rays.vertical_distance);
+// }
+
+
+
+
