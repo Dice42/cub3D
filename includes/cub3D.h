@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 19:50:54 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:21:08 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,24 @@ int			handle_keypress(int key, t_cub3d *cube);
 bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 
 /* ************************************************************************** */
+/* 									RAYCASTS								  */
+/* ************************************************************************** */
+
+void	cast_ray(t_cub3d *cube);
+float	cast_rays(t_cub3d *cube); //actual raycaster
+float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
+float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
+
+/* ************************************************************************** */
+/* 									RAYCASTS								  */
+/* ************************************************************************** */
+
+void	cast_ray(t_cub3d *cube);
+float	cast_rays(t_cub3d *cube); //actual raycaster
+float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
+float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
+
+/* ************************************************************************** */
 /* 									Texture									  */
 /* ************************************************************************** */
 
@@ -229,6 +247,8 @@ t_img_data	*check_coordinate(t_cub3d *cube);
 /* ************************************************************************** */
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
+//bool	player_collisions(t_cub3d *cube, int x, int y);
+void    cast_ray(t_cub3d *cube);
 float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
