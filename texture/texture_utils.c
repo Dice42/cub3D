@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 20:52:24 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:13:50 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	load_textures(t_cub3d *cube)
 {
+	/* first pic */
 	cube->data.textures[0].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
 			cube->level.textures.north_texture,
 			&cube->data.textures[0].width,
@@ -25,6 +26,7 @@ void	load_textures(t_cub3d *cube)
 			&cube->data.textures[0].line_length,
 			&cube->data.textures[0].endian);
 			
+	/*second pic*/
 	cube->data.textures[1].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
 			cube->level.textures.south_texture,
 			&cube->data.textures[1].width,
@@ -36,6 +38,7 @@ void	load_textures(t_cub3d *cube)
 			&cube->data.textures[1].line_length,
 			&cube->data.textures[1].endian);
 			
+	/*third pic*/
 	cube->data.textures[2].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
 			cube->level.textures.east_texture,
 			&cube->data.textures[2].width,
@@ -47,6 +50,7 @@ void	load_textures(t_cub3d *cube)
 			&cube->data.textures[2].line_length,
 			&cube->data.textures[2].endian);
 			
+	/*forth pic*/
 	cube->data.textures[3].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
 			cube->level.textures.west_texture,
 			&cube->data.textures[3].width,
@@ -71,35 +75,38 @@ int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
 	return (*(unsigned int *)data);
 }
 
-t_img_data	*choose_texture(t_cub3d *cube, float v_dis, float h_dis, int quarter)
+t_img_data	*choose_texture(t_cub3d *cube, int quarter)
 {
+	float h_dis;
+	
+	h_dis = cube->player.rays.horizontal_distance;
 	if (quarter == 1)
 	{	
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[0]);
+			return (&cube->data.textures[1]);
 		else
 			return (&cube->data.textures[2]);
 	}
 	if (quarter == 2)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[0]);
+			return (&cube->data.textures[1]);
 		else
-			return (&cube->data.textures[3]);
+			return (&cube->data.textures[0]);
 	}
 	if (quarter == 3)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[1]);
+			return (&cube->data.textures[3]);
 		else
 			return (&cube->data.textures[2]);
 	}
 	if (quarter == 4)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[1]);
-		else
 			return (&cube->data.textures[3]);
+		else
+			return (&cube->data.textures[0]);
 	}
 	return (&cube->data.textures[0]);
 }
@@ -107,16 +114,20 @@ t_img_data	*choose_texture(t_cub3d *cube, float v_dis, float h_dis, int quarter)
 t_img_data	*check_coordinate(t_cub3d *cube)
 {
 
-	float angle = fabs(cube->player.rays.angle * DEG);
+	float angle = abs(cube->player.rays.angle * DEG);
 
-	printf("cube->player.rays.angle = %f\n", cube->player.rays.angle);
+	printf("angle IN deg = %f\n", angle);
 	if (angle >= 0 && angle < 90)
-		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 1));
+		return (choose_texture(cube, 1));
 	else if (angle >= 90 && angle < 180)
-		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 2));
+		return (choose_texture(cube, 2));
 	else if (angle >= 180 && angle < 270)
-		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 3));
+		return (choose_texture(cube, 3));
 	else if (angle >= 270 && angle <= 360)
-		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 4));
+		return (choose_texture(cube, 4));
+	else
+	{
+		printf("error in angle = %f\n", angle);
+	}
 	return (NULL);
 }

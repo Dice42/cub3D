@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 20:40:01 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:01:25 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
 
 void		load_textures(t_cub3d *cube);
 int			get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
-t_img_data	*choose_texture(t_cub3d *cube, float dir_x, float dir_y, int quarter);
+t_img_data	*choose_texture(t_cub3d *cube, int quarter);
 t_img_data	*check_coordinate(t_cub3d *cube);
 
 
@@ -247,7 +247,6 @@ t_img_data	*check_coordinate(t_cub3d *cube);
 /* ************************************************************************** */
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
-//bool	player_collisions(t_cub3d *cube, int x, int y);
 void    cast_ray(t_cub3d *cube);
 float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
@@ -259,7 +258,6 @@ void	update_player_direction(t_cub3d *cube);
 /* 									Visuals									  */
 /* ************************************************************************** */
 
-void	init_draw_player(t_cub3d *cube, int x, int y);
 void	draw_line(t_cub3d *cube);
 void	draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color);
 void	draw_player(t_cub3d *cube);
