@@ -6,13 +6,11 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 20:20:11 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:31:18 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cub3D.h"
-
 
 void normalize_vector(float *vector)
 {
@@ -83,13 +81,10 @@ float	cast_rays(t_cub3d *cube)
 	float	ray_dir[2];
 
 	ft_bzero(&ray_dir[0], 2);
-	printf("angle is: %f\n", (cube->player.transform.angle) / PI * 180 );
 	init_ray_dir(cube, &ray_dir[0]);
 	cube->player.rays.horizontal_distance =
 		calc_horizontal_distance(cube, &ray_dir[0]);
 	cube->player.rays.vertical_distance =
 		calc_vertical_distance(cube, &ray_dir[0]);
-	printf("horizontal distance: %f\n vertical distance%f\n",
-		cube->player.rays.horizontal_distance, cube->player.rays.vertical_distance);
 	return (find_smaller_distance(cube));
 }

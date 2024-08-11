@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/09 12:46:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:52:24 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,41 +92,31 @@ t_img_data	*choose_texture(t_cub3d *cube, float v_dis, float h_dis, int quarter)
 		if (cube->player.rays.distance == h_dis)
 			return (&cube->data.textures[1]);
 		else
-			return (&cube->data.textures[3]);
+			return (&cube->data.textures[2]);
 	}
 	if (quarter == 4)
 	{
 		if (cube->player.rays.distance == h_dis)
 			return (&cube->data.textures[1]);
 		else
-			return (&cube->data.textures[2]);
+			return (&cube->data.textures[3]);
 	}
 	return (&cube->data.textures[0]);
 }
 
 t_img_data	*check_coordinate(t_cub3d *cube)
 {
+
+	float angle = fabs(cube->player.rays.angle * DEG);
+
 	printf("cube->player.rays.angle = %f\n", cube->player.rays.angle);
-	if ((cube->player.rays.angle >= 0 && cube->player.rays.angle < M_PI / 2) || (cube->player.rays.angle <= 0 && cube->player.rays.angle >= -M_PI / 2))
-	{
-		return (choose_texture(cube, cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance, 1));
-	}
-	else if ((cube->player.rays.angle >= M_PI / 2 && cube->player.rays.angle < M_PI) || (cube->player.rays.angle <= -M_PI / 2 && cube->player.rays.angle > -M_PI))
-	{
-		return (choose_texture(cube, cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance, 2));
-	}
-	else if ((cube->player.rays.angle >= M_PI && cube->player.rays.angle < 3 * M_PI / 2) || (cube->player.rays.angle <= -M_PI && cube->player.rays.angle > -3 * M_PI / 2))
-	{
-		return (choose_texture(cube, cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance, 3));
-	}
-	else if ((cube->player.rays.angle >= 3 * M_PI / 2 && cube->player.rays.angle <= 2 * M_PI) || (cube->player.rays.angle <= -3 * M_PI / 2 && cube->player.rays.angle >= -2 * M_PI))
-	{
-		return (choose_texture(cube, cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance, 4));
-	}
-	else
-	{
-		printf("ERROR\n");
-		return (choose_texture(cube, cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance, 1));
-	}
+	if (angle >= 0 && angle < 90)
+		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 1));
+	else if (angle >= 90 && angle < 180)
+		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 2));
+	else if (angle >= 180 && angle < 270)
+		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 3));
+	else if (angle >= 270 && angle <= 360)
+		return (choose_texture(cube, cube->player.rays.distance, cube->player.rays.distance, 4));
 	return (NULL);
 }
