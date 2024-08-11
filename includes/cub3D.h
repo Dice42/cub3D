@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 16:52:27 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 21:44:31 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@
 # define HEIGHT 1080
 # define MINIMAP_X (((1280*64) / WIDTH) / 2)
 # define MINIMAP_Y (((720*64) / HEIGHT) / 2)
+# define MAP_X 64
+# define MAP_Y 64
 # define RAD PI / 180
-# define DEG (180 / PI)  
+# define DEG (180 / PI)
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
 
@@ -66,6 +68,10 @@ typedef struct s_transform
 	float	y0;
 	float	x1;
 	float	y1;
+	float	map_x0;
+	float	map_x1;
+	float	map_y0;
+	float	map_y1;
 	float	dx;
 	float	dy;
 	float	angle;
