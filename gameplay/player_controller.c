@@ -6,35 +6,11 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:31:00 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/06 16:58:49 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 21:59:09 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-// bool	level_collisions(t_cub3d *cube, int x, int y, bool	player_collision)
-// {
-// 	int	length_buff;
-
-// 	if (player_collision)
-// 		length_buff = 6;
-// 	else
-// 		length_buff = 
-// 	if ((x / MINIMAP_X >= 0 && y / MINIMAP_Y >= 0))
-// 	{
-// 		if (cube->level.map[y / MINIMAP_Y][x / MINIMAP_X] == '1')
-// 			return (false);
-// 		else if (cube->level.map[y / MINIMAP_Y][(x + 6) / MINIMAP_X] == '1')
-// 			return (false);
-// 		else if (cube->level.map[(y + 6) / MINIMAP_Y][x / MINIMAP_X] == '1')
-// 			return (false);
-// 		else if (cube->level.map[(y + 6) / MINIMAP_Y][(x + 6) / MINIMAP_X] == '1')
-// 			return (false);
-// 		else
-// 			return (true);
-// 	}
-// 	return (true);
-// }
 
 void	player_movement(t_cub3d *cube, bool dir[4])
 {

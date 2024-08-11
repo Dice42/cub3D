@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 20:17:50 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:47:08 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ void cast_rays_from_player(t_cub3d *cube)
 	// load_textures(cube);
 	for (int x = 0; x < WIDTH; x++)  // Loop through every pixel width
 	{
+	//	printf("player angle: %f\n", cube->player.transform.angle);
+	//	printf("player position x,y: %f, %f\n", cube->player.transform.x0, cube->player.transform.y0);
 		cube->player.rays.distance = cast_rays(cube);
 		minimap_rays(cube, x, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
@@ -186,6 +188,7 @@ void cast_rays_from_player(t_cub3d *cube)
 		// 	cube->player.rays.angle -= 2 * PI;
 		// else if (cube->player.rays.angle < 0)
 		// 	cube->player.rays.angle += 2 * PI;
+		//printf("angle step is: %f\n", cube->player.rays.angle_step);
 	}
 }
 

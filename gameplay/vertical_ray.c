@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:51:32 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:50 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 21:51:18 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step, float
 	init_vertical_ray(cube, ray_dir, step, init_pos);
 	while (1)
 	{
-			x = (int)(init_pos[0] / MINIMAP_X);
-			y = (int)(init_pos[1] / MINIMAP_Y);
+		x = (int)(init_pos[0] / MINIMAP_X);
+		y = (int)(init_pos[1] / MINIMAP_Y);
 		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
 		{
 			if (cube->level.map[y][x] == '1')
@@ -70,6 +70,8 @@ float	calc_vertical_distance(t_cub3d *cube, float *ray_dir)
 
 	ft_bzero(&step, 2);
 	ft_bzero(&init_pos, 2);
+	if (ray_dir[0] == 0)
+		return (0);
 	if (!get_vertical_intersection(cube, ray_dir, &step[0], &init_pos[0]))
 		return (0);
 	distance = (init_pos[1] - cube->player.rays.ry) / ray_dir[1];

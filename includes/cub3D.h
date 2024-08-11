@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 20:16:24 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:46:51 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 #define MIN_HEIGHT 1   // Minimum height for line
 
 # define RAD PI / 180
-# define DEG (180 / PI)  
+# define DEG (180 / PI)
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
 
@@ -72,6 +72,10 @@ typedef struct s_transform
 	float	y0;
 	float	x1;
 	float	y1;
+	float	map_x0;
+	float	map_x1;
+	float	map_y0;
+	float	map_y1;
 	float	dx;
 	float	dy;
 	float	angle;
