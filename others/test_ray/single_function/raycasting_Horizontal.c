@@ -33,13 +33,13 @@ typedef struct s_data {
     int width_x;
     int height_y;
     struct {
-        float x, y;
-        float dx, dy;
-        float angle;
+        double x, y;
+        double dx, dy;
+        double angle;
     } player;
 } t_data;
 
-float degToRad(float a) { return a * M_PI / 180.0; }
+double degToRad(double a) { return a * M_PI / 180.0; }
 int FixAng(int a) { if (a > 359) a -= 360; if (a < 0) a += 360; return a; }
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -55,13 +55,13 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void draw_line(t_data *data, int x1, int y1, int x2, int y2, int color)
 {
-    float dx = x2 - x1;
-    float dy = y2 - y1;
-    float steps = fmaxf(fabsf(dx), fabsf(dy));
+    double dx = x2 - x1;
+    double dy = y2 - y1;
+    double steps = fmaxf(fabsf(dx), fabsf(dy));
     dx /= steps;
     dy /= steps;
-    float x = x1;
-    float y = y1;
+    double x = x1;
+    double y = y1;
     for (int i = 0; i <= steps; i++) {
         my_mlx_pixel_put(data, x, y, color);
         x += dx;
@@ -72,14 +72,14 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2, int color)
 void drawRays2D(t_data *data)
 {
     int r, mx, my, mp, dof;
-    float rx, ry, ra, xo, yo, dis_h;
+    double rx, ry, ra, xo, yo, dis_h;
 
     ra = FixAng(data->player.angle + 30); // ray set back 30 degrees
 
     for (r = 0; r < 60; r++) {
         //---Horizontal---
         dof = 0; dis_h = 100000;
-        float Tan = tan(degToRad(ra));
+        double Tan = tan(degToRad(ra));
         if (sin(degToRad(ra)) > 0.001) {
             ry = (((int)data->player.y >> 6) << 6) - 0.0001;
             rx = (data->player.y - ry) * Tan + data->player.x;

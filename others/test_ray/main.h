@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heltayb <heltayb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:44:45 by heltayb           #+#    #+#             */
-/*   Updated: 2024/07/22 14:32:06 by heltayb          ###   ########.fr       */
+/*   Updated: 2024/08/11 23:00:36 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef struct s_data {
     void *win;
 	
 	//player position
-    float px;
-    float py;
-    float pdx;
-    float pdy;
+    double px;
+    double py;
+    double pdx;
+    double pdy;
     int pa;
 	//player position
 	

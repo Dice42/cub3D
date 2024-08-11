@@ -6,61 +6,28 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 21:13:50 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 00:52:23 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+static void	xpm_to_image(t_cub3d *cube, t_img_data *texture, char *path)
+{
+	texture->img = mlx_xpm_file_to_image(cube->data.mlx_ptr, path, 
+			&texture->width, &texture->height);
+	if (!texture->img)
+		error_handler("Error\nCourrupted path\n", NULL, NULL, false);
+	texture->addr = mlx_get_data_addr(texture->img, 
+			&texture->bits_per_pixel, &texture->line_length, &texture->endian);
+}
+
 void	load_textures(t_cub3d *cube)
 {
-	/* first pic */
-	cube->data.textures[0].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-			cube->level.textures.north_texture,
-			&cube->data.textures[0].width,
-			&cube->data.textures[0].height);
-		if (!cube->data.textures[0].img)
-			error_handler("Error\nCourrupted north path\n", NULL, NULL, false);
-	cube->data.textures[0].addr = mlx_get_data_addr(cube->data.textures[0].img,
-			&cube->data.textures[0].bits_per_pixel,
-			&cube->data.textures[0].line_length,
-			&cube->data.textures[0].endian);
-			
-	/*second pic*/
-	cube->data.textures[1].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-			cube->level.textures.south_texture,
-			&cube->data.textures[1].width,
-			&cube->data.textures[1].height);
-		if (!cube->data.textures[1].img)
-			error_handler("Error\nCourrupted south path\n", NULL, NULL, false);
-	cube->data.textures[1].addr = mlx_get_data_addr(cube->data.textures[1].img,
-			&cube->data.textures[1].bits_per_pixel,
-			&cube->data.textures[1].line_length,
-			&cube->data.textures[1].endian);
-			
-	/*third pic*/
-	cube->data.textures[2].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-			cube->level.textures.east_texture,
-			&cube->data.textures[2].width,
-			&cube->data.textures[2].height);
-		if (!cube->data.textures[2].img)
-			error_handler("Error\nCourrupted east path\n", NULL, NULL, false);
-	cube->data.textures[2].addr = mlx_get_data_addr(cube->data.textures[2].img,
-			&cube->data.textures[2].bits_per_pixel,
-			&cube->data.textures[2].line_length,
-			&cube->data.textures[2].endian);
-			
-	/*forth pic*/
-	cube->data.textures[3].img = mlx_xpm_file_to_image(cube->data.mlx_ptr,
-			cube->level.textures.west_texture,
-			&cube->data.textures[3].width,
-			&cube->data.textures[3].height);
-		if (!cube->data.textures[3].img)
-			error_handler("Error\nCourrupted west path\n", NULL, NULL, false);
-	cube->data.textures[3].addr = mlx_get_data_addr(cube->data.textures[3].img,
-			&cube->data.textures[3].bits_per_pixel,
-			&cube->data.textures[3].line_length,
-			&cube->data.textures[3].endian);
+	xpm_to_image(cube, &cube->data.textures[0], cube->level.textures.north_texture);
+	xpm_to_image(cube, &cube->data.textures[1], cube->level.textures.south_texture);
+	xpm_to_image(cube, &cube->data.textures[2], cube->level.textures.east_texture);
+	xpm_to_image(cube, &cube->data.textures[3], cube->level.textures.west_texture);
 }
 
 int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
@@ -71,63 +38,59 @@ int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
 		x = 0;
 	if (y < 0 || y >= cube->data.texture->height)
 		y = 0;
-	data = texture->addr + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
+	data = texture->addr + (y * texture->line_length + x 
+			* (texture->bits_per_pixel / 8));
 	return (*(unsigned int *)data);
 }
 
-t_img_data	*choose_texture(t_cub3d *cube, int quarter)
+void	choose_texture(t_cub3d *cube, int quarter)
 {
-	float h_dis;
+	float	h_dis;
 	
 	h_dis = cube->player.rays.horizontal_distance;
 	if (quarter == 1)
 	{	
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[1]);
+			cube->data.texture = &cube->data.textures[1];
 		else
-			return (&cube->data.textures[2]);
+			cube->data.texture = &cube->data.textures[3];
 	}
 	if (quarter == 2)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[1]);
+			cube->data.texture = &cube->data.textures[1];
 		else
-			return (&cube->data.textures[0]);
+			cube->data.texture = &cube->data.textures[2];
 	}
 	if (quarter == 3)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[3]);
+			cube->data.texture = &cube->data.textures[0];
 		else
-			return (&cube->data.textures[2]);
+			cube->data.texture = &cube->data.textures[2];
 	}
 	if (quarter == 4)
 	{
 		if (cube->player.rays.distance == h_dis)
-			return (&cube->data.textures[3]);
+			cube->data.texture = &cube->data.textures[0];
 		else
-			return (&cube->data.textures[0]);
+			cube->data.texture = &cube->data.textures[3];
 	}
-	return (&cube->data.textures[0]);
 }
 
-t_img_data	*check_coordinate(t_cub3d *cube)
+void	check_coordinate(t_cub3d *cube)
 {
+	float angle;
 
-	float angle = abs(cube->player.rays.angle * DEG);
-
-	printf("angle IN deg = %f\n", angle);
-	if (angle >= 0 && angle < 90)
-		return (choose_texture(cube, 1));
-	else if (angle >= 90 && angle < 180)
-		return (choose_texture(cube, 2));
-	else if (angle >= 180 && angle < 270)
-		return (choose_texture(cube, 3));
-	else if (angle >= 270 && angle <= 360)
-		return (choose_texture(cube, 4));
-	else
-	{
-		printf("error in angle = %f\n", angle);
-	}
-	return (NULL);
+	angle = fabs(cube->player.rays.angle * DEG);
+	if (angle >= 360)
+		angle = 0;
+	if (angle >= 0 && angle <= 90)
+		choose_texture(cube, 1);
+	if (angle >= 90 && angle <= 180)
+		choose_texture(cube, 2);
+	if (angle >= 180 && angle <= 270)
+		choose_texture(cube, 3);
+	if (angle >= 270 && angle <= 360)
+		choose_texture(cube, 4);
 }

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 22:51:07 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:34:13 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ float	find_smaller_distance(t_cub3d *cube)
 	//printf("%f\n", vertical);
 	if (cube->player.rays.vertical_distance == 0)
 	{
-		printf("IS 0\n");
 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
 		cube->player.rays.clr = GREEN;
@@ -61,7 +60,7 @@ float	find_smaller_distance(t_cub3d *cube)
 	}
 	if (vertical >= horizontal)
 	{
-		printf("vertical length is: %f\n", vertical);
+		//printf("vertical length is: %f\n", vertical);
 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
 		cube->player.rays.clr = GREEN;

@@ -32,8 +32,8 @@ typedef struct s_data {
     int width_x;
     int height_y;
     struct {
-        float x, y;
-        float dx, dy;
+        double x, y;
+        double dx, dy;
     } player;
 } t_data;
 

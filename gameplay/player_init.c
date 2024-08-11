@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 08:05:26 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 22:50:54 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:53:02 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_player_pos(t_cub3d *cube, int x, int y)
 	else if (cube->player.orientation == 'W')
 		cube->player.transform.angle = atan2(0, -1);
 
-	cube->player.transform.angle = 4.612390;
-	cube->player.transform.x0 = 49.039989;
-	cube->player.transform.y0 = 66.372009;
+	// cube->player.transform.angle = 4.612390;
+	// cube->player.transform.x0 = 49.039989;
+	// cube->player.transform.y0 = 66.372009;
 	update_player_direction(cube);
 }

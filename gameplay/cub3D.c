@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/02 16:19:21 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/12 00:48:36 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_start(t_cub3d *cube)
 {
 	cube->data.mlx_ptr = mlx_init();
 	cube->data.win = mlx_new_window(cube->data.mlx_ptr, WIDTH, HEIGHT, "Cube 3D");
+	load_textures(cube);
 	draw_mini_map(cube);
 	cube->level.start = true;
 	mlx_hook(cube->data.win, 2, 0, &handle_keypress, cube);

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 22:51:27 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 00:45:15 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,8 +242,8 @@ float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
 
 void		load_textures(t_cub3d *cube);
 int			get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
-t_img_data	*choose_texture(t_cub3d *cube, int quarter);
-t_img_data	*check_coordinate(t_cub3d *cube);
+void		choose_texture(t_cub3d *cube, int quarter);
+void		check_coordinate(t_cub3d *cube);
 
 
 /* ************************************************************************** */

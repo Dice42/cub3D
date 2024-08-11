@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:29:42 by heltayb           #+#    #+#             */
-/*   Updated: 2024/08/04 16:02:23 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:00:38 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ typedef struct {
     int bits_per_pixel;
     int line_length;
     int endian;
-    float px, py, pdx, pdy, pa;
+    double px, py, pdx, pdy, pa;
 } t_data;
 
-float degToRad(int a) { return a * M_PI / 180.0; }
+double degToRad(int a) { return a * M_PI / 180.0; }
 int FixAng(int a) { if (a > 359) a -= 360; if (a < 0) a += 360; return a; }
-float distance(float ax, float ay, float bx, float by, int ang) { return cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay); }
+double distance(double ax, double ay, double bx, double by, int ang) { return cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay); }
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color) {
     char *dst;
@@ -109,13 +109,13 @@ int handle_keypress(int key, t_data *data) {
 }
 
 void drawRays2D(t_data *data) {
-    int r, mx, my, mp, dof, side; float vx, vy, rx, ry, ra, xo, yo, disV, disH;
+    int r, mx, my, mp, dof, side; double vx, vy, rx, ry, ra, xo, yo, disV, disH;
 
     ra = FixAng(data->pa + 30);
     for (r = 0; r < 60; r++) {
         //---Vertical---
         dof = 0; side = 0; disV = 100000;
-        float Tan = tan(degToRad(ra));
+        double Tan = tan(degToRad(ra));
         if (cos(degToRad(ra)) > 0.001) { rx = (((int)data->px >> 6) << 6) + 64; ry = (data->px - rx) * Tan + data->py; xo = 64; yo = -xo * Tan; }
         else if (cos(degToRad(ra)) < -0.001) { rx = (((int)data->px >> 6) << 6) - 0.0001; ry = (data->px - rx) * Tan + data->py; xo = -64; yo = -xo * Tan; }
         else { rx = data->px; ry = data->py; dof = 8; }
@@ -222,16 +222,16 @@ int main() {
 //     int bits_per_pixel;
 //     int line_length;
 //     int endian;
-//     float px, py, pdx, pdy, pa;
+//     double px, py, pdx, pdy, pa;
 //     void *textures[4];
 //     int *texture_data[4];
 //     int texture_width;
 //     int texture_height;
 // } t_data;
 
-// float degToRad(int a) { return a * M_PI / 180.0; }
+// double degToRad(int a) { return a * M_PI / 180.0; }
 // int FixAng(int a) { if (a > 359) a -= 360; if (a < 0) a += 360; return a; }
-// float distance(float ax, float ay, float bx, float by, int ang) { return cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay); }
+// double distance(double ax, double ay, double bx, double by, int ang) { return cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay); }
 
 // void my_mlx_pixel_put(t_data *data, int x, int y, int color) {
 //     char *dst;
@@ -303,7 +303,7 @@ int main() {
 // }
 
 // void drawRays2D(t_data *data) {
-//     int r, mx, my, mp, dof, side; float vx, vy, rx, ry, ra, xo, yo, disV, disH;
+//     int r, mx, my, mp, dof, side; double vx, vy, rx, ry, ra, xo, yo, disV, disH;
 
 //     ra = FixAng(data->pa + 30);
 // 	r = 0;
@@ -311,7 +311,7 @@ int main() {
 //     {
 //         //---Vertical---
 //         dof = 0; side = 0; disV = 100000;
-//         float Tan = tan(degToRad(ra));
+//         double Tan = tan(degToRad(ra));
 //         if (cos(degToRad(ra)) > 0.001) { rx = (((int)data->px >> 6) << 6) + 64; ry = (data->px - rx) * Tan + data->py; xo = 64; yo = -xo * Tan; }
 //         else if (cos(degToRad(ra)) < -0.001) { rx = (((int)data->px >> 6) << 6) - 0.0001; ry = (data->px - rx) * Tan + data->py; xo = -64; yo = -xo * Tan; }
 //         else { rx = data->px; ry = data->py; dof = 8; }
@@ -344,9 +344,9 @@ int main() {
 
 //         // Determine texture index and texture coordinates
 //         int texNum = (map[my * mapX + mx] - 1) % 4; // Example texture index
-//         float hitX = (disV < disH) ? (int)ry % mapS : (int)rx % mapS;
-//         float texStep = 1.0 * data->texture_height / lineH;
-//         float texPos = (lineOff - win_height / 2 + lineH / 2) * texStep;
+//         double hitX = (disV < disH) ? (int)ry % mapS : (int)rx % mapS;
+//         double texStep = 1.0 * data->texture_height / lineH;
+//         double texPos = (lineOff - win_height / 2 + lineH / 2) * texStep;
         
 //         for (int y = lineOff; y < lineOff + lineH; y++) {
 //             int texY = (int)texPos & (data->texture_height - 1);

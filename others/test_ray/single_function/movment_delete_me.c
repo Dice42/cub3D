@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movment_delete_me.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heltayb <heltayb@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:29:42 by heltayb           #+#    #+#             */
-/*   Updated: 2024/07/20 13:27:43 by heltayb          ###   ########.fr       */
+/*   Updated: 2024/08/11 23:00:41 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ typedef struct s_data {
     void *win;
     int width;
     int height;
-    float px;
-    float py;
-    float pdx;
-    float pdy;
+    double px;
+    double py;
+    double pdx;
+    double pdy;
     int pa;
 } t_data;
 
