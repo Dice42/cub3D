@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/08 18:43:00 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 14:06:17 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ float	calculate_horizontal_distance(t_cub3d *cube, float *ray_dir)
 				//draw_ray(cube, (int)cube->player.rays.rx, (int)cube->player.rays.ry, (int)init_pos[0], (int)init_pos[1], 0X00FF00);
 				cube->player.rays.horizontal_intersection_x = init_pos[0];
 				cube->player.rays.horizontal_intersection_y = init_pos[1];
-				return ((init_pos[1] - cube->player.rays.ry) / ray_dir[1]);
+				return ((init_pos[0] - cube->player.rays.rx) / ray_dir[0]);
 			}
 			else
 			{

@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/08 18:23:52 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 13:11:52 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,8 @@ void cast_rays_from_player(t_cub3d *cube)
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));  // Start angle
+	//cube->player.rays.angle = (cube->player.transform.angle);  // Start angle
+
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
 	if (cube->player.rays.angle > (2 * PI))
 		cube->player.rays.angle -= 2 * PI;
