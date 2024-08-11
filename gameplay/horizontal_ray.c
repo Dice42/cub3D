@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:15:46 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 16:50:02 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/11 21:50:53 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	get_horizontal_intersection(t_cub3d *cube, float *ray_dir, float *step, flo
 	x = 0;
 	y = 0;
 	init_horizontal_ray(cube, ray_dir, step, init_pos);
-	while (1)
+	while ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
 	{
 		x = (int)(init_pos[0] / MINIMAP_X);
 		y = (int)(init_pos[1] / MINIMAP_Y);
@@ -70,6 +70,8 @@ float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir)
 
 	ft_bzero(&step, 2);
 	ft_bzero(&init_pos, 2);
+	if (ray_dir[1] == 0)
+		return (0);
 	if (!get_horizontal_intersection(cube, ray_dir, &step[0], &init_pos[0]))
 		return (0);
 	distance = ((init_pos[0] - cube->player.rays.rx) / ray_dir[0]);

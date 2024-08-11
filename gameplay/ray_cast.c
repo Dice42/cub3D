@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 20:31:18 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:51:07 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_ray_dir(t_cub3d *cube, float *ray_dir)
 {
 	float	angle;
 
-	angle = cube->player.rays.angle + 0.001;
+	angle = cube->player.rays.angle;
 	cube->player.rays.vertical_distance = 1000000;
 	cube->player.rays.horizontal_distance = 1000000;
 	ray_dir[0] = cos(angle);
@@ -38,8 +38,15 @@ void	init_ray_dir(t_cub3d *cube, float *ray_dir)
 
 float	find_smaller_distance(t_cub3d *cube)
 {
+	float	vertical;
+	float	horizontal;
+
+	vertical = roundf(cube->player.rays.vertical_distance * 100)/100;
+	horizontal = roundf(cube->player.rays.horizontal_distance * 100)/100;
+	//printf("%f\n", vertical);
 	if (cube->player.rays.vertical_distance == 0)
 	{
+		printf("IS 0\n");
 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
 		cube->player.rays.clr = GREEN;
@@ -52,13 +59,15 @@ float	find_smaller_distance(t_cub3d *cube)
 		cube->player.rays.intersection_y = cube->player.rays.vertical_intersection_y;
 		return (cube->player.rays.vertical_distance);
 	}
-	if (cube->player.rays.vertical_distance > cube->player.rays.horizontal_distance)
+	if (vertical >= horizontal)
 	{
+		printf("vertical length is: %f\n", vertical);
 		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
 		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
 		cube->player.rays.clr = GREEN;
 		return (cube->player.rays.horizontal_distance);
 	}
+	//printf("vertical is shorter and is %f while horizontal is %f\n", cube->player.rays.vertical_distance, cube->player.rays.horizontal_distance);
 	cube->player.rays.clr = BLUE;
 	cube->player.rays.intersection_x = cube->player.rays.vertical_intersection_x;
 	cube->player.rays.intersection_y = cube->player.rays.vertical_intersection_y;

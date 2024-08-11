@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 21:12:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:51:50 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void draw_3d_rays(t_cub3d *cube)
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;  // Adjust step based on screen width
 	for (int x = WIDTH; x > 0; x--) 
 	{
+	//	printf("player angle: %f\n", cube->player.transform.angle);
+	//	printf("player position x,y: %f, %f\n", cube->player.transform.x0, cube->player.transform.y0);
 		cube->player.rays.distance = cast_rays(cube);
 		draw_rays(cube, x, cube->player.rays.distance);
 		draw_ray(cube, cube->player.rays.rx, cube->player.rays.ry, cube->player.rays.intersection_x, cube->player.rays.intersection_y, cube->player.rays.clr);
