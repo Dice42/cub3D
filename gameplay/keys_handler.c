@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:43:14 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 15:22:56 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 22:24:03 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ static void	set_keys_setting(t_cub3d *cube, int key, bool setting)
 	if (key == LOOK_RIGHT)
 		cube->player.rot_dir[0] = setting;
 	if (key == LOOK_LEFT)
-	{
-		//printf("LEFT\n");
 		cube->player.rot_dir[1] = setting;
-	}
 }
 
 
@@ -50,7 +47,7 @@ int	handle_keyrelease(int key, t_cub3d *cube)
 	if (!cube->player.move_dir[0] && !cube->player.move_dir[1]
 		&& !cube->player.move_dir[2] && !cube->player.move_dir[3])
 		cube->player.move = false;
-	if (!cube->player.rot_dir[0] && !cube->player.rot_dir[0])
+	if (!cube->player.rot_dir[0] && !cube->player.rot_dir[1])
 		cube->player.rotate = false;
 	return (0);
 }

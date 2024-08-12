@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 21:43:09 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 22:17:22 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,8 @@ typedef struct s_img_data
 
 typedef struct s_mlx_data
 {
-	void				*mlx_ptr;
-	void				*win;
+	void			*mlx_ptr;
+	void			*win;
 	t_img_data		img;
 	t_img_data		textures[4];
 	t_img_data		*texture;
