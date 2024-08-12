@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 15:02:51 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 22:27:38 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	check_space_surroundings(t_level *level, int x, int y)
+{
+	char	entry;
+
+	entry = level->map[x][y];
+	if (x != 0 && x - 1 < level->num_of_rows)
+		
+}
+
 
 /**
  * @brief makes a copy of the given map
