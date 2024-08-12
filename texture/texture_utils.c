@@ -6,29 +6,11 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 00:52:23 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:59:14 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-static void	xpm_to_image(t_cub3d *cube, t_img_data *texture, char *path)
-{
-	texture->img = mlx_xpm_file_to_image(cube->data.mlx_ptr, path, 
-			&texture->width, &texture->height);
-	if (!texture->img)
-		error_handler("Error\nCourrupted path\n", NULL, NULL, false);
-	texture->addr = mlx_get_data_addr(texture->img, 
-			&texture->bits_per_pixel, &texture->line_length, &texture->endian);
-}
-
-void	load_textures(t_cub3d *cube)
-{
-	xpm_to_image(cube, &cube->data.textures[0], cube->level.textures.north_texture);
-	xpm_to_image(cube, &cube->data.textures[1], cube->level.textures.south_texture);
-	xpm_to_image(cube, &cube->data.textures[2], cube->level.textures.east_texture);
-	xpm_to_image(cube, &cube->data.textures[3], cube->level.textures.west_texture);
-}
 
 int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
 {
@@ -43,44 +25,31 @@ int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
 	return (*(unsigned int *)data);
 }
 
-void	choose_texture(t_cub3d *cube, int quarter)
+void 	set_quarter_texture(t_cub3d *cube, int img1, int img2)
 {
 	float	h_dis;
 	
 	h_dis = cube->player.rays.horizontal_distance;
+	if (cube->player.rays.distance == h_dis)
+		cube->data.texture = &cube->data.textures[img1];
+	else
+		cube->data.texture = &cube->data.textures[img2];
+}
+void	choose_texture(t_cub3d *cube, int quarter)
+{
 	if (quarter == 1)
-	{	
-		if (cube->player.rays.distance == h_dis)
-			cube->data.texture = &cube->data.textures[1];
-		else
-			cube->data.texture = &cube->data.textures[3];
-	}
+		set_quarter_texture(cube, 1, 3);
 	if (quarter == 2)
-	{
-		if (cube->player.rays.distance == h_dis)
-			cube->data.texture = &cube->data.textures[1];
-		else
-			cube->data.texture = &cube->data.textures[2];
-	}
+		set_quarter_texture(cube, 1, 2);
 	if (quarter == 3)
-	{
-		if (cube->player.rays.distance == h_dis)
-			cube->data.texture = &cube->data.textures[0];
-		else
-			cube->data.texture = &cube->data.textures[2];
-	}
+		set_quarter_texture(cube, 0, 2);
 	if (quarter == 4)
-	{
-		if (cube->player.rays.distance == h_dis)
-			cube->data.texture = &cube->data.textures[0];
-		else
-			cube->data.texture = &cube->data.textures[3];
-	}
+		set_quarter_texture(cube, 0, 3);
 }
 
 void	check_coordinate(t_cub3d *cube)
 {
-	float angle;
+	float	angle;
 
 	angle = fabs(cube->player.rays.angle * DEG);
 	if (angle >= 360)

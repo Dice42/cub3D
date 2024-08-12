@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/11 20:25:38 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/12 14:57:15 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(VISUALS_DIR)/3d_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \
 		$(TEXTURE_DIR)/texture_utils.c \
+		$(TEXTURE_DIR)/load_textures.c \
 		main.c
 
 # CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes

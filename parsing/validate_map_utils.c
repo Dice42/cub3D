@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/07 14:06:22 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:02:51 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 /**
- * @brief makes a copy of the given map 
- * @param level 
+ * @brief makes a copy of the given map
+ * @param level
  */
 void	copy_map(t_level *level)
 {
@@ -34,14 +34,14 @@ void	copy_map(t_level *level)
 
 /**
  * @brief fill the visited array with false in intial state
- * @param visited 
- * @param map 
- * @param n_rows 
+ * @param visited
+ * @param map
+ * @param n_rows
  */
 void	fill_visited(bool **visited, char **map, int n_rows)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (i < n_rows)
@@ -58,13 +58,13 @@ void	fill_visited(bool **visited, char **map, int n_rows)
 }
 
 /**
- * @brief this function checks if the value of the map is valid or not 
+ * @brief this function checks if the value of the map is valid or not
  * by checking next and previous rows and columns of the map
  * @param x position of x in the map
  * @param y position of y in the map
- * @param level levels details 
- * @return true 
- * @return false 
+ * @param level levels details
+ * @return true
+ * @return false
  */
 bool	check_if_valid(int x, int y, t_level *level)
 {

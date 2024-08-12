@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/07 17:24:06 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:03:34 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*open_read_level(char *level_path, char *file)
 		{
 			temp = file;
 			file = ft_strjoin(file, buf);
-			free (temp);
+			free(temp);
 		}
 		else
 			file = ft_strdup(buf);
@@ -57,10 +57,10 @@ bool	validate_order(char **map)
 			ctr.c = 0;
 			while (ctr.c < ctr.i)
 			{
-				if (!ft_strncmp(&map[ctr.i][ctr.j] , &letter_list[ctr.c++], 1))
+				if (!ft_strncmp(&map[ctr.i][ctr.j], &letter_list[ctr.c++], 1))
 					return (false);
 			}
-			ctr.i ++;
+			ctr.i++;
 		}
 		else
 			return (false);
@@ -114,9 +114,9 @@ bool	find_colors_info(t_level *level)
 			|| level->map_info[ctr.i][ctr.j] == 'F')
 		{
 			if (!validate_rgb_values(level->map_info[ctr.i] + ctr.j, level))
-				return (false); 
+				return (false);
 		}
-		ctr.i ++;
+		ctr.i++;
 	}
 	return (true);
 }
@@ -124,20 +124,20 @@ bool	find_colors_info(t_level *level)
 bool	validate_level(char *level_path, t_level *level, t_player *player)
 {
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
-		return (error_handler(INVALID_FILE_TYPE, NULL, NULL, false),false);
+		return (error_handler(INVALID_FILE_TYPE, NULL, NULL, false), false);
 	level->full_file = open_read_level(level_path, 0);
 	if (!level->full_file)
-		return (error_handler(INVALID_FILE, NULL, level, true),false);
+		return (error_handler(INVALID_FILE, NULL, level, true), false);
 	level->map_info = ft_split(level->full_file, '\n');
 	if (!level->map_info)
-		return (error_handler(INVALID_FILE_INFO, NULL, level, true),false);
+		return (error_handler(INVALID_FILE_INFO, NULL, level, true), false);
 	if (!validate_order(level->map_info))
-		return (error_handler(INVALID_MAP_INFO, NULL, level, true),false);
+		return (error_handler(INVALID_MAP_INFO, NULL, level, true), false);
 	if (!find_colors_info(level))
-		return (error_handler(INVALID_RGB, NULL, level, true),false);
+		return (error_handler(INVALID_RGB, NULL, level, true), false);
 	if (!validate_map(level, player))
-		return (error_handler(INVALID_MAP, NULL, level, true),false);
+		return (error_handler(INVALID_MAP, NULL, level, true), false);
 	if (!validate_textures_info(level))
-		return (error_handler(INVALID_MAP_TEXTURE, NULL, level, true),false);
+		return (error_handler(INVALID_MAP_TEXTURE, NULL, level, true), false);
 	return (true);
 }

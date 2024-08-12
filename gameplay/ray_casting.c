@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 00:50:13 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:33:25 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void draw_rays(t_cub3d *cube, int x, float distance)
 	distance = distance * cos(cube->player.rays.angle - cube->player.transform.angle);
 	line_height = (float)(((MINIMAP_Y / 2) * HEIGHT) / distance);
 	texture_y = 0.0f;
-	if (line_height > HEIGHT)
-		line_height = HEIGHT;
+
 	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
 	line_end_y = cube->player.rays.line_offset + line_height;
 	line_start_y = cube->player.rays.line_offset;
@@ -65,7 +64,7 @@ void draw_3d_rays(t_cub3d *cube)
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;
-	for (int x = WIDTH; x > 0; x--) 
+	for (int x = 0; x < WIDTH; x++)
 	{
 		cube->player.rays.distance = cast_rays(cube);
 		check_coordinate(cube);

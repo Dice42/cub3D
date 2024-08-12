@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 00:55:30 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:00:56 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265358979323846
 # define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
-# define WIDTH 1920
+# define WIDTH 1080
 # define HEIGHT 1080
-# define MINIMAP_X (((1280*64) / WIDTH) / 2)
-# define MINIMAP_Y (((720*64) / HEIGHT) / 2)
+# define MINIMAP_X 64
+# define MINIMAP_Y 64
 # define MAP_X ((MINIMAP_X * 2) * WIDTH / 1280)
 # define MAP_Y ((MINIMAP_Y * 2) * HEIGHT / 720)
 # define RAD (M_PI / 180.0f)
@@ -223,16 +223,6 @@ bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 /* 									RAYCASTS								  */
 /* ************************************************************************** */
 
-void	cast_ray(t_cub3d *cube);
-float	cast_rays(t_cub3d *cube); //actual raycaster
-float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
-float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
-
-/* ************************************************************************** */
-/* 									RAYCASTS								  */
-/* ************************************************************************** */
-
-void	cast_ray(t_cub3d *cube);
 float	cast_rays(t_cub3d *cube); //actual raycaster
 float	calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
 float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
@@ -246,13 +236,11 @@ int			get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
 void		choose_texture(t_cub3d *cube, int quarter);
 void		check_coordinate(t_cub3d *cube);
 
-
 /* ************************************************************************** */
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
-void    cast_ray(t_cub3d *cube);
 float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
