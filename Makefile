@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/12 14:57:15 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/12 17:09:29 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/horizontal_ray.c \
 		$(GAMEPLAY_DIR)/vertical_ray.c \
 		$(GAMEPLAY_DIR)/ray_cast.c \
+		$(GAMEPLAY_DIR)/ray_cast_2d.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/minimap_visuals.c \
@@ -55,7 +56,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(TEXTURE_DIR)/load_textures.c \
 		main.c
 
-# CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
+CFLAGS = -Wall -Werror -Wextra -Ofast -fsanitize=address -g3 -I./includes
 
 RM = rm -rf
 
@@ -78,7 +79,6 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(PARSE_DIR) $(OBJ_DIR)/$(INIT_DIR) $(OBJ_DIR)/$(VISUALS_DIR) \
 			 $(OBJ_DIR)/$(CUB_UTILS_DIR) $(OBJ_DIR)/$(GAMEPLAY_DIR) $(OBJ_DIR)/$(CLEAN_DIR) \
 			 $(OBJ_DIR)/$(TEXTURE_DIR) 
-
 
 $(LIBFT):
 	@$(MAKE) -C ./includes/libs/libft

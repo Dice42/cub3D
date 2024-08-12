@@ -1,17 +1,36 @@
-              NO            ./includes/levels/textures/eagle.xpm
-             SO        ./includes/levels/textures/greenlight.xpm
 
 
-         C                           42,     42,0
-        F                42   ,       42,          0
+        F                42   ,       220,          210
+        C                100 ,       100,        120
+
+
+
+
+
+
+
+
+
+NO            ./includes/levels/textures/eagle.xpm
+
+SO ./includes/levels/textures/greenlight.xpm
        EA              ./includes/levels/textures/greystone.xpm
        WE           ./includes/levels/textures/greystone.xpm
 
 
-
-
-111111111111111
-100001000001101
-10W000000000101
-100000110000111
-111111111111111
+1111111111111111111111111
+10000S00000000000 00000001
+11111111111111111111111101
+11111111111111111111111 01
+11111111111111111111111 11
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          

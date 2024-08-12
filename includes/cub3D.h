@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 15:00:56 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:26:33 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
 # define WIDTH 1080
 # define HEIGHT 1080
-# define MINIMAP_X 64
-# define MINIMAP_Y 64
+# define MINIMAP_X 21
+# define MINIMAP_Y 21
 # define MAP_X ((MINIMAP_X * 2) * WIDTH / 1280)
 # define MAP_Y ((MINIMAP_Y * 2) * HEIGHT / 720)
 # define RAD (M_PI / 180.0f)
@@ -150,6 +150,8 @@ typedef struct s_level
 	char		*ceiling_color_hex;
 	int			floor_color[3];
 	char		*floor_color_hex;
+	int			floor_clr;
+	int			ceiling_clr;
 	int			num_of_rows;
 	int			num_of_columns;
 	bool		start;
@@ -214,10 +216,10 @@ void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool free);
 /* 									Gameplay								  */
 /* ************************************************************************** */
 
-void		ft_start(t_cub3d *cube);
-int			handle_keyrelease(int key, t_cub3d *cube);
-int			handle_keypress(int key, t_cub3d *cube);
-bool		level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
+void	ft_start(t_cub3d *cube);
+int		handle_keyrelease(int key, t_cub3d *cube);
+int		handle_keypress(int key, t_cub3d *cube);
+bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision);
 
 /* ************************************************************************** */
 /* 									RAYCASTS								  */
@@ -231,16 +233,17 @@ float	calc_vertical_distance(t_cub3d *cube, float *ray_dir);
 /* 									Texture									  */
 /* ************************************************************************** */
 
-void		load_textures(t_cub3d *cube);
-int			get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
-void		choose_texture(t_cub3d *cube, int quarter);
-void		check_coordinate(t_cub3d *cube);
+void	load_textures(t_cub3d *cube);
+int		get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube);
+void	choose_texture(t_cub3d *cube, int quarter);
+void	check_coordinate(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 								Player Controller							  */
 /* ************************************************************************** */
 
 void	init_player_pos(t_cub3d *cube, int x, int y);
+void	init_player(t_cub3d *cube);
 float	cast_rays(t_cub3d *cube); //actual raycaster
 void	player_movement(t_cub3d *cube, bool dir[4]);
 void	player_rotation(t_cub3d *cube, bool rot_dir[2]);
@@ -252,13 +255,15 @@ void	update_player_direction(t_cub3d *cube);
 /* ************************************************************************** */
 
 void	draw_line(t_cub3d *cube);
+void	draw_map(t_cub3d *cube);
 void	draw_ray(t_cub3d *cube, int x0, int y0, int x1, int y1, int color);
 void	draw_player(t_cub3d *cube);
 void	draw_borders(t_cub3d *cube, int x, int y);
-int		draw_mini_map(t_cub3d *cube);
+void	draw_mini_map(t_cub3d *cube);
 void	draw_3d_rays(t_cub3d *cube);
 void	draw_floor(t_cub3d *cube);
 void	draw_ceiling(t_cub3d *cube);
+void minimap_rays(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 								Window Handling								  */

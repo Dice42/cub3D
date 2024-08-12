@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 17:03:04 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/09 09:46:30 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/12 21:23:31 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC =	ft_is/ft_isalnum.c \
 		ft_utils/ft_char_utils.c \
 		ft_utils/ft_free.c \
 		ft_utils/ft_itoa.c \
+		ft_utils/ft_atoi_hex.c \
 		ft_utils/ft_strjoin_gnl.c \
 		ft_utils/get_next_line.c \
 		ft_utils/get_next_line_bonus.c \

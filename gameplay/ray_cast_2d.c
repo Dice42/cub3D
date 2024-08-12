@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 13:44:39 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 22:59:41 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:06:15 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void minimap_rays(t_cub3d *cube)
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));
-	cube->player.rays.angle_step = (float)(60 * RAD)/ MINIMAP_X ;
-	for (int x = 0; x < MINIMAP_X; x++)
+	cube->player.rays.angle_step = (float)(60 * RAD)/ 500 ;
+	for (int x = 0; x < 500; x++)
 	{
 		ray_cast_2d(cube);
 		cube->player.rays.angle += cube->player.rays.angle_step;

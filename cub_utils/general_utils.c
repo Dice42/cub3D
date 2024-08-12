@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:32:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/25 16:49:17 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:30:26 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,17 @@ void	convert_rgb_hex(t_level *level)
 	{
 		convert_hex(level->floor_color[ctr.i], &ctr.j, f_hex);
 		convert_hex(level->ceiling_color[ctr.i], &ctr.c, c_hex);
-		level->floor_color_hex = ft_strjoin(level->floor_color_hex, f_hex);
-		level->ceiling_color_hex = ft_strjoin(level->ceiling_color_hex, c_hex);
+		if (ctr.i == 0)
+		{
+			level->floor_color_hex = ft_strjoin(level->floor_color_hex, f_hex);
+			level->ceiling_color_hex = ft_strjoin(level->ceiling_color_hex, c_hex);
+		}
+		level->floor_color_hex = ft_strjoin_free(level->floor_color_hex, f_hex, 1);
+		level->ceiling_color_hex = ft_strjoin_free(level->ceiling_color_hex, c_hex, 1);
 		ft_bzero(f_hex, sizeof(f_hex));
 		ft_bzero(c_hex, sizeof(c_hex));
 		ctr.i++;
 	}
+	level->floor_clr = ft_atoi_hex(level->floor_color_hex);
+	level->ceiling_clr = ft_atoi_hex(level->ceiling_color_hex);
 }

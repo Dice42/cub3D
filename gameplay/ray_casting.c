@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 14:33:25 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:26:17 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void draw_rays(t_cub3d *cube, int x, float distance)
 	
 	distance = distance * cos(cube->player.rays.angle - cube->player.transform.angle);
 	line_height = (float)(((MINIMAP_Y / 2) * HEIGHT) / distance);
+	// if (line_height > HEIGHT)
+	// 	line_height = HEIGHT;
 	texture_y = 0.0f;
 
 	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
