@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 18:26:17 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:44:33 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ void	reset_angles(float *angle)
  */
 void draw_3d_rays(t_cub3d *cube)
 {
+	int	i;
+
+	i = -1;
 	reset_angles(&cube->player.rays.angle);
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;
-	for (int x = 0; x < WIDTH; x++)
+	while (++i < WIDTH)
 	{
 		cube->player.rays.distance = cast_rays(cube);
 		check_coordinate(cube);
-		draw_rays(cube, x, cube->player.rays.distance);
+		draw_rays(cube, i, cube->player.rays.distance);
 		draw_ray(cube, cube->player.rays.rx, cube->player.rays.ry,
 			cube->player.rays.intersection_x, cube->player.rays.intersection_y,
 			cube->player.rays.clr);

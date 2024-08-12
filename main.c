@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 21:03:37 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:39:10 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,9 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	if (!init_cube(&cube))
-		return (0); //print error
+		return (0);
 	if (!validate_level(av[1], &cube.level, &cube.player))
-	{
-		printf("ERROR!\n");
-		return (0); //print error
-	}
-	// 
-	//printf("the minimap x is %d and minimap y is %d\n", MINIMAP_X, MINIMAP_Y);
+		return (0);
 	ft_start(&cube);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 21:26:33 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:43:09 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,10 @@ typedef struct s_level
 	char		*full_file;
 	int			row_start_point;
 	t_textures	textures;
-	int			ceiling_color[3];
 	char		*ceiling_color_hex;
-	int			floor_color[3];
 	char		*floor_color_hex;
+	int			ceiling_color[3];
+	int			floor_color[3];
 	int			floor_clr;
 	int			ceiling_clr;
 	int			num_of_rows;
@@ -263,7 +263,7 @@ void	draw_mini_map(t_cub3d *cube);
 void	draw_3d_rays(t_cub3d *cube);
 void	draw_floor(t_cub3d *cube);
 void	draw_ceiling(t_cub3d *cube);
-void minimap_rays(t_cub3d *cube);
+void	minimap_rays(t_cub3d *cube);
 
 /* ************************************************************************** */
 /* 								Window Handling								  */

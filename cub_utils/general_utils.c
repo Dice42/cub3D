@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:32:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 21:30:26 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:35:12 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,6 @@ void	convert_rgb_hex(t_level *level)
 	}
 	level->floor_clr = ft_atoi_hex(level->floor_color_hex);
 	level->ceiling_clr = ft_atoi_hex(level->ceiling_color_hex);
+	free(level->floor_color_hex);
+	free(level->ceiling_color_hex);
 }

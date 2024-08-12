@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/12 18:48:52 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/12 21:54:53 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	draw_borders(t_cub3d *cube, int x, int y)
 		i++;
 	}
 }
+
 void	draw_background(t_cub3d *cube, int x, int y)
 {
 	int	i;
@@ -46,7 +47,6 @@ void	draw_background(t_cub3d *cube, int x, int y)
 		i++;
 	}
 }
-
 
 void	init_player(t_cub3d *cube)
 {
@@ -66,6 +66,7 @@ void	init_player(t_cub3d *cube)
 		y++;
 	}
 }
+
 void	draw_mini_map(t_cub3d *cube)
 {
 	int	x;
@@ -88,9 +89,9 @@ void	draw_mini_map(t_cub3d *cube)
 		y++;
 	}
 }
+
 void	draw_map(t_cub3d *cube)
 {
-
 	init_mlx_img(cube);
 	draw_floor(cube);
 	draw_ceiling(cube);
