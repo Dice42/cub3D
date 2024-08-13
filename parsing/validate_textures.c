@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:51 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 17:33:35 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:32:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,50 @@ bool	set_texture(t_level *level, char direction, int *i)
 	return ((*i)++, true);
 }
 
+bool	itirate_clr_info(t_level *level, t_ctr *ctr)
+{
+	if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "F ", 2))
+	{
+		ctr->i++;
+		return (true);
+	}
+	else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "C ", 2))
+	{
+		ctr->i++;
+		return (true);
+	}
+	return (false);
+}
+
+bool	itirate_dir_info(t_level *level, t_ctr *ctr)
+{
+	if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "NO", 2))
+	{
+		if (!set_texture(level, 'N', &ctr->i))
+			return (false);
+	}
+	else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "SO", 2))
+	{
+		if (!set_texture(level, 'S', &ctr->i))
+			return (false);
+	}
+	else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "WE", 2))
+	{
+		if (!set_texture(level, 'W', &ctr->i))
+			return (false);
+	}
+	else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr->i]), "EA", 2))
+	{
+		if (!set_texture(level, 'E', &ctr->i))
+			return (false);
+	}
+	else if (itirate_clr_info(level, ctr))
+		return (true);
+	else
+		return (false);
+	return (true);
+}
+
 /**
  * @brief check the validity of the textures
  * 			by checking whether the textures exist within a
@@ -63,31 +107,7 @@ bool	validate_textures_info(t_level *level)
 	init_ctrs(&ctr);
 	while (ctr.i < 6)
 	{
-		if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "NO", 2))
-		{
-			if (!set_texture(level, 'N', &ctr.i))
-				return (false);
-		}
-		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "SO", 2))
-		{
-			if (!set_texture(level, 'S', &ctr.i))
-				return (false);
-		}
-		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "WE", 2))
-		{
-			if (!set_texture(level, 'W', &ctr.i))
-				return (false);
-		}
-		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "EA", 2))
-		{
-			if (!set_texture(level, 'E', &ctr.i))
-				return (false);
-		}
-		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "F ", 2))
-			ctr.i++;
-		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "C ", 2))
-			ctr.i++;
-		else
+		if (!itirate_dir_info(level, &ctr))
 			return (false);
 	}
 	return (true);
