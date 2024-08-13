@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 16:50:52 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 21:53:30 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:56:32 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	draw_ceiling(t_cub3d *cube)
 
 void	draw_floor(t_cub3d *cube)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < WIDTH)

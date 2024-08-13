@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:14:10 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:57:38 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 	}
 	return (true);
 }
-
 
 /**
  * @brief fill the visited array with false in intial state

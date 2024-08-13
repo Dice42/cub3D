@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:53:55 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:57:10 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,22 @@ int	get_texture_pixel(t_img_data *texture, int x, int y, t_cub3d *cube)
 		x = 0;
 	if (y < 0 || y >= cube->data.texture->height)
 		y = 0;
-	data = texture->addr + (y * texture->line_length + x 
+	data = texture->addr + (y * texture->line_length + x
 			* (texture->bits_per_pixel / 8));
 	return (*(unsigned int *)data);
 }
 
-void 	set_quarter_texture(t_cub3d *cube, int img1, int img2)
+void	set_quarter_texture(t_cub3d *cube, int img1, int img2)
 {
 	float	h_dis;
-	
+
 	h_dis = cube->player.rays.horizontal_distance;
 	if (cube->player.rays.distance == h_dis)
 		cube->data.texture = &cube->data.textures[img1];
 	else
 		cube->data.texture = &cube->data.textures[img2];
 }
+
 void	choose_texture(t_cub3d *cube, int quarter)
 {
 	if (quarter == 1)

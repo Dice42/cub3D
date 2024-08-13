@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:53:23 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:59:12 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@ void	draw_rays(t_cub3d *cube, int i, float distance)
 	line.offset = HEIGHT / 2 - (line.height / 2);
 	line.end_y = line.offset + line.height;
 	if (cube->player.rays.distance == cube->player.rays.vertical_distance)
-		line.texture_x = ((float)((int)cube->player.rays.point_y
-					% MINIMAP_X) / (float)(MINIMAP_X))
-			* cube->data.texture->width;
+		line.texture_x = ((float)((int)cube->player.rays.point_y % MINIMAP_X)
+				/ (float)(MINIMAP_X)) * cube->data.texture->width;
 	if (cube->player.rays.distance == cube->player.rays.horizontal_distance)
-		line.texture_x = ((float)((int)cube->player.rays.point_x
-					% MINIMAP_X) / (float)(MINIMAP_X))
-			* cube->data.texture->width;
+		line.texture_x = ((float)((int)cube->player.rays.point_x % MINIMAP_X)
+				/ (float)(MINIMAP_X)) * cube->data.texture->width;
 	line.texture_y_step = (float)cube->data.texture->height / line.height;
 	while (line.offset < line.end_y)
 	{
@@ -63,7 +61,8 @@ void	draw_3d_rays(t_cub3d *cube)
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	if (cube->player.transform.angle == 1.5)
 		cube->player.transform.angle = 1.55;
-	cube->player.rays.angle = (cube->player.transform.angle - (30 * (M_PI / 180.0f)));
+	cube->player.rays.angle = (cube->player.transform.angle - (30 * (M_PI
+					/ 180.0f)));
 	reset_angles(&cube->player.rays.angle);
 	cube->player.rays.angle_step = (float)(60 * (M_PI / 180.0f)) / WIDTH;
 	while (++i < WIDTH)

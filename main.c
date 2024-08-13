@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:12:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 20:58:50 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 23:01:33 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3D.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_cub3d	cube;
 
