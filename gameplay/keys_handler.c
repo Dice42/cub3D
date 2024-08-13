@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 12:43:14 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 22:24:03 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:10:44 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	set_keys_setting(t_cub3d *cube, int key, bool setting)
 	if (key == LOOK_LEFT)
 		cube->player.rot_dir[1] = setting;
 }
-
 
 int	handle_keypress(int key, t_cub3d *cube)
 {

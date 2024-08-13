@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 18:21:41 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 21:51:27 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	draw_borders(t_cub3d *cube, int x, int y)
 		j = 0;
 		while (j < MINIMAP_Y - 1)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i,
-				 y * MINIMAP_Y + j, 0xADD8E6);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y
+				+ j, 0xADD8E6);
 			j++;
 		}
 		i++;
@@ -42,8 +42,8 @@ void	draw_background(t_cub3d *cube, int x, int y)
 		j = 0;
 		while (j < MINIMAP_Y)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i,
-				y * MINIMAP_Y + j, 0x8e918a);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y
+				+ j, 0x8e918a);
 			j++;
 		}
 		i++;

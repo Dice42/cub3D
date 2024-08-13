@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:23:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:17:11 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ typedef struct s_counters
 	int	c;	
 }	t_ctr;
 
+typedef struct s_draw_line
+{
+	float	height;
+	float	end_y;
+	float	offset;
+	float	texture_y;
+	float	texture_x;
+	float	texture_y_step;
+	int		color;
+} t_draw_line;
+
 typedef struct s_transform
 {
 	float	x0;
@@ -100,7 +111,6 @@ typedef struct s_rays
 	float	distance;
 	float	previous_distance;
 	int		clr;
-	float	line_offset;
 }	t_rays;
 
 typedef struct s_player
@@ -183,6 +193,7 @@ typedef struct s_cub3d
 
 void	init_ctrs(t_ctr *ctr);
 bool	init_cube(t_cub3d *cube);
+void	init_draw_line(t_draw_line *line);
 void 	convert_rgb_hex(t_level *level);
 
 /* ************************************************************************** */
@@ -265,6 +276,5 @@ void	minimap_rays(t_cub3d *cube);
 void	init_mlx_img(t_cub3d *cube);
 int		close_window(t_cub3d *cube);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
-
 
 #endif

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/12 22:20:15 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:12:39 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void normalize_vector(float *vector)
+void	normalize_vector(float *vector)
 {
-	float magnitude;
+	float	magnitude;
 
 	magnitude = sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
 	if (magnitude > 0)
@@ -57,15 +57,15 @@ float	set_distance(t_cub3d *cube, bool vertical)
 	return (0);
 }
 
-
 float	find_smaller_distance(t_cub3d *cube)
 {
 	float	vertical;
 	float	horizontal;
 
-	vertical = roundf(cube->player.rays.vertical_distance * 100)/100;
-	horizontal = roundf(cube->player.rays.horizontal_distance * 100)/100;
-	if (cube->player.rays.vertical_distance == 0 && cube->player.rays.horizontal_distance == 0)
+	vertical = roundf(cube->player.rays.vertical_distance * 100) / 100;
+	horizontal = roundf(cube->player.rays.horizontal_distance * 100) / 100;
+	if (cube->player.rays.vertical_distance == 0
+		&& cube->player.rays.horizontal_distance == 0)
 		return (cube->player.rays.previous_distance);
 	if (cube->player.rays.vertical_distance == 0)
 		return (set_distance(cube, false));
@@ -91,12 +91,11 @@ float	cast_rays(t_cub3d *cube)
 {
 	float	ray_dir[2];
 
-	
 	ft_bzero(&ray_dir[0], 2);
 	init_ray_dir(cube, &ray_dir[0]);
-	cube->player.rays.horizontal_distance =
-		calc_horizontal_distance(cube, &ray_dir[0]);
-	cube->player.rays.vertical_distance =
-		calc_vertical_distance(cube, &ray_dir[0]);
+	cube->player.rays.horizontal_distance = calc_horizontal_distance(cube,
+			&ray_dir[0]);
+	cube->player.rays.vertical_distance = calc_vertical_distance(cube,
+			&ray_dir[0]);
 	return (find_smaller_distance(cube));
 }

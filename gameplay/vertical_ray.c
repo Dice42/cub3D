@@ -6,17 +6,19 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:51:32 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/11 22:59:41 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:18:02 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	init_vertical_ray(t_cub3d *cube, float *ray_dir, float *step, float *pos)
+void	init_vertical_ray(t_cub3d *cube, float *ray_dir, float *step,
+		float *pos)
 {
 	if (ray_dir[0] > 0)
 	{
-		pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X + MINIMAP_X;
+		pos[0] = (int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X
+			+ MINIMAP_X;
 		step[0] = MINIMAP_X;
 	}
 	else
@@ -24,16 +26,18 @@ void	init_vertical_ray(t_cub3d *cube, float *ray_dir, float *step, float *pos)
 		pos[0] = ((int)(cube->player.rays.rx / MINIMAP_X) * MINIMAP_X) - 0.0001;
 		step[0] = -MINIMAP_X;
 	}
-	pos[1] = cube->player.rays.ry + (pos[0] - cube->player.rays.rx) * (ray_dir[1] / ray_dir[0]);
-	step[1]= step[0] * (ray_dir[1] / ray_dir[0]);
+	pos[1] = cube->player.rays.ry + (pos[0] - cube->player.rays.rx)
+		* (ray_dir[1] / ray_dir[0]);
+	step[1] = step[0] * (ray_dir[1] / ray_dir[0]);
 }
 
 /**
  * @brief Get the vertical intersection of the ray
  * @param cube cube struct reference
- * @param ray_dir 
+ * @param ray_dir
  */
-bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step, float *init_pos)
+bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step,
+		float *init_pos)
 {
 	int	x;
 	int	y;
@@ -45,7 +49,8 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step, float
 	{
 		x = (int)(init_pos[0] / MINIMAP_X);
 		y = (int)(init_pos[1] / MINIMAP_Y);
-		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0 && y < cube->level.num_of_rows))
+		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0
+				&& y < cube->level.num_of_rows))
 		{
 			if (cube->level.map[y][x] == '1')
 			{
@@ -53,11 +58,11 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step, float
 				cube->player.rays.vertical_intersection_y = init_pos[1];
 				return (true);
 			}
-				init_pos[0] += step[0];
-				init_pos[1] += step[1];
+			init_pos[0] += step[0];
+			init_pos[1] += step[1];
 		}
 		else
-			break;
+			break ;
 	}
 	return (false);
 }

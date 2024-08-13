@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/13 15:21:08 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/13 21:52:15 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/ray_cast_2d.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(VISUALS_DIR)/player_visuals.c \
-		$(VISUALS_DIR)/minimap_visuals.c \
+		$(VISUALS_DIR)/visuals.c \
 		$(VISUALS_DIR)/draw_utils.c \
 		$(VISUALS_DIR)/3d_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \

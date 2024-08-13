@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:32:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:24:07 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:05:45 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ void	init_ctrs(t_ctr *ctr)
 	ctr->i = 0;
 	ctr->j = 0;
 	ctr->c = 0;
+}
+
+void	init_draw_line(t_draw_line *line)
+{
+	line->height = 0;
+	line->offset = 0;
+	line->end_y = 0;
+	line->texture_y = 0.0f;
+	line->texture_x = 0.0f;
+	line->texture_y_step = 0.0f;
+	line->color = 0;
 }
 
 void	convert_hex(int num, int *o, char *hex)
