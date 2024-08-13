@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2024/08/13 23:32:35 by ssibai           ###   ########.fr       */
-=======
-/*   Updated: 2024/08/13 23:11:16 by ssibai           ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2024/08/13 23:34:58 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

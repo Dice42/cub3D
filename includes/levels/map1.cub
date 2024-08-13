@@ -1,7 +1,6 @@
 
 
         F        220,       70,          190
-        C               102,       +74,           1                 
 
 
 
@@ -13,14 +12,15 @@
 
 NO            ./includes/levels/textures/eagle.xpm
 
-SO ./includes/levels/textures/greenlight.xpm
        EA              ./includes/levels/textures/greystone.xpm
        WE           ./includes/levels/textures/greystone.xpm
+        C               102,       +74,           1                 
 
 
 
 
 
+SO ./includes/levels/textures/greenlight.xpm
 1111
 10S1
 1111

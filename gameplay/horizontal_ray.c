@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:15:46 by ssibai            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2024/08/13 23:16:06 by mohammoh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/13 23:13:06 by ssibai           ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2024/08/13 23:36:53 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +62,7 @@ bool	get_horizontal_intersection(t_cub3d *cube, float *ray_dir, float *step,
 			init_pos[1] += step[1];
 		}
 		else
-			break;
+			break ;
 	}
 	return (false);
 }
