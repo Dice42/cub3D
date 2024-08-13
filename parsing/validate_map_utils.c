@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 20:21:27 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 20:57:55 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 	char	entry;
 
 	entry = level->map[x][y];
-	if (x > 0 && x < (ft_strlen(level->map[x]) - 1))
+	if (x > 0 && x < level->num_of_rows - 1)
 	{
-		if (level->map[x-1][y] == '0')
+		if (level->map[x - 1][y] == '0')
 			return (false);
 		if (level->map[x + 1][y] == '0')
 			return (false);
