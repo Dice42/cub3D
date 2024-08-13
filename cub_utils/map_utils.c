@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:25:54 by ssibai            #+#    #+#             */
-/*   Updated: 2024/07/20 22:16:40 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:05:45 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	get_columns_num(t_level *level)
 	{
 		ctr.j = 0;
 		while (level->map[ctr.i][ctr.j])
-		{
 			ctr.j++;
-		}
 		if (ctr.j > level->num_of_columns)
 			level->num_of_columns = ctr.j;
 		ctr.i++;
 	}
 }
+

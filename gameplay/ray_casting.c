@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 21:44:33 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:14:41 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ void	reset_angles(float *angle)
  */
 void draw_3d_rays(t_cub3d *cube)
 {
-	int	i;
-
-	i = -1;
-	reset_angles(&cube->player.rays.angle);
 	cube->player.rays.rx = cube->player.transform.x0 + 3;
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
+	if (cube->player.transform.angle == 1.5)
+		cube->player.transform.angle = 1.55;
 	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));
+	reset_angles(&cube->player.rays.angle);
 	cube->player.rays.angle_step = (float)(60 * RAD)/ WIDTH ;
 	while (++i < WIDTH)
 	{
@@ -77,8 +76,8 @@ void draw_3d_rays(t_cub3d *cube)
 		draw_ray(cube, cube->player.rays.rx, cube->player.rays.ry,
 			cube->player.rays.intersection_x, cube->player.rays.intersection_y,
 			cube->player.rays.clr);
-		reset_angles(&cube->player.rays.angle);
 		cube->player.rays.angle += cube->player.rays.angle_step;
+		reset_angles(&cube->player.rays.angle);
 	}
 }
 

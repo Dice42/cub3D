@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 16:25:35 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:14:47 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ bool	validate_map(t_level *level, t_player *player)
 	init_ctrs(&ctr);
 	copy_map(level);
 	get_columns_num(level);
+
 	level->visited = ft_calloc(sizeof(bool *), level->num_of_rows + 1);
 	fill_visited(level->visited, level->map, level->num_of_rows);
 	if (!validate_map_content(level->map, level->num_of_rows, player))

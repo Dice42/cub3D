@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 15:02:51 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:13:33 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+bool	check_space_surroundings(t_level *level, int x, int y)
+{
+	char	entry;
+
+	entry = level->map[x][y];
+	if (x > 0)
+	{
+		if (level->map[x-1][y] == '0')
+			return (false);
+	}
+	if (x < ft_strlen(level->map[x]) - 1)
+	{
+		if (level->map[x + 1][y] == '0')
+			return (false);
+	}
+	if (y > 0)
+	{
+		if (level->map[x][y - 1] == '0')
+			return (false);
+	}
+	if (y < level->num_of_columns - 1)
+	{
+		if (level->map[x][y + 1] == '0')
+			return (false);
+	}
+	return (true);
+}
+
 
 /**
  * @brief makes a copy of the given map
@@ -23,6 +52,7 @@ void	copy_map(t_level *level)
 	init_ctrs(&ctr);
 	ctr.i = 6;
 	level->num_of_rows = ft_arrlen(level->map_info + 6);
+	//level->init_map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
 	level->map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
 	while (level->map_info[ctr.i])
 	{
