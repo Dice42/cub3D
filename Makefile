@@ -6,15 +6,13 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/13 21:52:15 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/13 22:55:16 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D = cub3D
 
 PARSE_DIR = ./parsing
-
-INIT_DIR = ./init
 
 CUB_UTILS_DIR = ./cub_utils
 
@@ -33,7 +31,7 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_map.c \
 		$(PARSE_DIR)/validate_clr.c \
 		$(PARSE_DIR)/validate_map_utils.c \
-		$(INIT_DIR)/init.c \
+		$(CUB_UTILS_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \
 		$(CUB_UTILS_DIR)/map_utils.c \
 		$(GAMEPLAY_DIR)/cub3D.c \
@@ -46,11 +44,9 @@ SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(GAMEPLAY_DIR)/horizontal_ray.c \
 		$(GAMEPLAY_DIR)/vertical_ray.c \
 		$(GAMEPLAY_DIR)/ray_cast.c \
-		$(GAMEPLAY_DIR)/ray_cast_2d.c \
 		$(GAMEPLAY_DIR)/ray_casting.c \
 		$(VISUALS_DIR)/player_visuals.c \
 		$(VISUALS_DIR)/visuals.c \
-		$(VISUALS_DIR)/draw_utils.c \
 		$(VISUALS_DIR)/3d_visuals.c \
 		$(CLEAN_DIR)/error_handler.c \
 		$(TEXTURE_DIR)/texture_utils.c \

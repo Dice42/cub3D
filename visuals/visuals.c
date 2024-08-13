@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:30:42 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:31:40 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,6 @@ void	draw_map(t_cub3d *cube)
 	draw_floor(cube);
 	draw_ceiling(cube);
 	draw_3d_rays(cube);
-	/*bonus part*/
-	// draw_mini_map(cube);
-	// minimap_rays(cube);
-	// draw_line(cube);
 	mlx_put_image_to_window(cube->data.mlx_ptr, cube->data.win,
 		cube->data.img.img, 0, 0);
 }

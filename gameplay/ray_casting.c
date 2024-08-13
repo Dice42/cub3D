@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:10:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:53:23 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	draw_rays(t_cub3d *cube, int i, float distance)
 	line.offset = HEIGHT / 2 - (line.height / 2);
 	line.end_y = line.offset + line.height;
 	if (cube->player.rays.distance == cube->player.rays.vertical_distance)
-		line.texture_x = ((float)((int)cube->player.rays.intersection_y
+		line.texture_x = ((float)((int)cube->player.rays.point_y
 					% MINIMAP_X) / (float)(MINIMAP_X))
 			* cube->data.texture->width;
 	if (cube->player.rays.distance == cube->player.rays.horizontal_distance)
-		line.texture_x = ((float)((int)cube->player.rays.intersection_x
+		line.texture_x = ((float)((int)cube->player.rays.point_x
 					% MINIMAP_X) / (float)(MINIMAP_X))
 			* cube->data.texture->width;
 	line.texture_y_step = (float)cube->data.texture->height / line.height;
@@ -63,17 +63,14 @@ void	draw_3d_rays(t_cub3d *cube)
 	cube->player.rays.ry = cube->player.transform.y0 + 3;
 	if (cube->player.transform.angle == 1.5)
 		cube->player.transform.angle = 1.55;
-	cube->player.rays.angle = (cube->player.transform.angle - (30 * RAD));
+	cube->player.rays.angle = (cube->player.transform.angle - (30 * (M_PI / 180.0f)));
 	reset_angles(&cube->player.rays.angle);
-	cube->player.rays.angle_step = (float)(60 * RAD) / WIDTH;
+	cube->player.rays.angle_step = (float)(60 * (M_PI / 180.0f)) / WIDTH;
 	while (++i < WIDTH)
 	{
 		cube->player.rays.distance = cast_rays(cube);
 		check_coordinate(cube);
 		draw_rays(cube, i, cube->player.rays.distance);
-		draw_ray(cube, cube->player.rays.rx, cube->player.rays.ry,
-			cube->player.rays.intersection_x, cube->player.rays.intersection_y,
-			cube->player.rays.clr);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 		reset_angles(&cube->player.rays.angle);
 	}

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:53:28 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 21:53:17 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:42:26 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int	close_window(t_cub3d *cube)
 {
 	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 	mlx_destroy_window(cube->data.mlx_ptr, cube->data.win);
-	// call cleanup and exit (0);
 	exit(0);
-	// exit_game(sl);
 	return (0);
 }
 

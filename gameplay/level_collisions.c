@@ -6,13 +6,13 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:46:30 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/11 19:55:13 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:34:31 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision)
+bool	level_collision(t_cub3d *cube, int x, int y, bool player_collision)
 {
 	int	side_length;
 
@@ -24,11 +24,14 @@ bool	level_collision(t_cub3d *cube, int x, int y, bool	player_collision)
 	{
 		if (cube->level.map[y / MINIMAP_Y][x / MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[y / MINIMAP_Y][(x + side_length) / MINIMAP_X] == '1')
+		else if (cube->level.map[y / MINIMAP_Y][(x + side_length)
+			/ MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[(y + side_length) / MINIMAP_Y][x / MINIMAP_X] == '1')
+		else if (cube->level.map[(y + side_length) / MINIMAP_Y][x
+			/ MINIMAP_X] == '1')
 			return (false);
-		else if (cube->level.map[(y + side_length) / MINIMAP_Y][(x + side_length) / MINIMAP_X] == '1')
+		else if (cube->level.map[(y + side_length) / MINIMAP_Y][(x
+				+ side_length) / MINIMAP_X] == '1')
 			return (false);
 		else
 			return (true);

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:42:18 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 14:59:14 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:53:55 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_coordinate(t_cub3d *cube)
 {
 	float	angle;
 
-	angle = fabs(cube->player.rays.angle * DEG);
+	angle = fabs(cube->player.rays.angle * (180 / PI));
 	if (angle >= 360)
 		angle = 0;
 	if (angle >= 0 && angle <= 90)

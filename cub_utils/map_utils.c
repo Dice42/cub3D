@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:25:54 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:30:19 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:43:06 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	copy_init_map(t_level *level)
 		ctr.i++;
 	}
 }
+
 void	make_map(t_level *level)
 {
 	t_ctr	ctr;
@@ -60,7 +61,7 @@ void	make_map(t_level *level)
 		while (ctr.j < ft_strlen(level->init_map[ctr.i]))
 		{
 			level->map[ctr.i][ctr.j] = level->init_map[ctr.i][ctr.j];
-			ctr.j ++;
+			ctr.j++;
 		}
 		if (ctr.j < level->num_of_columns)
 		{
@@ -68,6 +69,6 @@ void	make_map(t_level *level)
 				level->map[ctr.i][ctr.j++] = '1';
 		}
 		level->map[ctr.i][ctr.j] = '\0';
-		ctr.i ++;
+		ctr.i++;
 	}
 }

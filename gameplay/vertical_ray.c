@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:51:32 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:18:02 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:38:13 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step,
 		{
 			if (cube->level.map[y][x] == '1')
 			{
-				cube->player.rays.vertical_intersection_x = init_pos[0];
-				cube->player.rays.vertical_intersection_y = init_pos[1];
+				cube->player.rays.vertical_point_x = init_pos[0];
+				cube->player.rays.vertical_point_y = init_pos[1];
 				return (true);
 			}
 			init_pos[0] += step[0];

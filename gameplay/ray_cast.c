@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:14:13 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:12:39 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:40:58 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ float	set_distance(t_cub3d *cube, bool vertical)
 	if (vertical)
 	{
 		cube->player.rays.clr = BLUE;
-		cube->player.rays.intersection_x = cube->player.rays.vertical_intersection_x;
-		cube->player.rays.intersection_y = cube->player.rays.vertical_intersection_y;
-		cube->player.rays.previous_distance = cube->player.rays.vertical_distance;
+		cube->player.rays.point_x = cube->player.rays.vertical_point_x;
+		cube->player.rays.point_y = cube->player.rays.vertical_point_y;
+		cube->player.rays.prev_distance = cube->player.rays.vertical_distance;
 		return (cube->player.rays.vertical_distance);
 	}
 	else
 	{
-		cube->player.rays.intersection_x = cube->player.rays.horizontal_intersection_x;
-		cube->player.rays.intersection_y = cube->player.rays.horizontal_intersection_y;
+		cube->player.rays.point_x = cube->player.rays.horizontal_point_x;
+		cube->player.rays.point_y = cube->player.rays.horizontal_point_y;
 		cube->player.rays.clr = GREEN;
-		cube->player.rays.previous_distance = cube->player.rays.horizontal_distance;
+		cube->player.rays.prev_distance = cube->player.rays.horizontal_distance;
 		return (cube->player.rays.horizontal_distance);
 	}
 	return (0);
@@ -66,7 +66,7 @@ float	find_smaller_distance(t_cub3d *cube)
 	horizontal = roundf(cube->player.rays.horizontal_distance * 100) / 100;
 	if (cube->player.rays.vertical_distance == 0
 		&& cube->player.rays.horizontal_distance == 0)
-		return (cube->player.rays.previous_distance);
+		return (cube->player.rays.prev_distance);
 	if (cube->player.rays.vertical_distance == 0)
 		return (set_distance(cube, false));
 	else if (cube->player.rays.horizontal_distance == 0)
