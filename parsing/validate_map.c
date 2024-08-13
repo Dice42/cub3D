@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:21 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 20:17:38 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:12:02 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,7 @@ bool	validate_map_content(char **map, int n_rows, t_player *player)
 		ctr.j = 0;
 		while (map[ctr.i][ctr.j])
 		{
-			if (map[ctr.i][ctr.j] == '0' || map[ctr.i][ctr.j] == '1'
-				|| map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
-				|| map[ctr.i][ctr.j] == 'E' || map[ctr.i][ctr.j] == 'W'
-				|| map[ctr.i][ctr.j] == ' ')
-			{
-				if ((map[ctr.i][ctr.j] == 'N' || map[ctr.i][ctr.j] == 'S'
-						|| map[ctr.i][ctr.j] == 'E'
-						|| map[ctr.i][ctr.j] == 'W'))
-				{
-					if (player_found)
-						return (false);
-					player_found = true;
-					player->orientation = map[ctr.i][ctr.j];
-				}
-				ctr.j++;
-			}
-			else
+			if (!check_map_content(map, &ctr, player, &player_found))
 				return (false);
 		}
 		ctr.i++;
@@ -78,26 +62,9 @@ bool	check_sides(int x, int y, t_level *level, char *expected)
 		entry = level->map[x][y];
 		if (!ft_strchr(expected, entry))
 			return (false);
-		if (entry == ' ')
-		{
-			if (!check_space_surroundings(level, x, y))
-				return (false);
-			exp = " 1";
-		}
-		else if (entry == '1')
-			exp = " 10NESW";
-		else if (entry == '0')
-		{
-			if (!check_if_valid(x, y, level))
-				return (false);
-			exp = "10NESW";
-		}
-		else if (entry == 'N' || entry == 'S' || entry == 'W' || entry == 'E')
-		{
-			exp = "10";
-			if (!check_if_valid(x, y, level))
-				return (false);
-		}
+		exp = set_expected(x, y, level);
+		if (!exp)
+			return (false);
 	}
 	level->visited[x][y] = true;
 	return (check_sides((x - 1), (y), level, exp) && check_sides((x + 1), (y),

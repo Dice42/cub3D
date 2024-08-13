@@ -6,11 +6,63 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 20:57:55 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:14:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+bool	check_map_content(char **map, t_ctr *ctr, t_player *plyr, bool *found)
+{
+	if (map[ctr->i][ctr->j] == '0' || map[ctr->i][ctr->j] == '1'
+		|| map[ctr->i][ctr->j] == 'N' || map[ctr->i][ctr->j] == 'S'
+		|| map[ctr->i][ctr->j] == 'E' || map[ctr->i][ctr->j] == 'W'
+		|| map[ctr->i][ctr->j] == ' ')
+	{
+		if ((map[ctr->i][ctr->j] == 'N' || map[ctr->i][ctr->j] == 'S'
+				|| map[ctr->i][ctr->j] == 'E'
+				|| map[ctr->i][ctr->j] == 'W'))
+		{
+			if (*found)
+				return (false);
+			*found = true;
+			plyr->orientation = map[ctr->i][ctr->j];
+		}
+		ctr->j++;
+	}
+	else
+		return (false);
+	return (true);
+}
+
+char	*set_expected(int x, int y, t_level *level)
+{
+	char	*exp;
+
+	exp = NULL;
+	if (level->map[x][y] == ' ')
+	{
+		if (!check_space_surroundings(level, x, y))
+			return (NULL);
+		exp = " 1";
+	}
+	else if (level->map[x][y] == '1')
+		exp = " 10NESW";
+	else if (level->map[x][y] == '0')
+	{
+		if (!check_if_valid(x, y, level))
+			return (NULL);
+		exp = "10NESW";
+	}
+	else if (level->map[x][y] == 'N' || level->map[x][y] == 'S'
+		|| level->map[x][y] == 'W' || level->map[x][y] == 'E')
+	{
+		exp = "10";
+		if (!check_if_valid(x, y, level))
+			return (NULL);
+	}
+	return (exp);
+}
 
 bool	check_space_surroundings(t_level *level, int x, int y)
 {
@@ -34,68 +86,6 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 	return (true);
 }
 
-
-/**
- * @brief makes an inital copy of the given map
- * @param level
- */
-void	copy_init_map(t_level *level)
-{
-	t_ctr	ctr;
-
-	init_ctrs(&ctr);
-	ctr.i = 6;
-	level->num_of_rows = ft_arrlen(level->map_info + 6);
-	level->init_map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
-	while (level->map_info[ctr.i])
-	{
-		level->init_map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
-		ctr.j++;
-		ctr.i++;
-	}
-}
-
-void	make_map(t_level *level)
-{
-	t_ctr	ctr;
-
-	init_ctrs(&ctr);
-	level->map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
-	while (ctr.i < level->num_of_rows)
-	{
-		ctr.j = 0;
-		level->map[ctr.i] = ft_calloc(sizeof(char), level->num_of_columns + 1);
-		while (ctr.j < ft_strlen(level->init_map[ctr.i]))
-		{
-			printf("%c", level->init_map[ctr.i][ctr.j]);
-			level->map[ctr.i][ctr.j] = level->init_map[ctr.i][ctr.j];
-			printf("%c ", level->map[ctr.i][ctr.j]);
-			ctr.j ++;
-		}
-		printf("\n");
-		if (ctr.j < level->num_of_columns)
-		{
-			printf("less than\n");
-			while (ctr.j < level->num_of_columns)
-				level->map[ctr.i][ctr.j++] = '1';
-		}
-		level->map[ctr.i][ctr.j] = '\0';
-		printf("strlen: %d\n", ft_strlen(level->map[ctr.i]));
-		printf("init strlen: %d\n", ft_strlen(level->init_map[ctr.i]));
-		ctr.i ++;
-	}
-	printf("init size : %d\n", ft_strlen(level->init_map[0]));
-	int i = 0;
-	while (i < level->num_of_rows)
-	{
-		int j = 0;
-		while (level->map[i][j] != '\0')
-			printf("%c", level->map[i][j++]);
-		printf("\n");
-		i ++;
-	}
-	printf("size : %d\n", ft_strlen(level->map[0]));
-}
 
 /**
  * @brief fill the visited array with false in intial state
