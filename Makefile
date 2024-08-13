@@ -6,7 +6,7 @@
 #    By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/16 10:37:13 by mohammoh          #+#    #+#              #
-#    Updated: 2024/08/12 17:09:29 by mohammoh         ###   ########.fr        #
+#    Updated: 2024/08/13 15:21:08 by mohammoh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ VISUALS_DIR = ./visuals
 SRC =	$(PARSE_DIR)/level_parsing.c \
 		$(PARSE_DIR)/validate_textures.c \
 		$(PARSE_DIR)/validate_map.c \
+		$(PARSE_DIR)/validate_clr.c \
 		$(PARSE_DIR)/validate_map_utils.c \
 		$(INIT_DIR)/init.c \
 		$(CUB_UTILS_DIR)/general_utils.c \

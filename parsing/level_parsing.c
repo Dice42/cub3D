@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/12 15:03:34 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:25:04 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,58 +65,6 @@ bool	validate_order(char **map)
 		else
 			return (false);
 		ctr.j = 0;
-	}
-	return (true);
-}
-
-bool	validate_rgb_values(char *rgb, t_level *level)
-{
-	bool	floor;
-	char	**rgb_list;
-	int		i;
-	int		temp;
-
-	i = 0;
-	temp = 0;
-	floor = true;
-	if (rgb[0] == 'C')
-		floor = false;
-	if (ft_count_char(rgb, ',') != 2)
-		return (false);
-	rgb_list = ft_split(rgb + 1, ',');
-	while (rgb_list[i] != NULL)
-		i++;
-	if (i != 3)
-		return (ft_free2d((void **)rgb_list), false);
-	i = 0;
-	while (i < 3)
-	{
-		temp = ft_atoi(ft_ignorespaces(rgb_list[i]));
-		if (temp < 0 || temp > 255)
-			return (ft_free2d((void **)rgb_list), false);
-		if (floor)
-			level->floor_color[i++] = temp;
-		else
-			level->ceiling_color[i++] = temp;
-	}
-	return (ft_free2d((void **)rgb_list), true);
-}
-
-bool	find_colors_info(t_level *level)
-{
-	t_ctr	ctr;
-
-	init_ctrs(&ctr);
-	while (ctr.i < 6)
-	{
-		ctr.j = ft_skipspaces(level->map_info[ctr.i]);
-		if (level->map_info[ctr.i][ctr.j] == 'C'
-			|| level->map_info[ctr.i][ctr.j] == 'F')
-		{
-			if (!validate_rgb_values(level->map_info[ctr.i] + ctr.j, level))
-				return (false);
-		}
-		ctr.i++;
 	}
 	return (true);
 }

@@ -42,7 +42,7 @@ static char	*wordbyword(char const *str, char c)
 	j = 0;
 	while (str[i] != '\0' && str[i] != c)
 		i++;
-	new = (char *)malloc(sizeof(char) * (i + 1));
+	new = ft_calloc(i + 1, sizeof(char));
 	if (!new)
 		return (0);
 	while (j < i)
@@ -64,7 +64,7 @@ char	**ft_split(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (NULL);
-	array = (char **)malloc(sizeof(char *) * (array_length(s, c) + 1));
+	array = ft_calloc(array_length(s, c) + 1, sizeof(char *));
 	if (!array)
 		return (NULL);
 	while (s[i] != '\0')

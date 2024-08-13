@@ -6,14 +6,13 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/12 22:17:22 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:21:41 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-/*****Sys/Libraries******/
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,7 +21,6 @@
 # include <stdbool.h>
 # include "./libs/libft/libft.h"
 # include "./libs/mlx_mac/mlx.h"
-//# include "./libs/mlx_linux/mlx.h"
 
 # define INVALID_FILE_TYPE "Error: not a valid file type\n"
 # define INVALID_FILE "Error: No such file\n"
@@ -32,19 +30,12 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265358979323846
-# define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
 # define WIDTH 1080
 # define HEIGHT 1080
 # define MINIMAP_X 21
 # define MINIMAP_Y 21
-# define MAP_X ((MINIMAP_X * 2) * WIDTH / 1280)
-# define MAP_Y ((MINIMAP_Y * 2) * HEIGHT / 720)
 # define RAD (M_PI / 180.0f)
 # define FOV 60.0
-# define WALL_HEIGHT 1.0
-#define EPSILON 0.1f   // Small value to avoid division by zero
-#define MIN_HEIGHT 1   // Minimum height for line
-
 # define DEG (180 / PI)
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
@@ -200,6 +191,7 @@ void 	convert_rgb_hex(t_level *level);
 bool	validate_level(char *level_path, t_level *level, t_player *player);
 bool	validate_textures_info(t_level *level);
 bool	validate_map(t_level *level, t_player *player);
+bool	find_colors_info(t_level *level);
 void	copy_map(t_level *level);
 bool	check_sides(int x, int y, t_level *level, char *expected);
 bool	check_if_valid(int x, int y, t_level *level);
