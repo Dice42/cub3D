@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:13:33 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 20:21:27 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,17 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 	char	entry;
 
 	entry = level->map[x][y];
-	if (x > 0)
+	if (x > 0 && x < (ft_strlen(level->map[x]) - 1))
 	{
 		if (level->map[x-1][y] == '0')
 			return (false);
-	}
-	if (x < ft_strlen(level->map[x]) - 1)
-	{
 		if (level->map[x + 1][y] == '0')
 			return (false);
 	}
-	if (y > 0)
+	if (y > 0 && y < (level->num_of_columns - 1))
 	{
 		if (level->map[x][y - 1] == '0')
 			return (false);
-	}
-	if (y < level->num_of_columns - 1)
-	{
 		if (level->map[x][y + 1] == '0')
 			return (false);
 	}
@@ -42,24 +36,65 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 
 
 /**
- * @brief makes a copy of the given map
+ * @brief makes an inital copy of the given map
  * @param level
  */
-void	copy_map(t_level *level)
+void	copy_init_map(t_level *level)
 {
 	t_ctr	ctr;
 
 	init_ctrs(&ctr);
 	ctr.i = 6;
 	level->num_of_rows = ft_arrlen(level->map_info + 6);
-	//level->init_map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
-	level->map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
+	level->init_map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
 	while (level->map_info[ctr.i])
 	{
-		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
+		level->init_map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
 		ctr.j++;
 		ctr.i++;
 	}
+}
+
+void	make_map(t_level *level)
+{
+	t_ctr	ctr;
+
+	init_ctrs(&ctr);
+	level->map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
+	while (ctr.i < level->num_of_rows)
+	{
+		ctr.j = 0;
+		level->map[ctr.i] = ft_calloc(sizeof(char), level->num_of_columns + 1);
+		while (ctr.j < ft_strlen(level->init_map[ctr.i]))
+		{
+			printf("%c", level->init_map[ctr.i][ctr.j]);
+			level->map[ctr.i][ctr.j] = level->init_map[ctr.i][ctr.j];
+			printf("%c ", level->map[ctr.i][ctr.j]);
+			ctr.j ++;
+		}
+		printf("\n");
+		if (ctr.j < level->num_of_columns)
+		{
+			printf("less than\n");
+			while (ctr.j < level->num_of_columns)
+				level->map[ctr.i][ctr.j++] = '1';
+		}
+		level->map[ctr.i][ctr.j] = '\0';
+		printf("strlen: %d\n", ft_strlen(level->map[ctr.i]));
+		printf("init strlen: %d\n", ft_strlen(level->init_map[ctr.i]));
+		ctr.i ++;
+	}
+	printf("init size : %d\n", ft_strlen(level->init_map[0]));
+	int i = 0;
+	while (i < level->num_of_rows)
+	{
+		int j = 0;
+		while (level->map[i][j] != '\0')
+			printf("%c", level->map[i][j++]);
+		printf("\n");
+		i ++;
+	}
+	printf("size : %d\n", ft_strlen(level->map[0]));
 }
 
 /**
@@ -68,7 +103,7 @@ void	copy_map(t_level *level)
  * @param map
  * @param n_rows
  */
-void	fill_visited(bool **visited, char **map, int n_rows)
+void	fill_visited(t_level *lvl, bool **visited, int n_rows)
 {
 	int	i;
 	int	j;
@@ -76,7 +111,7 @@ void	fill_visited(bool **visited, char **map, int n_rows)
 	i = 0;
 	while (i < n_rows)
 	{
-		visited[i] = ft_calloc(sizeof(bool), ft_strlen(map[i]));
+		visited[i] = ft_calloc(sizeof(bool), lvl->num_of_columns + 1);
 		j = 0;
 		while (visited[i][j])
 		{
