@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 20:14:22 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:25:43 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,8 @@ bool	check_if_valid(int x, int y, t_level *level);
 void	fill_visited(t_level *level, bool **visited, int n_rows);
 void	get_columns_num(t_level *level);
 bool	check_space_surroundings(t_level *level, int x, int y);
+bool	check_map_content(char **map, t_ctr *ctr, t_player *plyr, bool *found);
+char	*set_expected(int x, int y, t_level *level);
 
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */
