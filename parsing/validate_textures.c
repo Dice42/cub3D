@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:51 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/07/21 20:35:34 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:33:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /**
  * @brief check the path of the texture
- * 
- * @param str 
- * @return 
+ *
+ * @param str
+ * @return
  */
 char	*get_texture(char *str)
 {
@@ -30,18 +30,18 @@ char	*get_texture(char *str)
 
 /**
  * @brief allocate the texture to the level struct
- * @return 
+ * @return
  */
 bool	set_texture(t_level *level, char direction, int *i)
 {
-	char *str;
+	char	*str;
 
 	str = NULL;
 	str = get_texture(ft_ignorespaces(level->map_info[*i]) + 2);
 	if (!str)
 		return (false);
 	if (direction == 'N')
-		level->textures.north_texture = ft_strdup(str); 
+		level->textures.north_texture = ft_strdup(str);
 	else if (direction == 'S')
 		level->textures.south_texture = ft_strdup(str);
 	else if (direction == 'W')
@@ -50,20 +50,10 @@ bool	set_texture(t_level *level, char direction, int *i)
 		level->textures.east_texture = ft_strdup(str);
 	return ((*i)++, true);
 }
-// int		validate_textures_info_utils(t_level *level, int *i, char dir, char *direction)
-// {
-	
-// 	if (!ft_strncmp(ft_ignorespaces(level->map_info[*i]), direction, 2))
-// 	{
-// 		if (!set_texture(level, dir, &(*i)))
-// 			return (0);
-// 		return (1);
-// 	}
-// 	return (-1);
-// }
+
 /**
- * @brief check the validity of the textures 
- * 			by checking whether the textures exist within a 
+ * @brief check the validity of the textures
+ * 			by checking whether the textures exist within a
  * 			specified directory
  */
 bool	validate_textures_info(t_level *level)
@@ -94,9 +84,9 @@ bool	validate_textures_info(t_level *level)
 				return (false);
 		}
 		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "F ", 2))
-			ctr.i ++;
+			ctr.i++;
 		else if (!ft_strncmp(ft_ignorespaces(level->map_info[ctr.i]), "C ", 2))
-			ctr.i ++;
+			ctr.i++;
 		else
 			return (false);
 	}
