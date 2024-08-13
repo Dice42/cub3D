@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:51:32 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:38:13 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:11:41 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,18 @@ void	init_vertical_ray(t_cub3d *cube, float *ray_dir, float *step,
 bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step,
 		float *init_pos)
 {
-	int	x;
-	int	y;
+	t_ctr	ctr;
 
-	x = 0;
-	y = 0;
+	init_ctrs(&ctr);
 	init_vertical_ray(cube, ray_dir, step, init_pos);
 	while (1)
 	{
-		x = (int)(init_pos[0] / MINIMAP_X);
-		y = (int)(init_pos[1] / MINIMAP_Y);
-		if ((x >= 0 && x < cube->level.num_of_columns) && (y >= 0
-				&& y < cube->level.num_of_rows))
+		ctr.x = (int)(init_pos[0] / MINIMAP_X);
+		ctr.y = (int)(init_pos[1] / MINIMAP_Y);
+		if ((ctr.x >= 0 && ctr.x < cube->level.num_of_columns) && (ctr.y >= 0
+				&& ctr.y < cube->level.num_of_rows))
 		{
-			if (cube->level.map[y][x] == '1')
+			if (cube->level.map[ctr.y][ctr.x] == '1')
 			{
 				cube->player.rays.vertical_point_x = init_pos[0];
 				cube->player.rays.vertical_point_y = init_pos[1];
@@ -62,7 +60,7 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step,
 			init_pos[1] += step[1];
 		}
 		else
-			break ;
+			break;
 	}
 	return (false);
 }
