@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_visuals.c                                  :+:      :+:    :+:   */
+/*   visuals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:27:33 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 21:51:27 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:30:42 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	draw_borders(t_cub3d *cube, int x, int y)
 		j = 0;
 		while (j < MINIMAP_Y - 1)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y
-				+ j, 0xADD8E6);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i,
+				 y * MINIMAP_Y + j, 0xADD8E6);
 			j++;
 		}
 		i++;
@@ -42,8 +42,8 @@ void	draw_background(t_cub3d *cube, int x, int y)
 		j = 0;
 		while (j < MINIMAP_Y)
 		{
-			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i, y * MINIMAP_Y
-				+ j, 0x8e918a);
+			my_mlx_pixel_put(&cube->data.img, x * MINIMAP_X + i,
+				y * MINIMAP_Y + j, 0x8e918a);
 			j++;
 		}
 		i++;
@@ -98,6 +98,10 @@ void	draw_map(t_cub3d *cube)
 	draw_floor(cube);
 	draw_ceiling(cube);
 	draw_3d_rays(cube);
+	/*bonus part*/
+	// draw_mini_map(cube);
+	// minimap_rays(cube);
+	// draw_line(cube);
 	mlx_put_image_to_window(cube->data.mlx_ptr, cube->data.win,
 		cube->data.img.img, 0, 0);
 }

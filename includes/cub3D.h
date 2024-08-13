@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:17:11 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:30:32 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ typedef struct s_level
 {
 	char		**map_info;
 	char		**map;
-	//char		**init_map;
+	char		**init_map;
 	bool		**visited;
 	char		*full_file;
 	int			row_start_point;
@@ -204,11 +204,15 @@ bool	validate_level(char *level_path, t_level *level, t_player *player);
 bool	validate_textures_info(t_level *level);
 bool	validate_map(t_level *level, t_player *player);
 bool	find_colors_info(t_level *level);
-void	copy_map(t_level *level);
+void	copy_init_map(t_level *level);
+void	make_map(t_level *level);
 bool	check_sides(int x, int y, t_level *level, char *expected);
 bool	check_if_valid(int x, int y, t_level *level);
-void	fill_visited(bool **visited, char **map, int n_rows);
+void	fill_visited(t_level *level, bool **visited, int n_rows);
 void	get_columns_num(t_level *level);
+bool	check_space_surroundings(t_level *level, int x, int y);
+bool	check_map_content(char **map, t_ctr *ctr, t_player *plyr, bool *found);
+char	*set_expected(int x, int y, t_level *level);
 
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */

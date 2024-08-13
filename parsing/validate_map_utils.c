@@ -6,34 +6,80 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:21:26 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:13:33 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:14:10 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+bool	check_map_content(char **map, t_ctr *ctr, t_player *plyr, bool *found)
+{
+	if (map[ctr->i][ctr->j] == '0' || map[ctr->i][ctr->j] == '1'
+		|| map[ctr->i][ctr->j] == 'N' || map[ctr->i][ctr->j] == 'S'
+		|| map[ctr->i][ctr->j] == 'E' || map[ctr->i][ctr->j] == 'W'
+		|| map[ctr->i][ctr->j] == ' ')
+	{
+		if ((map[ctr->i][ctr->j] == 'N' || map[ctr->i][ctr->j] == 'S'
+				|| map[ctr->i][ctr->j] == 'E'
+				|| map[ctr->i][ctr->j] == 'W'))
+		{
+			if (*found)
+				return (false);
+			*found = true;
+			plyr->orientation = map[ctr->i][ctr->j];
+		}
+		ctr->j++;
+	}
+	else
+		return (false);
+	return (true);
+}
+
+char	*set_expected(int x, int y, t_level *level)
+{
+	char	*exp;
+
+	exp = NULL;
+	if (level->map[x][y] == ' ')
+	{
+		if (!check_space_surroundings(level, x, y))
+			return (NULL);
+		exp = " 1";
+	}
+	else if (level->map[x][y] == '1')
+		exp = " 10NESW";
+	else if (level->map[x][y] == '0')
+	{
+		if (!check_if_valid(x, y, level))
+			return (NULL);
+		exp = "10NESW";
+	}
+	else if (level->map[x][y] == 'N' || level->map[x][y] == 'S'
+		|| level->map[x][y] == 'W' || level->map[x][y] == 'E')
+	{
+		exp = "10";
+		if (!check_if_valid(x, y, level))
+			return (NULL);
+	}
+	return (exp);
+}
 
 bool	check_space_surroundings(t_level *level, int x, int y)
 {
 	char	entry;
 
 	entry = level->map[x][y];
-	if (x > 0)
+	if (x > 0 && x < level->num_of_rows - 1)
 	{
-		if (level->map[x-1][y] == '0')
+		if (level->map[x - 1][y] == '0')
 			return (false);
-	}
-	if (x < ft_strlen(level->map[x]) - 1)
-	{
 		if (level->map[x + 1][y] == '0')
 			return (false);
 	}
-	if (y > 0)
+	if (y > 0 && y < (level->num_of_columns - 1))
 	{
 		if (level->map[x][y - 1] == '0')
 			return (false);
-	}
-	if (y < level->num_of_columns - 1)
-	{
 		if (level->map[x][y + 1] == '0')
 			return (false);
 	}
@@ -42,33 +88,12 @@ bool	check_space_surroundings(t_level *level, int x, int y)
 
 
 /**
- * @brief makes a copy of the given map
- * @param level
- */
-void	copy_map(t_level *level)
-{
-	t_ctr	ctr;
-
-	init_ctrs(&ctr);
-	ctr.i = 6;
-	level->num_of_rows = ft_arrlen(level->map_info + 6);
-	//level->init_map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
-	level->map = ft_calloc(sizeof(char *), level->num_of_rows + 1);
-	while (level->map_info[ctr.i])
-	{
-		level->map[ctr.j] = ft_strdup(level->map_info[ctr.i]);
-		ctr.j++;
-		ctr.i++;
-	}
-}
-
-/**
  * @brief fill the visited array with false in intial state
  * @param visited
  * @param map
  * @param n_rows
  */
-void	fill_visited(bool **visited, char **map, int n_rows)
+void	fill_visited(t_level *lvl, bool **visited, int n_rows)
 {
 	int	i;
 	int	j;
@@ -76,7 +101,7 @@ void	fill_visited(bool **visited, char **map, int n_rows)
 	i = 0;
 	while (i < n_rows)
 	{
-		visited[i] = ft_calloc(sizeof(bool), ft_strlen(map[i]));
+		visited[i] = ft_calloc(sizeof(bool), lvl->num_of_columns + 1);
 		j = 0;
 		while (visited[i][j])
 		{
