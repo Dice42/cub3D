@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:51:32 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 23:11:41 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 23:16:13 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	get_vertical_intersection(t_cub3d *cube, float *ray_dir, float *step,
 			init_pos[1] += step[1];
 		}
 		else
-			break;
+			break ;
 	}
 	return (false);
 }
