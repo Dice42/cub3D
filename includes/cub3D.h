@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:14:07 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/13 18:23:58 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ typedef struct s_level
 	char		*full_file;
 	int			row_start_point;
 	t_textures	textures;
-	char		*ceiling_color_hex;
-	char		*floor_color_hex;
+	char		*ceiling_clr_hex;
+	char		*floor_clr_hex;
 	int			ceiling_color[3];
 	int			floor_color[3];
 	int			floor_clr;
