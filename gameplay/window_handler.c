@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:53:28 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:42:26 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:03:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color)
 
 int	close_window(t_cub3d *cube)
 {
+	int	i;
+
+	i = 0;
+	if (cube->data.img.img)
+		mlx_destroy_image(cube->data.mlx_ptr, cube->data.img.img);
+	while (i < 4)
+	{
+		if (cube->data.textures[i].img)
+			mlx_destroy_image(cube->data.mlx_ptr, cube->data.textures[i].img);
+		i++;
+	}
 	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
 	mlx_destroy_window(cube->data.mlx_ptr, cube->data.win);
 	exit(0);

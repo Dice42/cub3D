@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 23:34:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:13:42 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define INVALID_MAP_TEXTURE "Error: invalid textures\n"
 # define INVALID_RGB "Error: invalid map colors\n"
 # define PI 3.14159265358979323846
-# define WIDTH 1080
+# define WIDTH 1920
 # define HEIGHT 1080
-# define MINIMAP_X 64
-# define MINIMAP_Y 64
+# define MINIMAP_X 21
+# define MINIMAP_Y 21
 # define FOV 60.0
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
@@ -58,7 +58,7 @@ typedef struct s_counters
 	int			y;
 }				t_ctr;
 
-typedef struct s_draw_line
+typedef struct s_draw_wall
 {
 	float		height;
 	float		end_y;
@@ -67,7 +67,7 @@ typedef struct s_draw_line
 	float		texture_x;
 	float		texture_y_step;
 	int			color;
-}				t_draw_line;
+}				t_draw_wall;
 
 typedef struct s_transform
 {
@@ -110,6 +110,7 @@ typedef struct s_rays
 	float		horizontal_distance;
 	float		distance;
 	float		prev_distance;
+	float		line_offset;
 	int			clr;
 }				t_rays;
 
@@ -186,14 +187,14 @@ typedef struct s_cub3d
 
 void			init_ctrs(t_ctr *ctr);
 bool			init_cube(t_cub3d *cube);
-void			init_draw_line(t_draw_line *line);
+void			init_draw_wall(t_draw_wall *wall);
 void			convert_rgb_hex(t_level *level);
 
 /* ************************************************************************** */
 /* 									Parsing									  */
 /* ************************************************************************** */
 
-bool			validate_level(char *level_path, t_level *level,
+bool			validate_level(char *level_path, t_cub3d *cub,
 					t_player *player);
 bool			validate_textures_info(t_level *level);
 bool			validate_map(t_level *level, t_player *player);
@@ -208,13 +209,14 @@ bool			check_space_surroundings(t_level *level, int x, int y);
 bool			check_map_content(char **map, t_ctr *ctr, t_player *plyr,
 					bool *found);
 char			*set_expected(int x, int y, t_level *level);
+void			replace_exs(t_level *level);
 
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */
 /* ************************************************************************** */
 
-void			error_handler(char *err_msg, t_cub3d *cub, t_level *level,
-					bool free);
+void			error_handler(char *err_msg, bool window, t_cub3d *cube,
+					bool frees);
 
 /* ************************************************************************** */
 /* 									Gameplay								  */
@@ -227,10 +229,10 @@ bool			level_collision(t_cub3d *cube, int x, int y,
 					bool player_collision);
 
 /* ************************************************************************** */
-/* 									RAYCASTS							  	  */
+/* 									RAYCASTS							      */
 /* ************************************************************************** */
 
-float			cast_rays(t_cub3d *cube); // actual raycaster
+float			cast_rays(t_cub3d *cube);
 float			calc_horizontal_distance(t_cub3d *cube, float *ray_dir);
 float			calc_vertical_distance(t_cub3d *cube, float *ray_dir);
 
@@ -250,7 +252,6 @@ void			check_coordinate(t_cub3d *cube);
 
 void			init_player_pos(t_cub3d *cube, int x, int y);
 void			init_player(t_cub3d *cube);
-float			cast_rays(t_cub3d *cube); // actual raycaster
 void			player_movement(t_cub3d *cube, bool dir[4]);
 void			player_rotation(t_cub3d *cube, bool rot_dir[2]);
 void			move_player(t_cub3d *cube, int dir, bool is_vertical);
@@ -270,7 +271,7 @@ void			draw_floor(t_cub3d *cube);
 void			draw_ceiling(t_cub3d *cube);
 
 /* ************************************************************************** */
-/* 								Window Handling								  */
+/* 								Window Handling							      */
 /* ************************************************************************** */
 
 void			init_mlx_img(t_cub3d *cube);

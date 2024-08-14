@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:32:01 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 23:11:59 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/14 13:12:42 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_ctrs(t_ctr *ctr)
 	ctr->y = 0;
 }
 
-void	init_draw_line(t_draw_line *line)
+void	init_draw_wall(t_draw_wall*line)
 {
 	line->height = 0;
 	line->offset = 0;

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:40:51 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 23:01:03 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:24:28 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_level(t_level *level)
 		ft_free2d((void **)level->map);
 	if (level->map_info)
 		ft_free2d((void **)level->map_info);
+	if (level->init_map)
+		ft_free2d((void **)level->init_map);
 	if (level->visited)
 		ft_free2d((void **)level->visited);
 	if (level->full_file)
@@ -32,10 +34,11 @@ void	free_level(t_level *level)
 		free(level->textures.south_texture);
 }
 
-void	error_handler(char *err_msg, t_cub3d *cub, t_level *level, bool frees)
+void	error_handler(char *err_msg, bool window, t_cub3d *cube, bool frees)
 {
 	ft_putstr_fd(err_msg, 2);
 	if (frees)
-		free_level(level);
-	(void)cub;
+		free_level(&cube->level);
+	if (window)
+		close_window(cube);
 }
