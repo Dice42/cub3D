@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:53:28 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/14 12:03:35 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:17:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ int	close_window(t_cub3d *cube)
 			mlx_destroy_image(cube->data.mlx_ptr, cube->data.textures[i].img);
 		i++;
 	}
-	mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
-	mlx_destroy_window(cube->data.mlx_ptr, cube->data.win);
+	if (cube->data.win)
+	{
+		mlx_clear_window(cube->data.mlx_ptr, cube->data.win);
+		mlx_destroy_window(cube->data.mlx_ptr, cube->data.win);
+	}
 	exit(0);
 	return (0);
 }

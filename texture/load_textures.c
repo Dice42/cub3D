@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 14:55:48 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/14 10:59:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:29:07 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	xpm_to_image(t_cub3d *cube, t_img_data *texture, char *path)
 		error_handler("Error\nCourrupted path\n", true, cube, true);
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
+	if (!texture->addr)
+		error_handler("Error\nCourrupted path\n", true, cube, true);
 }
 
 void	load_textures(t_cub3d *cube)
