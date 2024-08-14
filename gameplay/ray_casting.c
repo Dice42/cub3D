@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:16:48 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:41:27 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,9 @@ void draw_rays(t_cub3d *cube, int x, float distance)
 	float	texture_y_step;
 	int		color;
 
-	
 	distance = distance * cos(cube->player.rays.angle - cube->player.transform.angle);
 	line_height = (float)(((MINIMAP_Y / 2) * HEIGHT) / distance);
-	// if (line_height > HEIGHT)
-	// 	line_height = HEIGHT;
 	texture_y = 0.0f;
-
 	cube->player.rays.line_offset = HEIGHT / 2 - (line_height / 2);
 	line_end_y = cube->player.rays.line_offset + line_height;
 	line_start_y = cube->player.rays.line_offset;
