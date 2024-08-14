@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 22:25:43 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/14 12:48:09 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define PI 3.14159265358979323846
 # define WIDTH 1080
 # define HEIGHT 1080
-# define MINIMAP_X 21
-# define MINIMAP_Y 21
+# define MINIMAP_X 32
+# define MINIMAP_Y 32
 # define RAD (M_PI / 180.0f)
 # define FOV 60.0
 # define DEG (180 / PI)

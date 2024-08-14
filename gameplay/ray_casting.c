@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 18:16:48 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:48:52 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void draw_rays(t_cub3d *cube, int x, float distance)
 
 	
 	distance = distance * cos(cube->player.rays.angle - cube->player.transform.angle);
-	line_height = (float)(((MINIMAP_Y / 2) * HEIGHT) / distance);
+	line_height = (float)((MINIMAP_Y * HEIGHT) / distance);
 	// if (line_height > HEIGHT)
 	// 	line_height = HEIGHT;
 	texture_y = 0.0f;
