@@ -1,35 +1,14 @@
-
-
-	C        10 ,      240,          255
-	F                0,       100,           100                
-
-
-
-
-
-
-
-
-
-NO            ./includes/levels/textures/QR.xpm
-
+C  10, 240,255
+F  0, 100, 100
+NO ./includes/levels/textures/QR.xpm
 SO ./includes/levels/textures/cursor.xpm
-			 EA              ./includes/levels/textures/orange.xpm
-			 WE           ./includes/levels/textures/blueback.xpm
- 
- 
-111111
-100001
-100001
-101001
-100001
-100N001
-100001
-111111
-
-
-
-
-
-
-
+EA ./includes/levels/textures/orange.xpm
+WE ./includes/levels/textures/blueback.xpm
+11111111111111
+10000000000001
+10000010000001
+10100010000001
+10000010000001
+100N0010000001
+10000010000001
+11111111111111
