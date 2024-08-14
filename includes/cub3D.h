@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/13 23:34:58 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:31:35 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ bool			check_space_surroundings(t_level *level, int x, int y);
 bool			check_map_content(char **map, t_ctr *ctr, t_player *plyr,
 					bool *found);
 char			*set_expected(int x, int y, t_level *level);
+void	replace_exs(t_level *level);
 
 /* ************************************************************************** */
 /* 									ERROR HANDLING							  */
