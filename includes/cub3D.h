@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/14 13:07:44 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:13:42 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_counters
 	int			y;
 }				t_ctr;
 
-typedef struct s_draw_line
+typedef struct s_draw_wall
 {
 	float		height;
 	float		end_y;
@@ -67,7 +67,7 @@ typedef struct s_draw_line
 	float		texture_x;
 	float		texture_y_step;
 	int			color;
-}				t_draw_line;
+}				t_draw_wall;
 
 typedef struct s_transform
 {
@@ -187,7 +187,7 @@ typedef struct s_cub3d
 
 void			init_ctrs(t_ctr *ctr);
 bool			init_cube(t_cub3d *cube);
-void			init_draw_line(t_draw_line *line);
+void			init_draw_wall(t_draw_wall *wall);
 void			convert_rgb_hex(t_level *level);
 
 /* ************************************************************************** */

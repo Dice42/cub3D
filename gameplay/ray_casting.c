@@ -6,36 +6,36 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:12:13 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/14 13:06:36 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:12:59 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	draw_rays(t_cub3d *cube, int i, float distance)
+void	draw_walls(t_cub3d *cube, int i, float distance)
 {
-	t_draw_line	line;
+	t_draw_wall	wall;
 
-	init_draw_line(&line);
+	init_draw_wall(&wall);
 	distance = distance * cos(cube->player.rays.angle
 			- cube->player.transform.angle);
-	line.height = (float)((MINIMAP_Y * HEIGHT) / distance);
-	line.offset = HEIGHT / 2 - (line.height / 2);
-	line.end_y = line.offset + line.height;
+	wall.height = (float)((MINIMAP_Y * HEIGHT) / distance);
+	wall.offset = HEIGHT / 2 - (wall.height / 2);
+	wall.end_y = wall.offset + wall.height;
 	if (cube->player.rays.distance == cube->player.rays.vertical_distance)
-		line.texture_x = ((float)((int)cube->player.rays.point_y % MINIMAP_X)
+		wall.texture_x = ((float)((int)cube->player.rays.point_y % MINIMAP_X)
 				/ (float)(MINIMAP_X)) * cube->data.texture->width;
 	if (cube->player.rays.distance == cube->player.rays.horizontal_distance)
-		line.texture_x = ((float)((int)cube->player.rays.point_x % MINIMAP_X)
+		wall.texture_x = ((float)((int)cube->player.rays.point_x % MINIMAP_X)
 				/ (float)(MINIMAP_X)) * cube->data.texture->width;
-	line.texture_y_step = (float)cube->data.texture->height / line.height;
-	while (line.offset < line.end_y)
+	wall.texture_y_step = (float)cube->data.texture->height / wall.height;
+	while (wall.offset < wall.end_y)
 	{
-		line.color = get_texture_pixel(cube->data.texture, (int)line.texture_x,
-				(int)line.texture_y, cube);
-		my_mlx_pixel_put(&cube->data.img, i, line.offset, line.color);
-		line.texture_y += line.texture_y_step;
-		line.offset++;
+		wall.color = get_texture_pixel(cube->data.texture, (int)wall.texture_x,
+				(int)wall.texture_y, cube);
+		my_mlx_pixel_put(&cube->data.img, i, wall.offset, wall.color);
+		wall.texture_y += wall.texture_y_step;
+		wall.offset++;
 	}
 }
 
@@ -69,7 +69,7 @@ void	draw_3d_rays(t_cub3d *cube)
 	{
 		cube->player.rays.distance = cast_rays(cube);
 		check_coordinate(cube);
-		draw_rays(cube, i, cube->player.rays.distance);
+		draw_walls(cube, i, cube->player.rays.distance);
 		cube->player.rays.angle += cube->player.rays.angle_step;
 		reset_angles(&cube->player.rays.angle);
 	}
