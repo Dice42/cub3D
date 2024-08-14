@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/14 09:36:31 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:36:16 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,18 @@ typedef struct s_counters
 {
 	int	i;
 	int	j;
-	int	c;	
+	int	c;
 }	t_ctr;
+
+typedef struct s_wall
+{
+	float	height;
+	float	end_y;
+	float	start_y;
+	float	texture_y;
+	float	texture_x1;
+	float	texture_y_step;
+}	t_wall;
 
 typedef struct s_transform
 {
