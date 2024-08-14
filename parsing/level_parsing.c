@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:54:08 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 16:25:04 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:25:20 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,23 @@ bool	validate_order(char **map)
 	return (true);
 }
 
-bool	validate_level(char *level_path, t_level *level, t_player *player)
+bool	validate_level(char *level_path, t_cub3d *cub, t_player *player)
 {
 	if (ft_strncmp((level_path + (ft_strlen(level_path) - 4)), ".cub", 4) != 0)
-		return (error_handler(INVALID_FILE_TYPE, NULL, NULL, false), false);
-	level->full_file = open_read_level(level_path, 0);
-	if (!level->full_file)
-		return (error_handler(INVALID_FILE, NULL, level, true), false);
-	level->map_info = ft_split(level->full_file, '\n');
-	if (!level->map_info)
-		return (error_handler(INVALID_FILE_INFO, NULL, level, true), false);
-	if (!validate_order(level->map_info))
-		return (error_handler(INVALID_MAP_INFO, NULL, level, true), false);
-	if (!find_colors_info(level))
-		return (error_handler(INVALID_RGB, NULL, level, true), false);
-	if (!validate_map(level, player))
-		return (error_handler(INVALID_MAP, NULL, level, true), false);
-	if (!validate_textures_info(level))
-		return (error_handler(INVALID_MAP_TEXTURE, NULL, level, true), false);
+		return (error_handler(INVALID_FILE_TYPE, false, NULL, false), false);
+	cub->level.full_file = open_read_level(level_path, 0);
+	if (!cub->level.full_file)
+		return (error_handler(INVALID_FILE, false, cub, true), false);
+	cub->level.map_info = ft_split(cub->level.full_file, '\n');
+	if (!cub->level.map_info)
+		return (error_handler(INVALID_FILE_INFO, false, cub, true), false);
+	if (!validate_order(cub->level.map_info))
+		return (error_handler(INVALID_MAP_INFO, false, cub, true), false);
+	if (!find_colors_info(&cub->level))
+		return (error_handler(INVALID_RGB, false, cub, true), false);
+	if (!validate_map(&cub->level, player))
+		return (error_handler(INVALID_MAP, false, cub, true), false);
+	if (!validate_textures_info(&cub->level))
+		return (error_handler(INVALID_MAP_TEXTURE, false, cub, true), false);
 	return (true);
 }
