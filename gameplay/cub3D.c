@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:10:31 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:30:25 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:18:05 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	update(t_cub3d *cube)
 
 void	ft_start(t_cub3d *cube)
 {
+	convert_rgb_hex(&cube->level);
 	cube->data.mlx_ptr = mlx_init();
 	cube->data.win = mlx_new_window(cube->data.mlx_ptr, WIDTH, HEIGHT,
 			"Cube 3D");
 	load_textures(cube);
-	convert_rgb_hex(&cube->level);
 	init_player(cube);
 	draw_map(cube);
 	mlx_hook(cube->data.win, 2, 0, &handle_keypress, cube);

@@ -6,7 +6,7 @@
 /*   By: mohammoh <mohammoh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:07:17 by mohammoh          #+#    #+#             */
-/*   Updated: 2024/08/14 11:26:27 by mohammoh         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:54:59 by mohammoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define HEIGHT 1080
 # define MINIMAP_X 64
 # define MINIMAP_Y 64
+# define RAD (M_PI / 180.0f)
+# define DEG (180 / PI)
 # define FOV 60.0
 # define GREEN 0X00FF00
 # define BLUE 0X0000FF
@@ -110,6 +112,7 @@ typedef struct s_rays
 	float		horizontal_distance;
 	float		distance;
 	float		prev_distance;
+	float		line_offset;
 	int			clr;
 }				t_rays;
 
