@@ -6,7 +6,7 @@
 /*   By: ssibai < ssibai@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:25:54 by ssibai            #+#    #+#             */
-/*   Updated: 2024/08/13 22:15:02 by ssibai           ###   ########.fr       */
+/*   Updated: 2024/08/14 12:57:06 by ssibai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	make_map(t_level *level)
 		if (ctr.j < level->num_of_columns)
 		{
 			while (ctr.j < level->num_of_columns)
-				level->map[ctr.i][ctr.j++] = '1';
+				level->map[ctr.i][ctr.j++] = ' ';
 		}
 		level->map[ctr.i][ctr.j] = '\0';
 		ctr.i ++;
