@@ -11,11 +11,11 @@
 
 
 
-NO            ./includes/levels/textures/fixed_pipes.xpm
+NO            ./includes/levels/textures/QR.xpm
 
-SO ./includes/levels/textures/brick.xpm
-			 EA              ./includes/levels/textures/question.xpm
-			 WE           ./includes/levels/textures/bush.xpm
+SO ./includes/levels/textures/cursor.xpm
+			 EA              ./includes/levels/textures/orange.xpm
+			 WE           ./includes/levels/textures/blueback.xpm
  
  
 111111
